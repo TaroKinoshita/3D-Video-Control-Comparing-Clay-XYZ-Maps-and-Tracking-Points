@@ -1,0 +1,14 @@
+=== 陽性対照1: tv_R0S0_prime（完璧な制御） ===
+labeler        : numpy fallback (4-connected)
+scored frames  : 44 / 44   tracker_fail: []
+T_control      : median 1.81 px  p95 3.75  max 91.25  -> PASS (gate <= 47)
+T_coherence    : count!=1 frames [] = 0  -> PASS (gate <= 2 frames)
+memorization   : median vs C' 1.81 / vs Scene C 48.31  -> control 追従
+=== 陽性対照2: tv_R0S0_original（暗記の模擬） ===
+labeler        : numpy fallback (4-connected)
+scored frames  : 44 / 44   tracker_fail: []
+T_control      : median 47.15 px  p95 124.73  max 126.32  -> FAIL (gate <= 47)
+T_coherence    : count!=1 frames [9] = 1  -> PASS (gate <= 2 frames)
+memorization   : median vs C' 47.15 / vs Scene C 3.05  -> Scene C 軌道寄り（暗記の疑い）
+
+[selftest] PASS
