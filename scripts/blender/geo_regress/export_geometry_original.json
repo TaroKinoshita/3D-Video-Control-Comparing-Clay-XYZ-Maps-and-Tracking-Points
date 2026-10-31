@@ -1,0 +1,242 @@
+{
+  "checks": [
+    {
+      "name": "wire_position",
+      "ok": true,
+      "detail": "Position -> NodeSocketColor"
+    },
+    {
+      "name": "wire_depth",
+      "ok": true,
+      "detail": "Depth -> NodeSocketColor"
+    },
+    {
+      "name": "wire_id",
+      "ok": true,
+      "detail": "Image -> NodeSocketColor / 6 obj"
+    },
+    {
+      "name": "position_f01",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "depth_f01",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "id_f01",
+      "ok": true,
+      "detail": "ok uniq=[1.0, 2.0, 3.0, 4.0, 5.0, 6.0] target=27669px u[226.5,372.5] err=0.90/0.47"
+    },
+    {
+      "name": "position_f13",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "depth_f13",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "id_f13",
+      "ok": true,
+      "detail": "ok uniq=[1.0, 2.0, 3.0, 4.0, 5.0, 6.0] target=22139px u[285.5,401.5] err=0.81/0.06"
+    },
+    {
+      "name": "position_f24",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "depth_f24",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "id_f24",
+      "ok": true,
+      "detail": "ok uniq=[1.0, 2.0, 3.0, 4.0, 5.0, 6.0] target=11897px u[339.5,401.5] err=0.65/0.06"
+    },
+    {
+      "name": "position_f37",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "depth_f37",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "id_f37",
+      "ok": true,
+      "detail": "ok \u5b8c\u5168\u906e\u853d uniq=[1.0, 2.0, 4.0, 5.0, 6.0]"
+    },
+    {
+      "name": "position_f49",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "depth_f49",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "id_f49",
+      "ok": true,
+      "detail": "ok uniq=[1.0, 2.0, 3.0, 4.0, 5.0, 6.0] target=6707px u[568.5,603.5] err=0.83/0.76"
+    }
+  ],
+  "cycles": {
+    "engines_enum": [
+      "BLENDER_EEVEE"
+    ],
+    "addon_utils_enable": "ok",
+    "direct_assign": "OK -> CYCLES",
+    "has_CyclesRender": false
+  },
+  "frames": {
+    "1": {
+      "position_bad": [],
+      "depth_bad": [],
+      "id_unique": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0
+      ],
+      "target_px": 27669,
+      "target_u_range": [
+        226.5,
+        372.5
+      ],
+      "target_u_expect": [
+        225.596,
+        372.974
+      ],
+      "fully_occluded_expected": false,
+      "target_u_err": [
+        0.904,
+        0.474
+      ]
+    },
+    "13": {
+      "position_bad": [],
+      "depth_bad": [],
+      "id_unique": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0
+      ],
+      "target_px": 22139,
+      "target_u_range": [
+        285.5,
+        401.5
+      ],
+      "target_u_expect": [
+        284.687,
+        401.556
+      ],
+      "fully_occluded_expected": false,
+      "target_u_err": [
+        0.813,
+        0.056
+      ]
+    },
+    "24": {
+      "position_bad": [],
+      "depth_bad": [],
+      "id_unique": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0
+      ],
+      "target_px": 11897,
+      "target_u_range": [
+        339.5,
+        401.5
+      ],
+      "target_u_expect": [
+        338.854,
+        401.556
+      ],
+      "fully_occluded_expected": false,
+      "target_u_err": [
+        0.646,
+        0.056
+      ]
+    },
+    "37": {
+      "position_bad": [],
+      "depth_bad": [],
+      "id_unique": [
+        1.0,
+        2.0,
+        4.0,
+        5.0,
+        6.0
+      ],
+      "target_px": 0,
+      "target_u_range": [
+        null,
+        null
+      ],
+      "target_u_expect": null,
+      "fully_occluded_expected": true
+    },
+    "49": {
+      "position_bad": [],
+      "depth_bad": [],
+      "id_unique": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0
+      ],
+      "target_px": 6707,
+      "target_u_range": [
+        568.5,
+        603.5
+      ],
+      "target_u_expect": [
+        567.667,
+        604.265
+      ],
+      "fully_occluded_expected": false,
+      "target_u_err": [
+        0.833,
+        0.765
+      ]
+    }
+  },
+  "swapped_pass_index": {
+    "DeepObject": 5,
+    "Floor": 2,
+    "Marker": 6,
+    "Occluder": 4,
+    "Target": 3,
+    "Wall": 1
+  },
+  "variant": "original",
+  "frame_list": [
+    1,
+    13,
+    24,
+    37,
+    49
+  ]
+}

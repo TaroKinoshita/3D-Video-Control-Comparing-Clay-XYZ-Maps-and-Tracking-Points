@@ -1,0 +1,15 @@
+# manifest.py v1
+# generated_by: stage_pod_inputs.py
+# root_basename: mkv
+# files: 9
+# bytes: 17340062
+# columns: md5	size	relpath
+07ad25ea0610ce1d90d6b46bef57b35a	2217662	armA_original.mkv
+42b32912965bf261de7bee3859482a4f	2224461	armA_prime.mkv
+bef43ffa07a82eb49d38e046b6f770b9	1874392	armB_original.mkv
+4df2287dd7d2190f0bc9f485a5f04bda	1914588	armB_prime.mkv
+e3f845f7797f272ebb41dfb13b70f89e	1088684	armC_original.mkv
+f09901450260e334e2b3b34a70591e0a	1066438	armC_prime.mkv
+b6207e23f2dfe49640d6383372cfb0ea	61464	ref_R0S0_original.png
+d4cbf7120f41bb9b03bd908d88260b73	3426110	tv_R0S0_original.mkv
+3d50dfbfb18104da51a86730c49edb74	3466263	tv_R0S0_prime.mkv

@@ -1,0 +1,166 @@
+{
+  "resolution": [
+    832,
+    480
+  ],
+  "latent_cell_px": 8,
+  "spatial_latent_cells": 6240,
+  "seed": 0,
+  "antialiasing": false,
+  "measured_vae_color_error": 17,
+  "required_separation": 34,
+  "check_radius_px": 20,
+  "codebook_8bit": {
+    "empty": [
+      0,
+      0,
+      0
+    ],
+    "nontarget": [
+      13,
+      115
+    ],
+    "target": [
+      140,
+      242
+    ],
+    "reserved_band": [
+      124,
+      131
+    ]
+  },
+  "images": [
+    {
+      "stem": "dots_pal_d0.3_r3",
+      "color_mode": "palette",
+      "radius_px": 3,
+      "density_per_latent_cell": 0.3,
+      "total_points": 1872,
+      "target_points": 565,
+      "coverage_pct": 12.67,
+      "latent_coverage_pct": 25.64,
+      "collision_rate_pct": 27.51,
+      "local_color_separation": {
+        "10": {
+          "median": 96.2,
+          "p5": 48.1,
+          "below_required_pct": 0.0
+        },
+        "20": {
+          "median": 68.0,
+          "p5": 48.1,
+          "below_required_pct": 0.0
+        },
+        "40": {
+          "median": 0.0,
+          "p5": 0.0,
+          "below_required_pct": 69.8
+        }
+      },
+      "required_separation": 34,
+      "entity_risk_toward_empty": 0,
+      "entity_risk_nontarget_to_target": 0,
+      "entity_risk_target_to_nontarget": 0,
+      "reserved_band_count": 0,
+      "palette": {
+        "n_colors": 12,
+        "levels": 3,
+        "margin": 17,
+        "drop_corners": true,
+        "palette_min_distance": 48.1,
+        "band_inner_target": [
+          157,
+          225
+        ],
+        "band_inner_nontarget": [
+          30,
+          98
+        ],
+        "separation_radius_px": 24
+      }
+    },
+    {
+      "stem": "dots_pos_d0.3_r3",
+      "color_mode": "position",
+      "radius_px": 3,
+      "density_per_latent_cell": 0.3,
+      "total_points": 1872,
+      "target_points": 565,
+      "coverage_pct": 12.67,
+      "latent_coverage_pct": 25.64,
+      "collision_rate_pct": 27.51,
+      "local_color_separation": {
+        "10": {
+          "median": 74.5,
+          "p5": 23.6,
+          "below_required_pct": 12.5
+        },
+        "20": {
+          "median": 45.6,
+          "p5": 16.8,
+          "below_required_pct": 27.9
+        },
+        "40": {
+          "median": 27.3,
+          "p5": 9.8,
+          "below_required_pct": 68.4
+        }
+      },
+      "required_separation": 34,
+      "entity_risk_toward_empty": 0,
+      "entity_risk_nontarget_to_target": 0,
+      "entity_risk_target_to_nontarget": 0,
+      "reserved_band_count": 0,
+      "palette": null
+    },
+    {
+      "stem": "dots_pal_d0.6_r3",
+      "color_mode": "palette",
+      "radius_px": 3,
+      "density_per_latent_cell": 0.6,
+      "total_points": 3744,
+      "target_points": 1140,
+      "coverage_pct": 23.79,
+      "latent_coverage_pct": 44.78,
+      "collision_rate_pct": 46.23,
+      "local_color_separation": {
+        "10": {
+          "median": 68.0,
+          "p5": 48.1,
+          "below_required_pct": 0.4
+        },
+        "20": {
+          "median": 48.1,
+          "p5": 48.1,
+          "below_required_pct": 1.4
+        },
+        "40": {
+          "median": 0.0,
+          "p5": 0.0,
+          "below_required_pct": 87.9
+        }
+      },
+      "required_separation": 34,
+      "entity_risk_toward_empty": 0,
+      "entity_risk_nontarget_to_target": 0,
+      "entity_risk_target_to_nontarget": 0,
+      "reserved_band_count": 0,
+      "palette": {
+        "n_colors": 12,
+        "levels": 3,
+        "margin": 17,
+        "drop_corners": true,
+        "palette_min_distance": 48.1,
+        "band_inner_target": [
+          157,
+          225
+        ],
+        "band_inner_nontarget": [
+          30,
+          98
+        ],
+        "separation_radius_px": 24
+      }
+    }
+  ]
+}

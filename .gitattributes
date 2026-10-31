@@ -1,0 +1,19 @@
+# =====================================================================
+#  改行変換を全面禁止（旧リポジトリから継承）
+#  理由：Git for Windows の core.autocrlf=true は commit/checkout 時に改行を
+#  黙って書き換える。この実験は「bit 一致で再生成・照合できる」ことが主張の
+#  一部なので、checkout したファイルの md5 が manifest とズレると検証が壊れる。
+# =====================================================================
+* -text
+
+*.png      binary
+*.exr      binary
+*.mkv      binary
+*.mp4      binary
+*.blend    binary
+*.safetensors binary
+
+# GitHub の言語バーを成果物で汚さない
+data/**     linguist-generated=true
+manifest/** linguist-generated=true
+runs/**     linguist-generated=true

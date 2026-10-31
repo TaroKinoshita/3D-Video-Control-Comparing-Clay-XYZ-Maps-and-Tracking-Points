@@ -1,0 +1,714 @@
+{
+  "checks": [
+    {
+      "name": "engine",
+      "ok": true,
+      "detail": "CYCLES\uff08\u8981\u6c42 CYCLES\uff09/ samples 512"
+    },
+    {
+      "name": "style_applied",
+      "ok": true,
+      "detail": "6 \u30aa\u30d6\u30b8\u30a7\u30af\u30c8\u306b\u6750\u8cea\u3092\u9069\u7528"
+    },
+    {
+      "name": "reproducible",
+      "ok": true,
+      "detail": "\u5dee\u5206\u753b\u7d20 0"
+    },
+    {
+      "name": "tv_f01(idx00)",
+      "ok": true,
+      "detail": "ok mean=0.521 min=7 max=218"
+    },
+    {
+      "name": "tv_f02(idx01)",
+      "ok": true,
+      "detail": "ok mean=0.521 min=8 max=219"
+    },
+    {
+      "name": "tv_f03(idx02)",
+      "ok": true,
+      "detail": "ok mean=0.521 min=4 max=219"
+    },
+    {
+      "name": "tv_f04(idx03)",
+      "ok": true,
+      "detail": "ok mean=0.522 min=3 max=220"
+    },
+    {
+      "name": "tv_f05(idx04)",
+      "ok": true,
+      "detail": "ok mean=0.522 min=3 max=220"
+    },
+    {
+      "name": "tv_f06(idx05)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=7 max=220"
+    },
+    {
+      "name": "tv_f07(idx06)",
+      "ok": true,
+      "detail": "ok mean=0.522 min=10 max=221"
+    },
+    {
+      "name": "tv_f08(idx07)",
+      "ok": true,
+      "detail": "ok mean=0.522 min=10 max=222"
+    },
+    {
+      "name": "tv_f09(idx08)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=10 max=222"
+    },
+    {
+      "name": "tv_f10(idx09)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=10 max=222"
+    },
+    {
+      "name": "tv_f11(idx10)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f12(idx11)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f13(idx12)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f14(idx13)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f15(idx14)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f16(idx15)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f17(idx16)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f18(idx17)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f19(idx18)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f20(idx19)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f21(idx20)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f22(idx21)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f23(idx22)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f24(idx23)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f25(idx24)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f26(idx25)",
+      "ok": true,
+      "detail": "ok mean=0.523 min=11 max=224"
+    },
+    {
+      "name": "tv_f27(idx26)",
+      "ok": true,
+      "detail": "ok mean=0.522 min=10 max=224"
+    },
+    {
+      "name": "tv_f28(idx27)",
+      "ok": true,
+      "detail": "ok mean=0.522 min=11 max=224"
+    },
+    {
+      "name": "tv_f29(idx28)",
+      "ok": true,
+      "detail": "ok mean=0.521 min=11 max=224"
+    },
+    {
+      "name": "tv_f30(idx29)",
+      "ok": true,
+      "detail": "ok mean=0.521 min=11 max=224"
+    },
+    {
+      "name": "tv_f31(idx30)",
+      "ok": true,
+      "detail": "ok mean=0.520 min=8 max=224"
+    },
+    {
+      "name": "tv_f32(idx31)",
+      "ok": true,
+      "detail": "ok mean=0.520 min=9 max=223"
+    },
+    {
+      "name": "tv_f33(idx32)",
+      "ok": true,
+      "detail": "ok mean=0.519 min=8 max=223"
+    },
+    {
+      "name": "tv_f34(idx33)",
+      "ok": true,
+      "detail": "ok mean=0.519 min=11 max=202"
+    },
+    {
+      "name": "tv_f35(idx34)",
+      "ok": true,
+      "detail": "ok mean=0.519 min=8 max=202"
+    },
+    {
+      "name": "tv_f36(idx35)",
+      "ok": true,
+      "detail": "ok mean=0.519 min=8 max=202"
+    },
+    {
+      "name": "tv_f37(idx36)",
+      "ok": true,
+      "detail": "ok mean=0.520 min=5 max=202"
+    },
+    {
+      "name": "tv_f38(idx37)",
+      "ok": true,
+      "detail": "ok mean=0.520 min=5 max=202"
+    },
+    {
+      "name": "tv_f39(idx38)",
+      "ok": true,
+      "detail": "ok mean=0.520 min=5 max=202"
+    },
+    {
+      "name": "tv_f40(idx39)",
+      "ok": true,
+      "detail": "ok mean=0.520 min=5 max=202"
+    },
+    {
+      "name": "tv_f41(idx40)",
+      "ok": true,
+      "detail": "ok mean=0.520 min=5 max=202"
+    },
+    {
+      "name": "tv_f42(idx41)",
+      "ok": true,
+      "detail": "ok mean=0.520 min=5 max=202"
+    },
+    {
+      "name": "tv_f43(idx42)",
+      "ok": true,
+      "detail": "ok mean=0.520 min=5 max=202"
+    },
+    {
+      "name": "tv_f44(idx43)",
+      "ok": true,
+      "detail": "ok mean=0.520 min=5 max=202"
+    },
+    {
+      "name": "tv_f45(idx44)",
+      "ok": true,
+      "detail": "ok mean=0.519 min=5 max=202"
+    },
+    {
+      "name": "tv_f46(idx45)",
+      "ok": true,
+      "detail": "ok mean=0.519 min=5 max=202"
+    },
+    {
+      "name": "tv_f47(idx46)",
+      "ok": true,
+      "detail": "ok mean=0.519 min=5 max=202"
+    },
+    {
+      "name": "tv_f48(idx47)",
+      "ok": true,
+      "detail": "ok mean=0.519 min=5 max=202"
+    },
+    {
+      "name": "tv_f49(idx48)",
+      "ok": true,
+      "detail": "ok mean=0.519 min=5 max=220"
+    },
+    {
+      "name": "file_count_49",
+      "ok": true,
+      "detail": "49 files"
+    },
+    {
+      "name": "index_0_to_48",
+      "ok": true,
+      "detail": "min=0 max=48"
+    }
+  ],
+  "frames": {
+    "0": {
+      "mean": 0.5207,
+      "min": 7,
+      "max": 218,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "1": {
+      "mean": 0.521,
+      "min": 8,
+      "max": 219,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "2": {
+      "mean": 0.5215,
+      "min": 4,
+      "max": 219,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "3": {
+      "mean": 0.5219,
+      "min": 3,
+      "max": 220,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "4": {
+      "mean": 0.5224,
+      "min": 3,
+      "max": 220,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "5": {
+      "mean": 0.5227,
+      "min": 7,
+      "max": 220,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "6": {
+      "mean": 0.5225,
+      "min": 10,
+      "max": 221,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "7": {
+      "mean": 0.5225,
+      "min": 10,
+      "max": 222,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "8": {
+      "mean": 0.5226,
+      "min": 10,
+      "max": 222,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "9": {
+      "mean": 0.5227,
+      "min": 10,
+      "max": 222,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "10": {
+      "mean": 0.5228,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "11": {
+      "mean": 0.5229,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "12": {
+      "mean": 0.523,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "13": {
+      "mean": 0.523,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "14": {
+      "mean": 0.523,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "15": {
+      "mean": 0.523,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "16": {
+      "mean": 0.523,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "17": {
+      "mean": 0.523,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "18": {
+      "mean": 0.523,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "19": {
+      "mean": 0.523,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "20": {
+      "mean": 0.523,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "21": {
+      "mean": 0.523,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "22": {
+      "mean": 0.523,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "23": {
+      "mean": 0.523,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "24": {
+      "mean": 0.523,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "25": {
+      "mean": 0.5226,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "26": {
+      "mean": 0.5221,
+      "min": 10,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "27": {
+      "mean": 0.5216,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "28": {
+      "mean": 0.5211,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "29": {
+      "mean": 0.5207,
+      "min": 11,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "30": {
+      "mean": 0.5202,
+      "min": 8,
+      "max": 224,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "31": {
+      "mean": 0.5197,
+      "min": 9,
+      "max": 223,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "32": {
+      "mean": 0.5192,
+      "min": 8,
+      "max": 223,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "33": {
+      "mean": 0.519,
+      "min": 11,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "34": {
+      "mean": 0.5191,
+      "min": 8,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "35": {
+      "mean": 0.5191,
+      "min": 8,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "36": {
+      "mean": 0.5196,
+      "min": 5,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "37": {
+      "mean": 0.5197,
+      "min": 5,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "38": {
+      "mean": 0.5198,
+      "min": 5,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "39": {
+      "mean": 0.5198,
+      "min": 5,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "40": {
+      "mean": 0.5198,
+      "min": 5,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "41": {
+      "mean": 0.5198,
+      "min": 5,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "42": {
+      "mean": 0.5197,
+      "min": 5,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "43": {
+      "mean": 0.5196,
+      "min": 5,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "44": {
+      "mean": 0.5195,
+      "min": 5,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "45": {
+      "mean": 0.5194,
+      "min": 5,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "46": {
+      "mean": 0.5194,
+      "min": 5,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "47": {
+      "mean": 0.5193,
+      "min": 5,
+      "max": 202,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "48": {
+      "mean": 0.5194,
+      "min": 5,
+      "max": 220,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "roundtrip": true
+    }
+  },
+  "params": {
+    "split": "R1S0",
+    "variant": "edited",
+    "energy": 2000.0,
+    "engine": "CYCLES",
+    "samples": 512,
+    "style": {
+      "DeepObject": [
+        0.5,
+        0.52,
+        0.28,
+        0.6
+      ],
+      "Floor": [
+        0.42,
+        0.44,
+        0.46,
+        0.7
+      ],
+      "Marker": [
+        0.9,
+        0.86,
+        0.2,
+        0.35
+      ],
+      "Occluder": [
+        0.3,
+        0.34,
+        0.52,
+        0.55
+      ],
+      "Target": [
+        0.78,
+        0.32,
+        0.18,
+        0.45
+      ],
+      "Wall": [
+        0.62,
+        0.6,
+        0.57,
+        0.85
+      ]
+    },
+    "encode": "srgb"
+  }
+}

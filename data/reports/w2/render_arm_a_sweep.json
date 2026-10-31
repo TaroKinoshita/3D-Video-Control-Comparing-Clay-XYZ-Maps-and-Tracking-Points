@@ -1,0 +1,264 @@
+{
+  "checks": [
+    {
+      "name": "single_clay_material",
+      "ok": true,
+      "detail": "6 mesh \u306b\u5358\u4e00\u6750\u8cea\u3092\u5272\u5f53 / \u5149\u6e90 1"
+    },
+    {
+      "name": "no_entity_label",
+      "ok": true,
+      "detail": "\u4f7f\u308f\u308c\u3066\u3044\u308b\u6750\u8cea ['ArmA_Clay']"
+    },
+    {
+      "name": "view_transform",
+      "ok": true,
+      "detail": "Standard\uff08\u8981\u6c42 Standard\uff09"
+    },
+    {
+      "name": "reproducible_rt_off",
+      "ok": true,
+      "detail": "\u5dee\u5206\u753b\u7d20 0"
+    },
+    {
+      "name": "reproducible_rt_on",
+      "ok": false,
+      "detail": "\u5dee\u5206\u753b\u7d20 15"
+    }
+  ],
+  "frames": {},
+  "params": {
+    "variant": "original",
+    "energy": 1000.0,
+    "world": 0.1,
+    "samples": 32,
+    "base_color": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "roughness": 0.6,
+    "view_transform": "Standard",
+    "entity_label": "none",
+    "encode": "srgb",
+    "use_raytracing": false
+  },
+  "available_view_transforms": [
+    "Standard",
+    "Khronos PBR Neutral",
+    "AgX",
+    "Filmic",
+    "False Color",
+    "Raw"
+  ],
+  "sweep": [
+    {
+      "rt": false,
+      "energy": 1000.0,
+      "world": 0.1,
+      "encode": "srgb",
+      "mean": 0.3502,
+      "min": 0,
+      "max": 141,
+      "frac_0": 0.01266,
+      "frac_255": 0.0,
+      "lin_max": 0.2664,
+      "sep": 0.86
+    },
+    {
+      "rt": false,
+      "energy": 1000.0,
+      "world": 0.5,
+      "encode": "srgb",
+      "mean": 0.3502,
+      "min": 0,
+      "max": 141,
+      "frac_0": 0.01266,
+      "frac_255": 0.0,
+      "lin_max": 0.2664,
+      "sep": 0.86
+    },
+    {
+      "rt": false,
+      "energy": 1500.0,
+      "world": 0.1,
+      "encode": "srgb",
+      "mean": 0.4274,
+      "min": 0,
+      "max": 170,
+      "frac_0": 0.01256,
+      "frac_255": 0.0,
+      "lin_max": 0.4006,
+      "sep": 0.8595
+    },
+    {
+      "rt": false,
+      "energy": 1500.0,
+      "world": 0.5,
+      "encode": "srgb",
+      "mean": 0.4274,
+      "min": 0,
+      "max": 170,
+      "frac_0": 0.01256,
+      "frac_255": 0.0,
+      "lin_max": 0.4006,
+      "sep": 0.8595
+    },
+    {
+      "rt": false,
+      "energy": 2000.0,
+      "world": 0.1,
+      "encode": "srgb",
+      "mean": 0.4899,
+      "min": 0,
+      "max": 193,
+      "frac_0": 0.01252,
+      "frac_255": 0.0,
+      "lin_max": 0.5347,
+      "sep": 0.8595
+    },
+    {
+      "rt": false,
+      "energy": 2000.0,
+      "world": 0.5,
+      "encode": "srgb",
+      "mean": 0.4899,
+      "min": 0,
+      "max": 193,
+      "frac_0": 0.01252,
+      "frac_255": 0.0,
+      "lin_max": 0.5347,
+      "sep": 0.8595
+    },
+    {
+      "rt": false,
+      "energy": 3000.0,
+      "world": 0.1,
+      "encode": "srgb",
+      "mean": 0.5909,
+      "min": 0,
+      "max": 231,
+      "frac_0": 0.01246,
+      "frac_255": 0.0,
+      "lin_max": 0.8027,
+      "sep": 0.8594
+    },
+    {
+      "rt": false,
+      "energy": 3000.0,
+      "world": 0.5,
+      "encode": "srgb",
+      "mean": 0.5909,
+      "min": 0,
+      "max": 231,
+      "frac_0": 0.01246,
+      "frac_255": 0.0,
+      "lin_max": 0.8027,
+      "sep": 0.8594
+    },
+    {
+      "rt": true,
+      "energy": 1000.0,
+      "world": 0.1,
+      "encode": "srgb",
+      "mean": 0.3564,
+      "min": 6,
+      "max": 141,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "lin_max": 0.2664,
+      "sep": 0.8618
+    },
+    {
+      "rt": true,
+      "energy": 1000.0,
+      "world": 0.5,
+      "encode": "srgb",
+      "mean": 0.3564,
+      "min": 6,
+      "max": 141,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "lin_max": 0.2664,
+      "sep": 0.8618
+    },
+    {
+      "rt": true,
+      "energy": 1500.0,
+      "world": 0.1,
+      "encode": "srgb",
+      "mean": 0.4348,
+      "min": 9,
+      "max": 170,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "lin_max": 0.4009,
+      "sep": 0.8617
+    },
+    {
+      "rt": true,
+      "energy": 1500.0,
+      "world": 0.5,
+      "encode": "srgb",
+      "mean": 0.4348,
+      "min": 9,
+      "max": 170,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "lin_max": 0.4009,
+      "sep": 0.8617
+    },
+    {
+      "rt": true,
+      "energy": 2000.0,
+      "world": 0.1,
+      "encode": "srgb",
+      "mean": 0.4984,
+      "min": 12,
+      "max": 193,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "lin_max": 0.5347,
+      "sep": 0.8617
+    },
+    {
+      "rt": true,
+      "energy": 2000.0,
+      "world": 0.5,
+      "encode": "srgb",
+      "mean": 0.4984,
+      "min": 12,
+      "max": 193,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "lin_max": 0.5347,
+      "sep": 0.8617
+    },
+    {
+      "rt": true,
+      "energy": 3000.0,
+      "world": 0.1,
+      "encode": "srgb",
+      "mean": 0.6011,
+      "min": 17,
+      "max": 231,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "lin_max": 0.8027,
+      "sep": 0.8617
+    },
+    {
+      "rt": true,
+      "energy": 3000.0,
+      "world": 0.5,
+      "encode": "srgb",
+      "mean": 0.6011,
+      "min": 17,
+      "max": 231,
+      "frac_0": 0.0,
+      "frac_255": 0.0,
+      "lin_max": 0.8027,
+      "sep": 0.8617
+    }
+  ]
+}

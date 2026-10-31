@@ -1,0 +1,396 @@
+{
+  "assignment": [
+    {
+      "point": "T_vert0",
+      "entity": "target",
+      "color": [
+        157,
+        157,
+        225
+      ],
+      "n_conflicts": 1,
+      "n_frames_visible": 36
+    },
+    {
+      "point": "T_vert1",
+      "entity": "target",
+      "color": [
+        157,
+        157,
+        225
+      ],
+      "n_conflicts": 1,
+      "n_frames_visible": 36
+    },
+    {
+      "point": "T_vert2",
+      "entity": "target",
+      "color": [
+        157,
+        191,
+        191
+      ],
+      "n_conflicts": 1,
+      "n_frames_visible": 11
+    },
+    {
+      "point": "T_vert3",
+      "entity": "target",
+      "color": [
+        157,
+        191,
+        191
+      ],
+      "n_conflicts": 1,
+      "n_frames_visible": 11
+    },
+    {
+      "point": "T_vert4",
+      "entity": "target",
+      "color": [
+        157,
+        157,
+        225
+      ],
+      "n_conflicts": 1,
+      "n_frames_visible": 36
+    },
+    {
+      "point": "T_vert5",
+      "entity": "target",
+      "color": [
+        157,
+        157,
+        225
+      ],
+      "n_conflicts": 1,
+      "n_frames_visible": 36
+    },
+    {
+      "point": "T_vert6",
+      "entity": "target",
+      "color": [
+        157,
+        191,
+        191
+      ],
+      "n_conflicts": 1,
+      "n_frames_visible": 11
+    },
+    {
+      "point": "T_vert7",
+      "entity": "target",
+      "color": [
+        157,
+        191,
+        191
+      ],
+      "n_conflicts": 1,
+      "n_frames_visible": 11
+    },
+    {
+      "point": "T_face_-X",
+      "entity": "target",
+      "color": [
+        157,
+        157,
+        225
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 11
+    },
+    {
+      "point": "T_face_+X",
+      "entity": "target",
+      "color": [
+        157,
+        157,
+        225
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 11
+    },
+    {
+      "point": "T_face_front",
+      "entity": "target",
+      "color": [
+        157,
+        157,
+        225
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 36
+    },
+    {
+      "point": "T_face_back",
+      "entity": "target",
+      "color": [
+        157,
+        157,
+        225
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 0
+    },
+    {
+      "point": "T_face_bottom",
+      "entity": "target",
+      "color": [
+        157,
+        157,
+        225
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 0
+    },
+    {
+      "point": "T_face_top",
+      "entity": "target",
+      "color": [
+        157,
+        157,
+        225
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 0
+    },
+    {
+      "point": "O_corner0",
+      "entity": "non_target",
+      "color": [
+        30,
+        30,
+        98
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 0
+    },
+    {
+      "point": "O_corner1",
+      "entity": "non_target",
+      "color": [
+        30,
+        30,
+        98
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 0
+    },
+    {
+      "point": "O_corner2",
+      "entity": "non_target",
+      "color": [
+        30,
+        30,
+        98
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 0
+    },
+    {
+      "point": "O_corner3",
+      "entity": "non_target",
+      "color": [
+        30,
+        30,
+        98
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 0
+    },
+    {
+      "point": "O_center",
+      "entity": "non_target",
+      "color": [
+        30,
+        30,
+        98
+      ],
+      "n_conflicts": 1,
+      "n_frames_visible": 49
+    },
+    {
+      "point": "O_near",
+      "entity": "non_target",
+      "color": [
+        30,
+        64,
+        64
+      ],
+      "n_conflicts": 1,
+      "n_frames_visible": 49
+    },
+    {
+      "point": "O_tl",
+      "entity": "non_target",
+      "color": [
+        30,
+        30,
+        98
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 49
+    },
+    {
+      "point": "O_tr",
+      "entity": "non_target",
+      "color": [
+        30,
+        30,
+        98
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 49
+    },
+    {
+      "point": "O_bl",
+      "entity": "non_target",
+      "color": [
+        30,
+        30,
+        98
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 49
+    },
+    {
+      "point": "O_br",
+      "entity": "non_target",
+      "color": [
+        30,
+        30,
+        98
+      ],
+      "n_conflicts": 0,
+      "n_frames_visible": 49
+    }
+  ],
+  "palette": {
+    "target": [
+      [
+        157,
+        157,
+        225
+      ],
+      [
+        157,
+        191,
+        191
+      ],
+      [
+        157,
+        225,
+        157
+      ],
+      [
+        157,
+        225,
+        225
+      ],
+      [
+        191,
+        157,
+        191
+      ],
+      [
+        191,
+        191,
+        157
+      ],
+      [
+        191,
+        191,
+        225
+      ],
+      [
+        191,
+        225,
+        191
+      ],
+      [
+        225,
+        157,
+        157
+      ],
+      [
+        225,
+        157,
+        225
+      ],
+      [
+        225,
+        191,
+        191
+      ],
+      [
+        225,
+        225,
+        157
+      ]
+    ],
+    "non_target": [
+      [
+        30,
+        30,
+        98
+      ],
+      [
+        30,
+        64,
+        64
+      ],
+      [
+        30,
+        98,
+        30
+      ],
+      [
+        30,
+        98,
+        98
+      ],
+      [
+        64,
+        30,
+        64
+      ],
+      [
+        64,
+        64,
+        30
+      ],
+      [
+        64,
+        64,
+        98
+      ],
+      [
+        64,
+        98,
+        64
+      ],
+      [
+        98,
+        30,
+        30
+      ],
+      [
+        98,
+        30,
+        98
+      ],
+      [
+        98,
+        64,
+        64
+      ],
+      [
+        98,
+        98,
+        30
+      ]
+    ]
+  },
+  "dot_radius": 6,
+  "separation_radius": 24.0
+}

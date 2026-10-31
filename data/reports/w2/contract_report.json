@@ -1,0 +1,342 @@
+{
+  "spec": {
+    "res": [
+      832,
+      480
+    ],
+    "fps": 16,
+    "n_frames": 49,
+    "focal_mm": 50.0,
+    "sensor_mm": 36.0,
+    "latent": [
+      13,
+      60,
+      104
+    ],
+    "engine_prefix": "BLENDER_EEVEE",
+    "taa_render_samples": 1,
+    "filter_size_max": 0.02,
+    "reserved_band": [
+      124,
+      131
+    ],
+    "band_non_target": [
+      30,
+      64,
+      98
+    ],
+    "band_target": [
+      157,
+      191,
+      225
+    ],
+    "min_color_dist": 48.083261120685236,
+    "dot_radius": 6,
+    "dot_area": 113,
+    "separation_radius": 24.0,
+    "v_max_design": 12.0,
+    "vae_color_err_r6_v17": 11.3,
+    "codebook_non_target": [
+      13,
+      115
+    ],
+    "codebook_target": [
+      140,
+      242
+    ],
+    "min_color_dist_required": 22.6
+  },
+  "rows": [
+    {
+      "id": "S01",
+      "ref": "§5",
+      "status": "PASS",
+      "title": "解像度 832x480 / 100%%",
+      "detail": "832x480 @ 100%"
+    },
+    {
+      "id": "S02",
+      "ref": "§5",
+      "status": "PASS",
+      "title": "fps 16",
+      "detail": "16"
+    },
+    {
+      "id": "S03",
+      "ref": "§5",
+      "status": "PASS",
+      "title": "frame 1..49 / 枚数49 / 4n+1",
+      "detail": "start 1 end 49 -> 49 枚"
+    },
+    {
+      "id": "S04",
+      "ref": "§22.3",
+      "status": "PASS",
+      "title": "レンダラが EEVEE",
+      "detail": "BLENDER_EEVEE"
+    },
+    {
+      "id": "S05",
+      "ref": "W2a-1",
+      "status": "PASS",
+      "title": "taa_render_samples == 1（EEVEE もサンプル平均する）",
+      "detail": "1"
+    },
+    {
+      "id": "S06",
+      "ref": "W2a-1",
+      "status": "PASS",
+      "title": "filter_size <= 0.02（画素間のぼかし）",
+      "detail": "0.010000"
+    },
+    {
+      "id": "S07",
+      "ref": "§22.3",
+      "status": "PASS",
+      "title": "モーションブラー無効",
+      "detail": "False"
+    },
+    {
+      "id": "S08",
+      "ref": "§22.3",
+      "status": "PASS",
+      "title": "被写界深度 無効",
+      "detail": "False"
+    },
+    {
+      "id": "S10",
+      "ref": "§5",
+      "status": "PASS",
+      "title": "焦点距離 50mm / センサー 36mm / HORIZONTAL",
+      "detail": "50.000mm / 36.000mm / HORIZONTAL"
+    },
+    {
+      "id": "S11",
+      "ref": "§17 バグ1,6",
+      "status": "PASS",
+      "title": "camera matrix_world が純回転（列ノルム1 / 直交 / det +1）",
+      "detail": "norms [1.0, 1.0, 1.0] / dots [0.0, 0.0, 0.0] / det 1.000000000"
+    },
+    {
+      "id": "S09",
+      "ref": "§22.3",
+      "status": "SKIP",
+      "title": "デノイズ無効",
+      "detail": "Cycles を使っていない"
+    },
+    {
+      "id": "S12",
+      "ref": "§17 バグ1",
+      "status": "PASS",
+      "title": "全メッシュの scale == 1.0",
+      "detail": "4 個すべて 1.0"
+    },
+    {
+      "id": "S13",
+      "ref": "§22.2",
+      "status": "PASS",
+      "title": "Position パス有効",
+      "detail": "True"
+    },
+    {
+      "id": "S14",
+      "ref": "§22.4",
+      "status": "PASS",
+      "title": "Depth パス有効",
+      "detail": "True"
+    },
+    {
+      "id": "S15",
+      "ref": "§22.1",
+      "status": "PASS",
+      "title": "Mist パス無効（GT には使えない相対値）",
+      "detail": "False"
+    },
+    {
+      "id": "S16",
+      "ref": "§17 バグ5,6",
+      "status": "PASS",
+      "title": "鏡像スケールなし / 閉メッシュの法線が外向き",
+      "detail": "{'neg_det': [], 'inward_normals': []}"
+    },
+    {
+      "id": "S17",
+      "ref": "W2a-0",
+      "status": "PASS",
+      "title": "キーフレーム補間が LINEAR（BEZIER は等速にならない）",
+      "detail": "1 オブジェクト OK"
+    },
+    {
+      "id": "S18",
+      "ref": "§10 §13.3",
+      "status": "PASS",
+      "title": "スクリーン速度 <= 12 px/frame（V_max 17 x 安全率0.7）",
+      "detail": "最大 9.123 px/frame (Target / index 38)"
+    },
+    {
+      "id": "S19",
+      "ref": "§7",
+      "status": "PASS",
+      "title": "Color Management が固定されている",
+      "detail": "view_transform Standard / look None / exposure 0.000 / gamma 1.000"
+    },
+    {
+      "id": "O01",
+      "ref": "§14-23",
+      "status": "PASS",
+      "title": "出力枚数 == 49",
+      "detail": "49"
+    },
+    {
+      "id": "O02",
+      "ref": "§14-10 / §17 バグ3",
+      "status": "PASS",
+      "title": "index が 0..48 の連番で欠落なし",
+      "detail": "先頭 [0, 1, 2] / 末尾 [46, 47, 48] / 重複 0"
+    },
+    {
+      "id": "O03",
+      "ref": "§14-11",
+      "status": "PASS",
+      "title": "PNG のみ（mp4 / 圧縮コーデックを経由していない）",
+      "detail": "['png']"
+    },
+    {
+      "id": "O16",
+      "ref": "§13.5",
+      "status": "PASS",
+      "title": "割当ファイルのパレットが §13.5 の生成結果と一致",
+      "detail": "json 24色 / 期待 24色"
+    },
+    {
+      "id": "O04",
+      "ref": "§14-1",
+      "status": "PASS",
+      "title": "解像度 832x480 / 3ch",
+      "detail": "全 49 枚 OK"
+    },
+    {
+      "id": "O05",
+      "ref": "§14-7 / W2a-3b",
+      "status": "PASS",
+      "title": "8bit RGB / filter 0 / 非インターレース",
+      "detail": "全 49 枚 OK"
+    },
+    {
+      "id": "O06",
+      "ref": "§14-4",
+      "status": "PASS",
+      "title": "パレット外の色が無い（AA が入っていない）",
+      "detail": "なし"
+    },
+    {
+      "id": "O07",
+      "ref": "§14-6 / §4",
+      "status": "PASS",
+      "title": "予約帯 124-131 の画素が無い",
+      "detail": "0"
+    },
+    {
+      "id": "O08",
+      "ref": "§13 / §16.11",
+      "status": "PASS",
+      "title": "孤立した点の面積が 113（円が欠けていない）",
+      "detail": "検査 354 成分 / 除外 190 成分（画面端・他色と隣接）"
+    },
+    {
+      "id": "O09",
+      "ref": "§14-12",
+      "status": "PASS",
+      "title": "帯内 最小色間距離 > 2 x VAE色誤差",
+      "detail": "48.0833 > 22.6000（余裕 2.13 倍）"
+    },
+    {
+      "id": "O10",
+      "ref": "§13",
+      "status": "WARN",
+      "title": "同一色 == 同一点 は出力だけでは検証不能",
+      "detail": "出現色 4 種。割当ファイルとの突合が必要"
+    },
+    {
+      "id": "O11",
+      "ref": "§13",
+      "status": "PASS",
+      "title": "出力に現れる色が割当ファイルの可視点の色に含まれる",
+      "detail": "出力 4 種 / 割当（可視）4 種 / 余剰 []"
+    },
+    {
+      "id": "O12",
+      "ref": "§14 src_mask",
+      "status": "SKIP",
+      "title": "src_mask が全面 255",
+      "detail": "--src-mask 未指定"
+    },
+    {
+      "id": "O13",
+      "ref": "§14-8",
+      "status": "SKIP",
+      "title": "NaN / Inf が無い",
+      "detail": "--npy 未指定（float テンソルの検査）"
+    },
+    {
+      "id": "O14",
+      "ref": "§14-24 / §7",
+      "status": "SKIP",
+      "title": "Control Video が全 split で bit 一致",
+      "detail": "--compare-armc 未指定"
+    }
+  ],
+  "manual": [
+    {
+      "id": "M01",
+      "ref": "§14-19",
+      "text": "Arm C の順投影が world_to_camera_view 経由である（手書き intrinsics を組んでいない）"
+    },
+    {
+      "id": "M02",
+      "ref": "§14-18",
+      "text": "Arm B が Position パス由来である（Depth からの逆投影を経由していない）"
+    },
+    {
+      "id": "M03",
+      "ref": "§14-3",
+      "text": "Target / Non-target 境界を nearest で処理している"
+    },
+    {
+      "id": "M04",
+      "ref": "§14-5",
+      "text": "bilinear resize を経由していない"
+    },
+    {
+      "id": "M05",
+      "ref": "§14-9",
+      "text": "Control の実入力テンソルを保存している"
+    },
+    {
+      "id": "M06",
+      "ref": "§14 src_mask",
+      "text": "src_mask を Visibility / ObjectID / Alpha / Target Mask / Tracking の黒背景 / Control の輝度 から生成していない"
+    },
+    {
+      "id": "M07",
+      "ref": "W2a-1",
+      "text": "マスクを pass_index で定義している（値の許容範囲では隣接面が漏れる）"
+    },
+    {
+      "id": "M08",
+      "ref": "§22.3",
+      "text": "幾何パスに Cycles を使っていない（使う場合はサンプル数1）"
+    },
+    {
+      "id": "M09",
+      "ref": "§18-17",
+      "text": "Arm C の遮蔽判定が scene.ray_cast である（Depth パス比較は1画素内の深度勾配で誤判定する）"
+    }
+  ],
+  "counts": {
+    "PASS": 29,
+    "FAIL": 0,
+    "WARN": 1,
+    "SKIP": 4
+  }
+}

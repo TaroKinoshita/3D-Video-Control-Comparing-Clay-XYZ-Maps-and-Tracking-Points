@@ -1,0 +1,14 @@
+{
+  "R1S0": {
+    "frames": 49,
+    "mae": 6.932,
+    "max_diff": 108,
+    "mean_shift": 6.926
+  },
+  "R0S1": {
+    "frames": 49,
+    "mae": 22.671,
+    "max_diff": 96,
+    "mean_shift": -11.944
+  }
+}

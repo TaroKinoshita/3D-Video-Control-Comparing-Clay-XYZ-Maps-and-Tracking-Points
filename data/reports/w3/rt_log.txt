@@ -1,0 +1,13 @@
+VAE   : /workspace/modelscope/models/Wan-AI--Wan2.1-VACE-1.3B/snapshots/master/Wan2.1_VAE.pth
+dtype : bf16 / device: NVIDIA GeForce RTX 3090
+
+original : (49, 480, 832, 3)  pixels-md5 8de84cb6b380
+  temporal  潜在[1, 16, 13, 60, 104]   VRAM     4481 MiB     7.7s  変化画素 16069134
+  framewise 潜在[1, 16, 49, 60, 104]   VRAM     2159 MiB     8.9s  変化画素 18682206
+
+edited : (49, 480, 832, 3)  pixels-md5 21d5eaca6fc1
+  temporal  潜在[1, 16, 13, 60, 104]   VRAM     4481 MiB     7.3s  変化画素 16078962
+  framewise 潜在[1, 16, 49, 60, 104]   VRAM     2157 MiB     8.9s  変化画素 18656582
+
+保存: rt
+ログ: rt/roundtrip_armc_log.json

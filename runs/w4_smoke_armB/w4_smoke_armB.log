@@ -1,0 +1,95 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+/workspace/DiffSynth-Studio/examples/wanvideo/model_training/train.py:31: UserWarning: Gradient checkpointing is detected as disabled. To prevent out-of-memory errors, the training framework will forcibly enable gradient checkpointing.
+  warnings.warn("Gradient checkpointing is detected as disabled. To prevent out-of-memory errors, the training framework will forcibly enable gradient checkpointing.")
+To avoid repeatedly downloading model files, (Wan-AI/Wan2.1-VACE-1.3B, models_t5_umt5-xxl-enc-bf16.pth) is redirected to ('DiffSynth-Studio/Wan-Series-Converted-Safetensors', 'models_t5_umt5-xxl-enc-bf16.safetensors'). You can use `redirect_common_files=False` to disable file redirection.
+To avoid repeatedly downloading model files, (Wan-AI/Wan2.1-VACE-1.3B, Wan2.1_VAE.pth) is redirected to ('DiffSynth-Studio/Wan-Series-Converted-Safetensors', 'Wan2.1_VAE.safetensors'). You can use `redirect_common_files=False` to disable file redirection.
+┌──────────────────────────────────────────────────────────────────────┐
+│ DiffSynth-Studio Model Downloader Configuration:                     │
+│                                                                      │
+│ [√] Download from https://modelscope.cn/                             │
+│     (default behavior)                                               │
+│ [ ] Download from https://modelscope.ai/                             │
+│     (enabled via `export MODELSCOPE_ENDPOINT=https://modelscope.ai`) │
+│ [ ] Download from https://huggingface.co/                            │
+│     (enabled via `export DIFFSYNTH_DOWNLOAD_SOURCE=HuggingFace`)     │
+│ [ ] Skip download and load only pre-downloaded model files           │
+│     (enabled via `export DIFFSYNTH_SKIP_DOWNLOAD=True`)              │
+└──────────────────────────────────────────────────────────────────────┘
+2026-08-08 22:50:56,498 | INFO    | modelscope_hub.download | No files to download for Wan-AI/Wan2.1-VACE-1.3B@master
+Loading models from: "./models/Wan-AI/Wan2.1-VACE-1.3B/diffusion_pytorch_model.safetensors"
+Loaded model: {
+    "model_name": "wan_video_dit",
+    "model_class": "diffsynth.models.wan_video_dit.WanModel",
+    "extra_kwargs": {
+        "has_image_input": false,
+        "patch_size": [
+            1,
+            2,
+            2
+        ],
+        "in_dim": 16,
+        "dim": 1536,
+        "ffn_dim": 8960,
+        "freq_dim": 256,
+        "text_dim": 4096,
+        "out_dim": 16,
+        "num_heads": 12,
+        "num_layers": 30,
+        "eps": 1e-06
+    }
+}
+Loaded model: {
+    "model_name": "wan_video_vace",
+    "model_class": "diffsynth.models.wan_video_vace.VaceWanModel",
+    "extra_kwargs": null
+}
+2026-08-08 22:51:18,001 | INFO    | modelscope_hub.download | No files to download for DiffSynth-Studio/Wan-Series-Converted-Safetensors@master
+Loading models from: "./models/DiffSynth-Studio/Wan-Series-Converted-Safetensors/models_t5_umt5-xxl-enc-bf16.safetensors"
+Loaded model: {
+    "model_name": "wan_video_text_encoder",
+    "model_class": "diffsynth.models.wan_video_text_encoder.WanTextEncoder",
+    "extra_kwargs": null
+}
+2026-08-08 22:51:42,619 | INFO    | modelscope_hub.download | No files to download for DiffSynth-Studio/Wan-Series-Converted-Safetensors@master
+Loading models from: "./models/DiffSynth-Studio/Wan-Series-Converted-Safetensors/Wan2.1_VAE.safetensors"
+Loaded model: {
+    "model_name": "wan_video_vae",
+    "model_class": "diffsynth.models.wan_video_vae.WanVideoVAE",
+    "extra_kwargs": null
+}
+Using wan_video_text_encoder from "./models/DiffSynth-Studio/Wan-Series-Converted-Safetensors/models_t5_umt5-xxl-enc-bf16.safetensors".
+Using wan_video_dit from "./models/Wan-AI/Wan2.1-VACE-1.3B/diffusion_pytorch_model.safetensors".
+Using wan_video_vae from "./models/DiffSynth-Studio/Wan-Series-Converted-Safetensors/Wan2.1_VAE.safetensors".
+No wan_video_image_encoder models available. This is not an error.
+No wan_video_motion_controller models available. This is not an error.
+Using wan_video_vace from "./models/Wan-AI/Wan2.1-VACE-1.3B/diffusion_pytorch_model.safetensors".
+No wan_video_vap models available. This is not an error.
+No wans2v_audio_encoder models available. This is not an error.
+No wan_video_animate_adapter models available. This is not an error.
+2026-08-08 22:51:45,361 | INFO    | modelscope_hub.download | No files to download for Wan-AI/Wan2.1-T2V-1.3B@master
+Training arguments saved to `/workspace/runs/w4_smoke_armB/training_args.json`.
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:19<00:00, 19.36s/it]100%|██████████| 1/1 [00:19<00:00, 19.36s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.98s/it]100%|██████████| 1/1 [00:07<00:00,  7.98s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.80s/it]100%|██████████| 1/1 [00:07<00:00,  7.81s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.81s/it]100%|██████████| 1/1 [00:07<00:00,  7.81s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.91s/it]100%|██████████| 1/1 [00:07<00:00,  7.91s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.89s/it]100%|██████████| 1/1 [00:07<00:00,  7.89s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.84s/it]100%|██████████| 1/1 [00:07<00:00,  7.84s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.85s/it]100%|██████████| 1/1 [00:07<00:00,  7.85s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.72s/it]100%|██████████| 1/1 [00:07<00:00,  7.72s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.78s/it]100%|██████████| 1/1 [00:07<00:00,  7.78s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.77s/it]100%|██████████| 1/1 [00:07<00:00,  7.77s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.75s/it]100%|██████████| 1/1 [00:07<00:00,  7.75s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.82s/it]100%|██████████| 1/1 [00:07<00:00,  7.83s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.80s/it]100%|██████████| 1/1 [00:07<00:00,  7.80s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.81s/it]100%|██████████| 1/1 [00:07<00:00,  7.81s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.85s/it]100%|██████████| 1/1 [00:07<00:00,  7.85s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.86s/it]100%|██████████| 1/1 [00:07<00:00,  7.86s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.92s/it]100%|██████████| 1/1 [00:07<00:00,  7.92s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.80s/it]100%|██████████| 1/1 [00:07<00:00,  7.80s/it]
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:07<00:00,  7.86s/it]100%|██████████| 1/1 [00:07<00:00,  7.86s/it]

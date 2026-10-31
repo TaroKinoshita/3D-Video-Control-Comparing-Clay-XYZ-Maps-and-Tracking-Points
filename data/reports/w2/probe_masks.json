@@ -1,0 +1,74 @@
+{
+  "cycles_enable": "{'FINISHED'}",
+  "engines_after": "['BLENDER_EEVEE']",
+  "eevee_rlayers_sockets_crypto": [
+    "Image",
+    "Alpha",
+    "Depth",
+    "Position",
+    "CryptoObject00",
+    "CryptoObject01",
+    "CryptoObject02"
+  ],
+  "eevee_position": {
+    "size": [
+      128,
+      128
+    ],
+    "channels": 4,
+    "depth": 128,
+    "R_unique_count": 1610,
+    "R_unique_first20": [
+      0.0,
+      0.08606,
+      0.08667,
+      0.08728,
+      0.087341,
+      0.087463,
+      0.087769,
+      0.08783,
+      0.087891,
+      0.088135,
+      0.088257,
+      0.088379,
+      0.088562,
+      0.088623,
+      0.088745,
+      0.08905,
+      0.089233,
+      0.089355,
+      0.089417,
+      0.089661
+    ],
+    "R_min": 0.0,
+    "R_max": 0.47509765625,
+    "G_min": 0.0,
+    "G_max": 0.474609375,
+    "B_min": 0.0,
+    "B_max": 0.474609375
+  },
+  "view_transform": "Raw",
+  "eevee_emission_id": {
+    "size": [
+      128,
+      128
+    ],
+    "channels": 4,
+    "depth": 128,
+    "R_unique_count": 2,
+    "R_unique_first20": [
+      0.125,
+      0.5
+    ],
+    "R_min": 0.125,
+    "R_max": 0.5,
+    "G_min": 0.125,
+    "G_max": 0.5,
+    "B_min": 0.125,
+    "B_max": 0.5
+  },
+  "obj_is_holdout": "False",
+  "obj_hide_render": "False",
+  "obj_visible_shadow": "True",
+  "obj_visible_camera": "True"
+}

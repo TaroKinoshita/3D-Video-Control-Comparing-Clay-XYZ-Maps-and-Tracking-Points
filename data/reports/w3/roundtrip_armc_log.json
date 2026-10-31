@@ -1,0 +1,110 @@
+{
+  "tiled": false,
+  "dtype": "bf16",
+  "fake_vae": false,
+  "n_frames": 49,
+  "width": 832,
+  "height": 480,
+  "passes": [
+    {
+      "variant": "original",
+      "mode": "temporal",
+      "dtype": "bf16",
+      "input_shape": [
+        49,
+        480,
+        832,
+        3
+      ],
+      "input_pixels_md5": "8de84cb6b3808b5b820b51bc9e846dcd",
+      "latent_shape": [
+        1,
+        16,
+        13,
+        60,
+        104
+      ],
+      "peak_vram_mib": 4481.2,
+      "vram_api": "max_memory_allocated",
+      "seconds": 7.72,
+      "output": "original_temporal.npy",
+      "output_md5": "559ad171545713073bf0f3c5c4ecc4ae",
+      "changed_pixels": 16069134
+    },
+    {
+      "variant": "original",
+      "mode": "framewise",
+      "dtype": "bf16",
+      "input_shape": [
+        49,
+        480,
+        832,
+        3
+      ],
+      "input_pixels_md5": "8de84cb6b3808b5b820b51bc9e846dcd",
+      "latent_shape": [
+        1,
+        16,
+        49,
+        60,
+        104
+      ],
+      "peak_vram_mib": 2158.7,
+      "vram_api": "max_memory_allocated",
+      "seconds": 8.85,
+      "output": "original_framewise.npy",
+      "output_md5": "479ad2a5756e72aedf1b46bdb6253d1d",
+      "changed_pixels": 18682206
+    },
+    {
+      "variant": "edited",
+      "mode": "temporal",
+      "dtype": "bf16",
+      "input_shape": [
+        49,
+        480,
+        832,
+        3
+      ],
+      "input_pixels_md5": "21d5eaca6fc1bc668516458d5ed3f7aa",
+      "latent_shape": [
+        1,
+        16,
+        13,
+        60,
+        104
+      ],
+      "peak_vram_mib": 4480.9,
+      "vram_api": "max_memory_allocated",
+      "seconds": 7.29,
+      "output": "edited_temporal.npy",
+      "output_md5": "9fa19d2a1bd2d004d3c4bcc26c9b40fb",
+      "changed_pixels": 16078962
+    },
+    {
+      "variant": "edited",
+      "mode": "framewise",
+      "dtype": "bf16",
+      "input_shape": [
+        49,
+        480,
+        832,
+        3
+      ],
+      "input_pixels_md5": "21d5eaca6fc1bc668516458d5ed3f7aa",
+      "latent_shape": [
+        1,
+        16,
+        49,
+        60,
+        104
+      ],
+      "peak_vram_mib": 2157.0,
+      "vram_api": "max_memory_allocated",
+      "seconds": 8.88,
+      "output": "edited_framewise.npy",
+      "output_md5": "d73a22a0eaf01507ac5ced6406b6b855",
+      "changed_pixels": 18656582
+    }
+  ]
+}

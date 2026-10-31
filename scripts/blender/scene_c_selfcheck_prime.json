@@ -1,0 +1,209 @@
+{
+  "probe": {
+    "blender_version": "5.2.0 LTS",
+    "has_read_factory_settings": true,
+    "bmesh_has_recalc": true,
+    "mesh_from_pydata": "OK verts=3",
+    "mesh_validate": "OK returned False",
+    "object_pass_index": "OK 7",
+    "scene_compositing_node_group": "NoneType",
+    "has_world_to_camera_view": true
+  },
+  "checks": [
+    {
+      "name": "mesh_validate_Wall",
+      "ok": true,
+      "detail": "clean"
+    },
+    {
+      "name": "bsdf_found_Wall",
+      "ok": true,
+      "detail": "Principled BSDF"
+    },
+    {
+      "name": "mesh_validate_Floor",
+      "ok": true,
+      "detail": "clean"
+    },
+    {
+      "name": "bsdf_found_Floor",
+      "ok": true,
+      "detail": "Principled BSDF"
+    },
+    {
+      "name": "mesh_validate_Target",
+      "ok": true,
+      "detail": "clean"
+    },
+    {
+      "name": "bsdf_found_Target",
+      "ok": true,
+      "detail": "Principled BSDF"
+    },
+    {
+      "name": "mesh_validate_Occluder",
+      "ok": true,
+      "detail": "clean"
+    },
+    {
+      "name": "bsdf_found_Occluder",
+      "ok": true,
+      "detail": "Principled BSDF"
+    },
+    {
+      "name": "mesh_validate_DeepObject",
+      "ok": true,
+      "detail": "clean"
+    },
+    {
+      "name": "bsdf_found_DeepObject",
+      "ok": true,
+      "detail": "Principled BSDF"
+    },
+    {
+      "name": "mesh_validate_Marker",
+      "ok": true,
+      "detail": "clean"
+    },
+    {
+      "name": "bsdf_found_Marker",
+      "ok": true,
+      "detail": "Principled BSDF"
+    },
+    {
+      "name": "resolution",
+      "ok": true,
+      "detail": "832x480 @100%"
+    },
+    {
+      "name": "camera_params",
+      "ok": true,
+      "detail": "50.0mm / HORIZONTAL / 36.0mm"
+    },
+    {
+      "name": "camera_matrix_no_scale",
+      "ok": true,
+      "detail": "col norms 1.000000 1.000000 1.000000"
+    },
+    {
+      "name": "all_scale1_rot0",
+      "ok": true,
+      "detail": "violations: none"
+    },
+    {
+      "name": "pass_index_values",
+      "ok": true,
+      "detail": "{'Wall': 1, 'Floor': 2, 'Target': 3, 'Occluder': 4, 'DeepObject': 5, 'Marker': 6}"
+    },
+    {
+      "name": "pass_index_unique",
+      "ok": true,
+      "detail": "[1, 2, 3, 4, 5, 6]"
+    },
+    {
+      "name": "topology",
+      "ok": true,
+      "detail": "{'Wall': [8, 6], 'Floor': [8, 6], 'Target': [12, 8], 'Occluder': [8, 6], 'DeepObject': [8, 6], 'Marker': [8, 6]}"
+    },
+    {
+      "name": "signed_volume_positive",
+      "ok": true,
+      "detail": "negative: none"
+    },
+    {
+      "name": "projection_points",
+      "ok": true,
+      "detail": "24 ok / 0 bad (tol 0.010 px)"
+    },
+    {
+      "name": "depth_equals_Y_plus_10",
+      "ok": true,
+      "detail": "max deviation 3.815e-07"
+    },
+    {
+      "name": "principled_bsdf_only",
+      "ok": true,
+      "detail": "violations: none"
+    },
+    {
+      "name": "light_frozen_placement",
+      "ok": true,
+      "detail": "1 light(s) (0.5, -9.0, 1.5)"
+    },
+    {
+      "name": "geometry_inside_norm_box",
+      "ok": true,
+      "detail": "X[-4.50,4.50] Y[-3.00,2.05] Z[-1.60,2.60]"
+    },
+    {
+      "name": "trajectory_prime",
+      "ok": true,
+      "detail": "0/49 bad, worst du=0.0001 px (tol 0.010)"
+    },
+    {
+      "name": "prime_c1_velocity",
+      "ok": true,
+      "detail": "max 11.4014 px/frame at index 8->9 (limit 12.0 / expect 11.4014)"
+    },
+    {
+      "name": "prime_c3_start",
+      "ok": true,
+      "detail": "index 0  X=-0.9000000  location.z=+0.000000000"
+    },
+    {
+      "name": "prime_c4_occlusion_window",
+      "ok": true,
+      "detail": "index 36-40 \u306e location.z \u975e\u30bc\u30ed: \u306a\u3057"
+    },
+    {
+      "name": "prime_dz_peak",
+      "ok": true,
+      "detail": "peak 0.8482891 at index 17 (expect 0.8482891 at 17)"
+    },
+    {
+      "name": "prime_vertex_z_in_norm_box",
+      "ok": true,
+      "detail": "peak \u9802\u70b9Z [-0.6517109, 0.7482891] / NORM_BOX z (-1.6, 2.6)"
+    },
+    {
+      "name": "statics_never_move",
+      "ok": true,
+      "detail": "moved: none"
+    }
+  ],
+  "topology": {
+    "Wall": [
+      8,
+      6
+    ],
+    "Floor": [
+      8,
+      6
+    ],
+    "Target": [
+      12,
+      8
+    ],
+    "Occluder": [
+      8,
+      6
+    ],
+    "DeepObject": [
+      8,
+      6
+    ],
+    "Marker": [
+      8,
+      6
+    ]
+  },
+  "volumes": {
+    "Wall": 1.8899961064259236,
+    "Floor": 2.249997854232788,
+    "Target": 1.1409999659905832,
+    "Occluder": 0.08912490559547799,
+    "DeepObject": 0.4400002459685008,
+    "Marker": 0.008000031113624573
+  },
+  "variant": "prime"
+}

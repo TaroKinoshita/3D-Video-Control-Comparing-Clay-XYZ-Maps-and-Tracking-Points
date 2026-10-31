@@ -1,0 +1,41 @@
+======================================================================
+Blender 5.2.0 LTS
+engine  : BLENDER_EEVEE
+======================================================================
+
+--- Render Layers の出力ソケット ---
+  Image                    enabled=True type=RGBA
+  Alpha                    enabled=True type=VALUE
+  Depth                    enabled=True type=VALUE
+  Position                 enabled=True type=VECTOR
+
+--- Compositor ノード型（Output / Viewer / File を含むもの）---
+  CompositorNodeOutputFile
+  CompositorNodeViewer
+
+--- CompositorNodeOutputFile のプロパティ ---
+  panel_states                 COLLECTION <collection len=0>
+  color_tag                    ENUM       OUTPUT
+  file_output_items            COLLECTION <collection len=0>
+  active_item_index            INT        0
+  directory                    STRING     /tmp\
+  file_name                    STRING     {blend_name}
+  format                       POINTER    <ImageFormatSettings>
+  save_as_render               BOOLEAN    True
+  use_file_extension           BOOLEAN    True
+
+--- file_slots ---
+CompositorNodeOutputFile を作れない: 'CompositorNodeOutputFile' object has no attribute 'file_slots'
+
+--- Viewer ノードの background 動作テスト ---
+  render 後の bpy.data.images:
+    name='Render Result'      size=(0, 0) ch=0 has_data=False
+    name='Viewer Node'        size=(256, 256) ch=4 has_data=True
+  Viewer Node size = 256 x 256 ch=4
+  pixels len = 262144 (期待 262144)
+  中央画素 RGBA = [0.0, 0.0, 0.0, 0.0]
+  左上寄り画素 = [0.0, 0.0, 0.0, 0.0]
+
+--- scene.render.image_settings の候補 ---
+  file_format: OPEN_EXR, OPEN_EXR_MULTILAYER
+  scene.render.filepath = '/tmp\\'

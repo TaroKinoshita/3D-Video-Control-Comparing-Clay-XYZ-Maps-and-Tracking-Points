@@ -1,0 +1,964 @@
+{
+  "checks": [
+    {
+      "name": "engine",
+      "ok": true,
+      "detail": "BLENDER_EEVEE\uff08\u8981\u6c42 BLENDER_EEVEE\uff09/ samples 32"
+    },
+    {
+      "name": "style_applied",
+      "ok": true,
+      "detail": "6 \u30aa\u30d6\u30b8\u30a7\u30af\u30c8\u306b\u6750\u8cea\u3092\u9069\u7528"
+    },
+    {
+      "name": "pos_idx00",
+      "ok": true,
+      "detail": "X=-0.9000000 z=+0.0000000 u=300.4444 v=342.7161 (want -0.9000000 +0.0000000 300.4444 342.7161)"
+    },
+    {
+      "name": "reproducible",
+      "ok": true,
+      "detail": "\u5dee\u5206\u753b\u7d20 0"
+    },
+    {
+      "name": "pos_idx00",
+      "ok": true,
+      "detail": "X=-0.9000000 z=+0.0000000 u=300.4444 v=342.7161 (want -0.9000000 +0.0000000 300.4444 342.7161)"
+    },
+    {
+      "name": "tv_f01(idx00)",
+      "ok": true,
+      "detail": "ok mean=0.495 min=0 max=214"
+    },
+    {
+      "name": "pos_idx01",
+      "ok": true,
+      "detail": "X=-0.8625000 z=+0.0068299 u=305.2593 v=341.8391 (want -0.8625000 +0.0068299 305.2593 341.8391)"
+    },
+    {
+      "name": "tv_f02(idx01)",
+      "ok": true,
+      "detail": "ok mean=0.495 min=0 max=215"
+    },
+    {
+      "name": "pos_idx02",
+      "ok": true,
+      "detail": "X=-0.8250000 z=+0.0271002 u=310.0741 v=339.2365 (want -0.8250000 +0.0271002 310.0741 339.2365)"
+    },
+    {
+      "name": "tv_f03(idx02)",
+      "ok": true,
+      "detail": "ok mean=0.495 min=0 max=216"
+    },
+    {
+      "name": "pos_idx03",
+      "ok": true,
+      "detail": "X=-0.7875000 z=+0.0601593 u=314.8889 v=334.9919 (want -0.7875000 +0.0601593 314.8889 334.9919)"
+    },
+    {
+      "name": "tv_f04(idx03)",
+      "ok": true,
+      "detail": "ok mean=0.495 min=0 max=217"
+    },
+    {
+      "name": "pos_idx04",
+      "ok": true,
+      "detail": "X=-0.7500000 z=+0.1049446 u=319.7037 v=329.2417 (want -0.7500000 +0.1049446 319.7037 329.2417)"
+    },
+    {
+      "name": "tv_f05(idx04)",
+      "ok": true,
+      "detail": "ok mean=0.495 min=0 max=218"
+    },
+    {
+      "name": "pos_idx05",
+      "ok": true,
+      "detail": "X=-0.7125000 z=+0.1600168 u=324.5185 v=322.1707 (want -0.7125000 +0.1600168 324.5185 322.1707)"
+    },
+    {
+      "name": "tv_f06(idx05)",
+      "ok": true,
+      "detail": "ok mean=0.494 min=0 max=220"
+    },
+    {
+      "name": "pos_idx06",
+      "ok": true,
+      "detail": "X=-0.6750000 z=+0.2236058 u=329.3333 v=314.0062 (want -0.6750000 +0.2236058 329.3333 314.0062)"
+    },
+    {
+      "name": "tv_f07(idx06)",
+      "ok": true,
+      "detail": "ok mean=0.493 min=0 max=221"
+    },
+    {
+      "name": "pos_idx07",
+      "ok": true,
+      "detail": "X=-0.6375000 z=+0.2936678 u=334.1481 v=305.0106 (want -0.6375000 +0.2936678 334.1481 305.0106)"
+    },
+    {
+      "name": "tv_f08(idx07)",
+      "ok": true,
+      "detail": "ok mean=0.491 min=0 max=223"
+    },
+    {
+      "name": "pos_idx08",
+      "ok": true,
+      "detail": "X=-0.6000000 z=+0.3679509 u=338.9630 v=295.4730 (want -0.6000000 +0.3679509 338.9630 295.4730)"
+    },
+    {
+      "name": "tv_f09(idx08)",
+      "ok": true,
+      "detail": "ok mean=0.490 min=0 max=225"
+    },
+    {
+      "name": "pos_idx09",
+      "ok": true,
+      "detail": "X=-0.5625000 z=+0.4440676 u=343.7778 v=285.7000 (want -0.5625000 +0.4440676 343.7778 285.7000)"
+    },
+    {
+      "name": "tv_f10(idx09)",
+      "ok": true,
+      "detail": "ok mean=0.489 min=0 max=227"
+    },
+    {
+      "name": "pos_idx10",
+      "ok": true,
+      "detail": "X=-0.5250000 z=+0.5195714 u=348.5926 v=276.0056 (want -0.5250000 +0.5195714 348.5926 276.0056)"
+    },
+    {
+      "name": "tv_f11(idx10)",
+      "ok": true,
+      "detail": "ok mean=0.488 min=0 max=229"
+    },
+    {
+      "name": "pos_idx11",
+      "ok": true,
+      "detail": "X=-0.4875000 z=+0.5920357 u=353.4074 v=266.7016 (want -0.4875000 +0.5920356 353.4074 266.7016)"
+    },
+    {
+      "name": "tv_f12(idx11)",
+      "ok": true,
+      "detail": "ok mean=0.487 min=0 max=230"
+    },
+    {
+      "name": "pos_idx12",
+      "ok": true,
+      "detail": "X=-0.4500000 z=+0.6591312 u=358.2222 v=258.0869 (want -0.4500000 +0.6591312 358.2222 258.0869)"
+    },
+    {
+      "name": "tv_f13(idx12)",
+      "ok": true,
+      "detail": "ok mean=0.487 min=0 max=232"
+    },
+    {
+      "name": "pos_idx13",
+      "ok": true,
+      "detail": "X=-0.4125000 z=+0.7187016 u=363.0370 v=250.4383 (want -0.4125000 +0.7187016 363.0370 250.4383)"
+    },
+    {
+      "name": "tv_f14(idx13)",
+      "ok": true,
+      "detail": "ok mean=0.486 min=0 max=233"
+    },
+    {
+      "name": "pos_idx14",
+      "ok": true,
+      "detail": "X=-0.3750000 z=+0.7688322 u=367.8519 v=244.0018 (want -0.3750000 +0.7688322 367.8519 244.0018)"
+    },
+    {
+      "name": "tv_f15(idx14)",
+      "ok": true,
+      "detail": "ok mean=0.486 min=0 max=234"
+    },
+    {
+      "name": "pos_idx15",
+      "ok": true,
+      "detail": "X=-0.3375000 z=+0.8079118 u=372.6667 v=238.9842 (want -0.3375000 +0.8079118 372.6667 238.9842)"
+    },
+    {
+      "name": "tv_f16(idx15)",
+      "ok": true,
+      "detail": "ok mean=0.485 min=0 max=235"
+    },
+    {
+      "name": "pos_idx16",
+      "ok": true,
+      "detail": "X=-0.3000000 z=+0.8346842 u=377.4815 v=235.5467 (want -0.3000000 +0.8346842 377.4815 235.5467)"
+    },
+    {
+      "name": "tv_f17(idx16)",
+      "ok": true,
+      "detail": "ok mean=0.485 min=0 max=235"
+    },
+    {
+      "name": "pos_idx17",
+      "ok": true,
+      "detail": "X=-0.2625000 z=+0.8482891 u=382.2963 v=233.7999 (want -0.2625000 +0.8482891 382.2963 233.7999)"
+    },
+    {
+      "name": "tv_f18(idx17)",
+      "ok": true,
+      "detail": "ok mean=0.485 min=0 max=236"
+    },
+    {
+      "name": "pos_idx18",
+      "ok": true,
+      "detail": "X=-0.2250000 z=+0.8482891 u=387.1111 v=233.7999 (want -0.2250000 +0.8482891 387.1111 233.7999)"
+    },
+    {
+      "name": "tv_f19(idx18)",
+      "ok": true,
+      "detail": "ok mean=0.486 min=0 max=236"
+    },
+    {
+      "name": "pos_idx19",
+      "ok": true,
+      "detail": "X=-0.1875000 z=+0.8346842 u=391.9259 v=235.5467 (want -0.1875000 +0.8346842 391.9259 235.5467)"
+    },
+    {
+      "name": "tv_f20(idx19)",
+      "ok": true,
+      "detail": "ok mean=0.486 min=0 max=237"
+    },
+    {
+      "name": "pos_idx20",
+      "ok": true,
+      "detail": "X=-0.1500000 z=+0.8079118 u=396.7407 v=238.9842 (want -0.1500000 +0.8079118 396.7407 238.9842)"
+    },
+    {
+      "name": "tv_f21(idx20)",
+      "ok": true,
+      "detail": "ok mean=0.487 min=0 max=237"
+    },
+    {
+      "name": "pos_idx21",
+      "ok": true,
+      "detail": "X=-0.1125000 z=+0.7688322 u=401.5556 v=244.0018 (want -0.1125000 +0.7688322 401.5556 244.0018)"
+    },
+    {
+      "name": "tv_f22(idx21)",
+      "ok": true,
+      "detail": "ok mean=0.487 min=0 max=237"
+    },
+    {
+      "name": "pos_idx22",
+      "ok": true,
+      "detail": "X=-0.0750000 z=+0.7187016 u=406.3704 v=250.4383 (want -0.0750000 +0.7187016 406.3704 250.4383)"
+    },
+    {
+      "name": "tv_f23(idx22)",
+      "ok": true,
+      "detail": "ok mean=0.488 min=0 max=237"
+    },
+    {
+      "name": "pos_idx23",
+      "ok": true,
+      "detail": "X=-0.0375000 z=+0.6591312 u=411.1852 v=258.0869 (want -0.0375000 +0.6591312 411.1852 258.0869)"
+    },
+    {
+      "name": "tv_f24(idx23)",
+      "ok": true,
+      "detail": "ok mean=0.488 min=0 max=236"
+    },
+    {
+      "name": "pos_idx24",
+      "ok": true,
+      "detail": "X=+0.0000000 z=+0.5920357 u=416.0000 v=266.7016 (want -0.0000000 +0.5920356 416.0000 266.7016)"
+    },
+    {
+      "name": "tv_f25(idx24)",
+      "ok": true,
+      "detail": "ok mean=0.489 min=0 max=235"
+    },
+    {
+      "name": "pos_idx25",
+      "ok": true,
+      "detail": "X=+0.0375000 z=+0.5195714 u=420.8148 v=276.0056 (want +0.0375000 +0.5195714 420.8148 276.0056)"
+    },
+    {
+      "name": "tv_f26(idx25)",
+      "ok": true,
+      "detail": "ok mean=0.489 min=0 max=234"
+    },
+    {
+      "name": "pos_idx26",
+      "ok": true,
+      "detail": "X=+0.0750000 z=+0.4440676 u=425.6296 v=285.7000 (want +0.0750000 +0.4440676 425.6296 285.7000)"
+    },
+    {
+      "name": "tv_f27(idx26)",
+      "ok": true,
+      "detail": "ok mean=0.490 min=0 max=233"
+    },
+    {
+      "name": "pos_idx27",
+      "ok": true,
+      "detail": "X=+0.1125000 z=+0.3679509 u=430.4444 v=295.4730 (want +0.1125000 +0.3679509 430.4444 295.4730)"
+    },
+    {
+      "name": "tv_f28(idx27)",
+      "ok": true,
+      "detail": "ok mean=0.490 min=0 max=231"
+    },
+    {
+      "name": "pos_idx28",
+      "ok": true,
+      "detail": "X=+0.1500000 z=+0.2936678 u=435.2593 v=305.0106 (want +0.1500000 +0.2936678 435.2593 305.0106)"
+    },
+    {
+      "name": "tv_f29(idx28)",
+      "ok": true,
+      "detail": "ok mean=0.490 min=0 max=230"
+    },
+    {
+      "name": "pos_idx29",
+      "ok": true,
+      "detail": "X=+0.1875000 z=+0.2236058 u=440.0741 v=314.0062 (want +0.1875000 +0.2236058 440.0741 314.0062)"
+    },
+    {
+      "name": "tv_f30(idx29)",
+      "ok": true,
+      "detail": "ok mean=0.490 min=0 max=228"
+    },
+    {
+      "name": "pos_idx30",
+      "ok": true,
+      "detail": "X=+0.2250000 z=+0.1600168 u=444.8889 v=322.1707 (want +0.2250000 +0.1600168 444.8889 322.1707)"
+    },
+    {
+      "name": "tv_f31(idx30)",
+      "ok": true,
+      "detail": "ok mean=0.490 min=0 max=224"
+    },
+    {
+      "name": "pos_idx31",
+      "ok": true,
+      "detail": "X=+0.2625000 z=+0.1049446 u=449.7037 v=329.2417 (want +0.2625000 +0.1049446 449.7037 329.2417)"
+    },
+    {
+      "name": "tv_f32(idx31)",
+      "ok": true,
+      "detail": "ok mean=0.490 min=0 max=200"
+    },
+    {
+      "name": "pos_idx32",
+      "ok": true,
+      "detail": "X=+0.3000000 z=+0.0601593 u=454.5185 v=334.9919 (want +0.3000000 +0.0601593 454.5185 334.9919)"
+    },
+    {
+      "name": "tv_f33(idx32)",
+      "ok": true,
+      "detail": "ok mean=0.491 min=0 max=200"
+    },
+    {
+      "name": "pos_idx33",
+      "ok": true,
+      "detail": "X=+0.3375000 z=+0.0271002 u=459.3333 v=339.2365 (want +0.3375000 +0.0271002 459.3333 339.2365)"
+    },
+    {
+      "name": "tv_f34(idx33)",
+      "ok": true,
+      "detail": "ok mean=0.491 min=0 max=200"
+    },
+    {
+      "name": "pos_idx34",
+      "ok": true,
+      "detail": "X=+0.3750000 z=+0.0068299 u=464.1481 v=341.8391 (want +0.3750000 +0.0068299 464.1481 341.8391)"
+    },
+    {
+      "name": "tv_f35(idx34)",
+      "ok": true,
+      "detail": "ok mean=0.491 min=0 max=200"
+    },
+    {
+      "name": "pos_idx35",
+      "ok": true,
+      "detail": "X=+0.4125000 z=+0.0000000 u=468.9630 v=342.7161 (want +0.4125000 +0.0000000 468.9630 342.7161)"
+    },
+    {
+      "name": "tv_f36(idx35)",
+      "ok": true,
+      "detail": "ok mean=0.491 min=0 max=200"
+    },
+    {
+      "name": "pos_idx36",
+      "ok": true,
+      "detail": "X=+0.4500000 z=+0.0000000 u=473.7778 v=342.7161 (want +0.4500000 +0.0000000 473.7778 342.7161)"
+    },
+    {
+      "name": "tv_f37(idx36)",
+      "ok": true,
+      "detail": "ok mean=0.491 min=0 max=200"
+    },
+    {
+      "name": "pos_idx37",
+      "ok": true,
+      "detail": "X=+0.4875000 z=+0.0000000 u=478.5926 v=342.7161 (want +0.4875000 +0.0000000 478.5926 342.7161)"
+    },
+    {
+      "name": "tv_f38(idx37)",
+      "ok": true,
+      "detail": "ok mean=0.491 min=0 max=200"
+    },
+    {
+      "name": "pos_idx38",
+      "ok": true,
+      "detail": "X=+0.5250000 z=+0.0000000 u=483.4074 v=342.7161 (want +0.5250000 +0.0000000 483.4074 342.7161)"
+    },
+    {
+      "name": "tv_f39(idx38)",
+      "ok": true,
+      "detail": "ok mean=0.492 min=0 max=200"
+    },
+    {
+      "name": "pos_idx39",
+      "ok": true,
+      "detail": "X=+0.5625000 z=+0.0000000 u=488.2222 v=342.7161 (want +0.5625000 +0.0000000 488.2222 342.7161)"
+    },
+    {
+      "name": "tv_f40(idx39)",
+      "ok": true,
+      "detail": "ok mean=0.492 min=0 max=200"
+    },
+    {
+      "name": "pos_idx40",
+      "ok": true,
+      "detail": "X=+0.6000000 z=+0.0000000 u=493.0370 v=342.7161 (want +0.6000000 +0.0000000 493.0370 342.7161)"
+    },
+    {
+      "name": "tv_f41(idx40)",
+      "ok": true,
+      "detail": "ok mean=0.492 min=0 max=200"
+    },
+    {
+      "name": "pos_idx41",
+      "ok": true,
+      "detail": "X=+0.6375000 z=+0.0000000 u=497.8519 v=342.7161 (want +0.6375000 +0.0000000 497.8519 342.7161)"
+    },
+    {
+      "name": "tv_f42(idx41)",
+      "ok": true,
+      "detail": "ok mean=0.492 min=0 max=200"
+    },
+    {
+      "name": "pos_idx42",
+      "ok": true,
+      "detail": "X=+0.6750000 z=+0.0000000 u=502.6667 v=342.7161 (want +0.6750000 +0.0000000 502.6667 342.7161)"
+    },
+    {
+      "name": "tv_f43(idx42)",
+      "ok": true,
+      "detail": "ok mean=0.492 min=0 max=200"
+    },
+    {
+      "name": "pos_idx43",
+      "ok": true,
+      "detail": "X=+0.7125000 z=+0.0000000 u=507.4815 v=342.7161 (want +0.7125000 +0.0000000 507.4815 342.7161)"
+    },
+    {
+      "name": "tv_f44(idx43)",
+      "ok": true,
+      "detail": "ok mean=0.492 min=0 max=200"
+    },
+    {
+      "name": "pos_idx44",
+      "ok": true,
+      "detail": "X=+0.7500000 z=+0.0000000 u=512.2963 v=342.7161 (want +0.7500000 +0.0000000 512.2963 342.7161)"
+    },
+    {
+      "name": "tv_f45(idx44)",
+      "ok": true,
+      "detail": "ok mean=0.492 min=0 max=200"
+    },
+    {
+      "name": "pos_idx45",
+      "ok": true,
+      "detail": "X=+0.7875000 z=+0.0000000 u=517.1111 v=342.7161 (want +0.7875000 +0.0000000 517.1111 342.7161)"
+    },
+    {
+      "name": "tv_f46(idx45)",
+      "ok": true,
+      "detail": "ok mean=0.492 min=0 max=200"
+    },
+    {
+      "name": "pos_idx46",
+      "ok": true,
+      "detail": "X=+0.8250000 z=+0.0000000 u=521.9259 v=342.7161 (want +0.8250000 +0.0000000 521.9259 342.7161)"
+    },
+    {
+      "name": "tv_f47(idx46)",
+      "ok": true,
+      "detail": "ok mean=0.492 min=0 max=200"
+    },
+    {
+      "name": "pos_idx47",
+      "ok": true,
+      "detail": "X=+0.8625000 z=+0.0000000 u=526.7407 v=342.7161 (want +0.8625000 +0.0000000 526.7407 342.7161)"
+    },
+    {
+      "name": "tv_f48(idx47)",
+      "ok": true,
+      "detail": "ok mean=0.492 min=0 max=200"
+    },
+    {
+      "name": "pos_idx48",
+      "ok": true,
+      "detail": "X=+0.9000000 z=+0.0000000 u=531.5556 v=342.7161 (want +0.9000000 +0.0000000 531.5556 342.7161)"
+    },
+    {
+      "name": "tv_f49(idx48)",
+      "ok": true,
+      "detail": "ok mean=0.492 min=0 max=217"
+    },
+    {
+      "name": "file_count_49",
+      "ok": true,
+      "detail": "49 files"
+    },
+    {
+      "name": "index_0_to_48",
+      "ok": true,
+      "detail": "min=0 max=48"
+    }
+  ],
+  "frames": {
+    "0": {
+      "mean": 0.4946,
+      "min": 0,
+      "max": 214,
+      "frac_0": 0.01251,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "1": {
+      "mean": 0.4948,
+      "min": 0,
+      "max": 215,
+      "frac_0": 0.01249,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "2": {
+      "mean": 0.495,
+      "min": 0,
+      "max": 216,
+      "frac_0": 0.01188,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "3": {
+      "mean": 0.495,
+      "min": 0,
+      "max": 217,
+      "frac_0": 0.01171,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "4": {
+      "mean": 0.4947,
+      "min": 0,
+      "max": 218,
+      "frac_0": 0.01234,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "5": {
+      "mean": 0.494,
+      "min": 0,
+      "max": 220,
+      "frac_0": 0.01346,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "6": {
+      "mean": 0.4926,
+      "min": 0,
+      "max": 221,
+      "frac_0": 0.01577,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "7": {
+      "mean": 0.4914,
+      "min": 0,
+      "max": 223,
+      "frac_0": 0.01795,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "8": {
+      "mean": 0.4903,
+      "min": 0,
+      "max": 225,
+      "frac_0": 0.01968,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "9": {
+      "mean": 0.4893,
+      "min": 0,
+      "max": 227,
+      "frac_0": 0.02159,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "10": {
+      "mean": 0.4882,
+      "min": 0,
+      "max": 229,
+      "frac_0": 0.02323,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "11": {
+      "mean": 0.4873,
+      "min": 0,
+      "max": 230,
+      "frac_0": 0.02465,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "12": {
+      "mean": 0.4866,
+      "min": 0,
+      "max": 232,
+      "frac_0": 0.02563,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "13": {
+      "mean": 0.4861,
+      "min": 0,
+      "max": 233,
+      "frac_0": 0.02638,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "14": {
+      "mean": 0.4857,
+      "min": 0,
+      "max": 234,
+      "frac_0": 0.02662,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "15": {
+      "mean": 0.4854,
+      "min": 0,
+      "max": 235,
+      "frac_0": 0.02685,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "16": {
+      "mean": 0.4854,
+      "min": 0,
+      "max": 235,
+      "frac_0": 0.02662,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "17": {
+      "mean": 0.4854,
+      "min": 0,
+      "max": 236,
+      "frac_0": 0.02643,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "18": {
+      "mean": 0.4857,
+      "min": 0,
+      "max": 236,
+      "frac_0": 0.02556,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "19": {
+      "mean": 0.4862,
+      "min": 0,
+      "max": 237,
+      "frac_0": 0.02443,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "20": {
+      "mean": 0.4868,
+      "min": 0,
+      "max": 237,
+      "frac_0": 0.02323,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "21": {
+      "mean": 0.4874,
+      "min": 0,
+      "max": 237,
+      "frac_0": 0.0217,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "22": {
+      "mean": 0.4881,
+      "min": 0,
+      "max": 237,
+      "frac_0": 0.02014,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "23": {
+      "mean": 0.4885,
+      "min": 0,
+      "max": 236,
+      "frac_0": 0.01881,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "24": {
+      "mean": 0.4891,
+      "min": 0,
+      "max": 235,
+      "frac_0": 0.01686,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "25": {
+      "mean": 0.4895,
+      "min": 0,
+      "max": 234,
+      "frac_0": 0.01509,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "26": {
+      "mean": 0.4899,
+      "min": 0,
+      "max": 233,
+      "frac_0": 0.01342,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "27": {
+      "mean": 0.4901,
+      "min": 0,
+      "max": 231,
+      "frac_0": 0.01205,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "28": {
+      "mean": 0.4902,
+      "min": 0,
+      "max": 230,
+      "frac_0": 0.01078,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "29": {
+      "mean": 0.4902,
+      "min": 0,
+      "max": 228,
+      "frac_0": 0.00971,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "30": {
+      "mean": 0.4902,
+      "min": 0,
+      "max": 224,
+      "frac_0": 0.00885,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "31": {
+      "mean": 0.4905,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.0083,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "32": {
+      "mean": 0.4908,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00803,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "33": {
+      "mean": 0.4909,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00779,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "34": {
+      "mean": 0.491,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00729,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "35": {
+      "mean": 0.4911,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00826,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "36": {
+      "mean": 0.4914,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00794,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "37": {
+      "mean": 0.4915,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00769,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "38": {
+      "mean": 0.4916,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00745,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "39": {
+      "mean": 0.4917,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00737,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "40": {
+      "mean": 0.4917,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00736,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "41": {
+      "mean": 0.4917,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00736,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "42": {
+      "mean": 0.4917,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00736,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "43": {
+      "mean": 0.4917,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00736,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "44": {
+      "mean": 0.4917,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00736,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "45": {
+      "mean": 0.4917,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00736,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "46": {
+      "mean": 0.4917,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00736,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "47": {
+      "mean": 0.4917,
+      "min": 0,
+      "max": 200,
+      "frac_0": 0.00736,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "48": {
+      "mean": 0.4919,
+      "min": 0,
+      "max": 217,
+      "frac_0": 0.00736,
+      "frac_255": 0.0,
+      "roundtrip": true
+    }
+  },
+  "params": {
+    "split": "R0S0",
+    "variant": "prime",
+    "energy": 2000.0,
+    "engine": "BLENDER_EEVEE",
+    "samples": 32,
+    "style": {
+      "DeepObject": [
+        0.5,
+        0.52,
+        0.28,
+        0.6
+      ],
+      "Floor": [
+        0.42,
+        0.44,
+        0.46,
+        0.7
+      ],
+      "Marker": [
+        0.9,
+        0.86,
+        0.2,
+        0.35
+      ],
+      "Occluder": [
+        0.3,
+        0.34,
+        0.52,
+        0.55
+      ],
+      "Target": [
+        0.78,
+        0.32,
+        0.18,
+        0.45
+      ],
+      "Wall": [
+        0.62,
+        0.6,
+        0.57,
+        0.85
+      ]
+    },
+    "encode": "srgb"
+  }
+}

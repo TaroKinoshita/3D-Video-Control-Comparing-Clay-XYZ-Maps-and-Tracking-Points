@@ -1,0 +1,319 @@
+{
+  "expect": {
+    "A_front_centre": {
+      "obj": "Front",
+      "pass_index": 4,
+      "depth": 8.0,
+      "X": 0.022499999718750004,
+      "Y": -2.0,
+      "Z": 0.022499999718750004
+    },
+    "B_wall_lowleft": {
+      "obj": "Wall",
+      "pass_index": 1,
+      "depth": 12.0,
+      "X": -3.6112499548593755,
+      "Y": 2.0,
+      "Z": -3.6112499548593755
+    },
+    "C_wall_upright": {
+      "obj": "Wall",
+      "pass_index": 1,
+      "depth": 12.0,
+      "X": 3.6112499548593755,
+      "Y": 2.0,
+      "Z": 3.6112499548593755
+    },
+    "D_wall_below": {
+      "obj": "Wall",
+      "pass_index": 1,
+      "depth": 12.0,
+      "X": 0.033749999578125,
+      "Y": 2.0,
+      "Z": -2.9362499632968753
+    },
+    "E_front_left": {
+      "obj": "Front",
+      "pass_index": 4,
+      "depth": 8.0,
+      "X": -0.8774999890312501,
+      "Y": -2.0,
+      "Z": 0.022499999718750004
+    }
+  },
+  "use_compositing": true,
+  "R0_combined": {
+    "size": [
+      128,
+      128
+    ],
+    "A_front_centre": [
+      0.42627,
+      0.42627,
+      0.42627
+    ],
+    "B_wall_lowleft": [
+      0.09827,
+      0.09814,
+      0.09814
+    ],
+    "C_wall_upright": [
+      0.13538,
+      0.13538,
+      0.13538
+    ],
+    "D_wall_below": [
+      0.12842,
+      0.12842,
+      0.1283
+    ],
+    "E_front_left": [
+      0.38574,
+      0.38574,
+      0.38623
+    ]
+  },
+  "R1_position_color_info": {
+    "interface_socket": "Socket_0 / NodeSocketColor",
+    "groupoutput_inputs": [
+      [
+        "Out",
+        "RGBA"
+      ],
+      [
+        "",
+        "CUSTOM"
+      ]
+    ],
+    "link": "Position -> Out (valid=True)",
+    "links_count": 1
+  },
+  "R1_position_color": {
+    "size": [
+      128,
+      128
+    ],
+    "A_front_centre": [
+      0.02249,
+      -2.0,
+      0.02249
+    ],
+    "B_wall_lowleft": [
+      -3.60938,
+      2.0,
+      -3.60938
+    ],
+    "C_wall_upright": [
+      3.60938,
+      2.0,
+      3.60938
+    ],
+    "D_wall_below": [
+      0.03372,
+      2.0,
+      -2.93555
+    ],
+    "E_front_left": [
+      -0.87744,
+      -2.0,
+      0.02249
+    ]
+  },
+  "R2_position_vector_info": {
+    "interface_socket": "Socket_0 / NodeSocketVector",
+    "groupoutput_inputs": [
+      [
+        "Out",
+        "VECTOR"
+      ],
+      [
+        "",
+        "CUSTOM"
+      ]
+    ],
+    "link": "Position -> Out (valid=True)",
+    "links_count": 1
+  },
+  "R2_position_vector": {
+    "size": [
+      128,
+      128
+    ],
+    "A_front_centre": [
+      0.42627,
+      0.42627,
+      0.42627
+    ],
+    "B_wall_lowleft": [
+      0.09827,
+      0.09814,
+      0.09814
+    ],
+    "C_wall_upright": [
+      0.13538,
+      0.13538,
+      0.13538
+    ],
+    "D_wall_below": [
+      0.12842,
+      0.12842,
+      0.1283
+    ],
+    "E_front_left": [
+      0.38574,
+      0.38574,
+      0.38623
+    ]
+  },
+  "R1b_depth_float_info": {
+    "interface_socket": "Socket_0 / NodeSocketFloat",
+    "groupoutput_inputs": [
+      [
+        "Out",
+        "VALUE"
+      ],
+      [
+        "",
+        "CUSTOM"
+      ]
+    ],
+    "link": "Depth -> Out (valid=True)",
+    "links_count": 1
+  },
+  "R1b_depth_float": {
+    "size": [
+      128,
+      128
+    ],
+    "A_front_centre": [
+      0.42627,
+      0.42627,
+      0.42627
+    ],
+    "B_wall_lowleft": [
+      0.09827,
+      0.09814,
+      0.09814
+    ],
+    "C_wall_upright": [
+      0.13538,
+      0.13538,
+      0.13538
+    ],
+    "D_wall_below": [
+      0.12842,
+      0.12842,
+      0.1283
+    ],
+    "E_front_left": [
+      0.38574,
+      0.38574,
+      0.38623
+    ]
+  },
+  "R3_virtual": {
+    "size": [
+      128,
+      128
+    ],
+    "A_front_centre": [
+      0.42627,
+      0.42627,
+      0.42627
+    ],
+    "B_wall_lowleft": [
+      0.09827,
+      0.09814,
+      0.09814
+    ],
+    "C_wall_upright": [
+      0.13538,
+      0.13538,
+      0.13538
+    ],
+    "D_wall_below": [
+      0.12842,
+      0.12842,
+      0.1283
+    ],
+    "E_front_left": [
+      0.38574,
+      0.38574,
+      0.38623
+    ]
+  },
+  "foi_dir": [
+    "bl_rna",
+    "clear",
+    "find",
+    "foreach_get",
+    "foreach_set",
+    "get",
+    "items",
+    "keys",
+    "move",
+    "new",
+    "remove",
+    "rna_type",
+    "values"
+  ],
+  "foi_new": "EXCEPTION TypeError: NodeCompositorFileOutputItems.new(): error with argument 1, \"socket_type\" -  enum \"pos\" not found in ('FLOAT', 'INT', 'BOOLEAN', 'VECTOR', 'RGBA', 'ROTATION', 'MATRIX', 'STRING', 'MENU', 'SHADER', 'OBJECT', 'IMAGE', 'GEOMETRY', 'COLLECTION', 'TEXTURE', 'MATERIAL', 'BUNDLE', 'CLOSURE', 'FONT', 'SCENE', 'TEXT', 'MASK', 'SOUND', 'INT_VECTOR')",
+  "outdir_exr_after_R4": [
+    "_w_R0_combined.exr",
+    "_w_R1_position_color.exr",
+    "_w_R1b_depth_float.exr",
+    "_w_R2_position_vector.exr",
+    "_w_R3_virtual.exr",
+    "depth.exr",
+    "position.exr"
+  ],
+  "R4_outputfile": {
+    "size": [
+      832,
+      480
+    ],
+    "A_front_centre": [
+      -3.64844,
+      2.0,
+      -1.82227
+    ],
+    "B_wall_lowleft": [
+      -4.21094,
+      2.0,
+      -2.38281
+    ],
+    "C_wall_upright": [
+      -3.09961,
+      2.0,
+      -1.27148
+    ],
+    "D_wall_below": [
+      -3.64844,
+      2.0,
+      -2.2793
+    ],
+    "E_front_left": [
+      -3.85742,
+      2.0,
+      -1.82227
+    ]
+  },
+  "import__cycles": "EXCEPTION AttributeError: module '_cycles' has no attribute '__file__'",
+  "import_cycles": "C:\\Program Files\\Blender Foundation\\Blender 5.2\\5.2\\scripts\\addons_core\\cycles\\__init__.py",
+  "cycles_dir_listing": [
+    "__init__.py",
+    "camera.py",
+    "engine.py",
+    "lib",
+    "license",
+    "maketx.py",
+    "operators.py",
+    "osl.py",
+    "presets.py",
+    "properties.py",
+    "shader",
+    "source",
+    "ui.py",
+    "version_update.py"
+  ]
+}

@@ -1,0 +1,714 @@
+{
+  "checks": [
+    {
+      "name": "engine",
+      "ok": true,
+      "detail": "BLENDER_EEVEE\uff08\u8981\u6c42 BLENDER_EEVEE\uff09/ samples 32"
+    },
+    {
+      "name": "style_applied",
+      "ok": true,
+      "detail": "6 \u30aa\u30d6\u30b8\u30a7\u30af\u30c8\u306b\u6750\u8cea\u3092\u9069\u7528"
+    },
+    {
+      "name": "reproducible",
+      "ok": true,
+      "detail": "\u5dee\u5206\u753b\u7d20 0"
+    },
+    {
+      "name": "tv_f01(idx00)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f02(idx01)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f03(idx02)",
+      "ok": true,
+      "detail": "ok mean=0.452 min=0 max=219"
+    },
+    {
+      "name": "tv_f04(idx03)",
+      "ok": true,
+      "detail": "ok mean=0.452 min=0 max=219"
+    },
+    {
+      "name": "tv_f05(idx04)",
+      "ok": true,
+      "detail": "ok mean=0.453 min=0 max=219"
+    },
+    {
+      "name": "tv_f06(idx05)",
+      "ok": true,
+      "detail": "ok mean=0.453 min=0 max=219"
+    },
+    {
+      "name": "tv_f07(idx06)",
+      "ok": true,
+      "detail": "ok mean=0.452 min=0 max=219"
+    },
+    {
+      "name": "tv_f08(idx07)",
+      "ok": true,
+      "detail": "ok mean=0.452 min=0 max=219"
+    },
+    {
+      "name": "tv_f09(idx08)",
+      "ok": true,
+      "detail": "ok mean=0.452 min=0 max=219"
+    },
+    {
+      "name": "tv_f10(idx09)",
+      "ok": true,
+      "detail": "ok mean=0.452 min=0 max=219"
+    },
+    {
+      "name": "tv_f11(idx10)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f12(idx11)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f13(idx12)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f14(idx13)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f15(idx14)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f16(idx15)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f17(idx16)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f18(idx17)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f19(idx18)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f20(idx19)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f21(idx20)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f22(idx21)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f23(idx22)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f24(idx23)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f25(idx24)",
+      "ok": true,
+      "detail": "ok mean=0.451 min=0 max=219"
+    },
+    {
+      "name": "tv_f26(idx25)",
+      "ok": true,
+      "detail": "ok mean=0.450 min=0 max=219"
+    },
+    {
+      "name": "tv_f27(idx26)",
+      "ok": true,
+      "detail": "ok mean=0.449 min=0 max=219"
+    },
+    {
+      "name": "tv_f28(idx27)",
+      "ok": true,
+      "detail": "ok mean=0.448 min=0 max=219"
+    },
+    {
+      "name": "tv_f29(idx28)",
+      "ok": true,
+      "detail": "ok mean=0.447 min=0 max=219"
+    },
+    {
+      "name": "tv_f30(idx29)",
+      "ok": true,
+      "detail": "ok mean=0.446 min=0 max=219"
+    },
+    {
+      "name": "tv_f31(idx30)",
+      "ok": true,
+      "detail": "ok mean=0.445 min=0 max=219"
+    },
+    {
+      "name": "tv_f32(idx31)",
+      "ok": true,
+      "detail": "ok mean=0.445 min=0 max=219"
+    },
+    {
+      "name": "tv_f33(idx32)",
+      "ok": true,
+      "detail": "ok mean=0.444 min=0 max=219"
+    },
+    {
+      "name": "tv_f34(idx33)",
+      "ok": true,
+      "detail": "ok mean=0.443 min=0 max=219"
+    },
+    {
+      "name": "tv_f35(idx34)",
+      "ok": true,
+      "detail": "ok mean=0.443 min=0 max=219"
+    },
+    {
+      "name": "tv_f36(idx35)",
+      "ok": true,
+      "detail": "ok mean=0.442 min=0 max=219"
+    },
+    {
+      "name": "tv_f37(idx36)",
+      "ok": true,
+      "detail": "ok mean=0.443 min=0 max=219"
+    },
+    {
+      "name": "tv_f38(idx37)",
+      "ok": true,
+      "detail": "ok mean=0.443 min=0 max=219"
+    },
+    {
+      "name": "tv_f39(idx38)",
+      "ok": true,
+      "detail": "ok mean=0.443 min=0 max=219"
+    },
+    {
+      "name": "tv_f40(idx39)",
+      "ok": true,
+      "detail": "ok mean=0.443 min=0 max=219"
+    },
+    {
+      "name": "tv_f41(idx40)",
+      "ok": true,
+      "detail": "ok mean=0.443 min=0 max=219"
+    },
+    {
+      "name": "tv_f42(idx41)",
+      "ok": true,
+      "detail": "ok mean=0.443 min=0 max=219"
+    },
+    {
+      "name": "tv_f43(idx42)",
+      "ok": true,
+      "detail": "ok mean=0.443 min=0 max=219"
+    },
+    {
+      "name": "tv_f44(idx43)",
+      "ok": true,
+      "detail": "ok mean=0.443 min=0 max=219"
+    },
+    {
+      "name": "tv_f45(idx44)",
+      "ok": true,
+      "detail": "ok mean=0.443 min=0 max=219"
+    },
+    {
+      "name": "tv_f46(idx45)",
+      "ok": true,
+      "detail": "ok mean=0.444 min=0 max=219"
+    },
+    {
+      "name": "tv_f47(idx46)",
+      "ok": true,
+      "detail": "ok mean=0.444 min=0 max=219"
+    },
+    {
+      "name": "tv_f48(idx47)",
+      "ok": true,
+      "detail": "ok mean=0.444 min=0 max=219"
+    },
+    {
+      "name": "tv_f49(idx48)",
+      "ok": true,
+      "detail": "ok mean=0.444 min=0 max=219"
+    },
+    {
+      "name": "file_count_49",
+      "ok": true,
+      "detail": "49 files"
+    },
+    {
+      "name": "index_0_to_48",
+      "ok": true,
+      "detail": "min=0 max=48"
+    }
+  ],
+  "frames": {
+    "0": {
+      "mean": 0.4511,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.01255,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "1": {
+      "mean": 0.4513,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.0125,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "2": {
+      "mean": 0.4517,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.01174,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "3": {
+      "mean": 0.4522,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.01063,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "4": {
+      "mean": 0.4526,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00986,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "5": {
+      "mean": 0.4527,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00889,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "6": {
+      "mean": 0.4522,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00937,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "7": {
+      "mean": 0.452,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00933,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "8": {
+      "mean": 0.4518,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00917,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "9": {
+      "mean": 0.4516,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00905,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "10": {
+      "mean": 0.4514,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00902,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "11": {
+      "mean": 0.4512,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00866,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "12": {
+      "mean": 0.451,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00843,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "13": {
+      "mean": 0.451,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00843,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "14": {
+      "mean": 0.451,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00843,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "15": {
+      "mean": 0.451,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00843,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "16": {
+      "mean": 0.451,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00843,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "17": {
+      "mean": 0.451,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00843,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "18": {
+      "mean": 0.451,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00843,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "19": {
+      "mean": 0.451,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00843,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "20": {
+      "mean": 0.451,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00843,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "21": {
+      "mean": 0.451,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00843,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "22": {
+      "mean": 0.451,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00843,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "23": {
+      "mean": 0.451,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00843,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "24": {
+      "mean": 0.4506,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00808,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "25": {
+      "mean": 0.4498,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00807,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "26": {
+      "mean": 0.4489,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00799,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "27": {
+      "mean": 0.448,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00793,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "28": {
+      "mean": 0.4471,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00785,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "29": {
+      "mean": 0.4462,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00774,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "30": {
+      "mean": 0.4453,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00769,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "31": {
+      "mean": 0.4445,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00747,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "32": {
+      "mean": 0.4436,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00742,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "33": {
+      "mean": 0.443,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00721,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "34": {
+      "mean": 0.4426,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00751,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "35": {
+      "mean": 0.4422,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00726,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "36": {
+      "mean": 0.4425,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00796,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "37": {
+      "mean": 0.4426,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00772,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "38": {
+      "mean": 0.4427,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00749,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "39": {
+      "mean": 0.4428,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.0074,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "40": {
+      "mean": 0.4428,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00739,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "41": {
+      "mean": 0.4429,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00739,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "42": {
+      "mean": 0.4431,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00739,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "43": {
+      "mean": 0.4432,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00739,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "44": {
+      "mean": 0.4434,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00739,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "45": {
+      "mean": 0.4436,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00739,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "46": {
+      "mean": 0.4438,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00739,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "47": {
+      "mean": 0.444,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00739,
+      "frac_255": 0.0,
+      "roundtrip": true
+    },
+    "48": {
+      "mean": 0.4444,
+      "min": 0,
+      "max": 219,
+      "frac_0": 0.00739,
+      "frac_255": 0.0,
+      "roundtrip": true
+    }
+  },
+  "params": {
+    "split": "R0S1",
+    "variant": "edited",
+    "energy": 2000.0,
+    "engine": "BLENDER_EEVEE",
+    "samples": 32,
+    "style": {
+      "DeepObject": [
+        0.45,
+        0.28,
+        0.52,
+        0.4
+      ],
+      "Floor": [
+        0.55,
+        0.5,
+        0.38,
+        0.85
+      ],
+      "Marker": [
+        0.15,
+        0.6,
+        0.35,
+        0.65
+      ],
+      "Occluder": [
+        0.72,
+        0.55,
+        0.22,
+        0.75
+      ],
+      "Target": [
+        0.2,
+        0.55,
+        0.7,
+        0.25
+      ],
+      "Wall": [
+        0.3,
+        0.35,
+        0.42,
+        0.45
+      ]
+    },
+    "encode": "srgb"
+  }
+}

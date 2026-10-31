@@ -1,0 +1,159 @@
+{
+  "checks": [
+    {
+      "name": "single_clay_material",
+      "ok": true,
+      "detail": "6 mesh \u306b\u5358\u4e00\u6750\u8cea\u3092\u5272\u5f53 / \u5149\u6e90 1"
+    },
+    {
+      "name": "no_entity_label",
+      "ok": true,
+      "detail": "\u4f7f\u308f\u308c\u3066\u3044\u308b\u6750\u8cea ['ArmA_Clay']"
+    },
+    {
+      "name": "view_transform",
+      "ok": true,
+      "detail": "Standard\uff08\u8981\u6c42 Standard\uff09"
+    },
+    {
+      "name": "pos_idx00",
+      "ok": true,
+      "detail": "X=-0.9000000 z=+0.0000000 u=300.4444 (want -0.9000000 0 300.4444)"
+    },
+    {
+      "name": "reproducible",
+      "ok": true,
+      "detail": "\u540c\u4e00\u30d5\u30ec\u30fc\u30e02\u56de\u3067 bit \u4e00\u81f4 / \u5dee\u5206\u753b\u7d20 0"
+    },
+    {
+      "name": "pos_idx00",
+      "ok": true,
+      "detail": "X=-0.9000000 z=+0.0000000 u=300.4444 (want -0.9000000 0 300.4444)"
+    },
+    {
+      "name": "armA_f01(idx00)",
+      "ok": true,
+      "detail": "ok mean=0.490 min=0 max=193 sep=0.8595"
+    },
+    {
+      "name": "pos_idx12",
+      "ok": true,
+      "detail": "X=-0.4500000 z=+0.0000000 u=358.2222 (want -0.4500000 0 358.2222)"
+    },
+    {
+      "name": "armA_f13(idx12)",
+      "ok": true,
+      "detail": "ok mean=0.490 min=0 max=193 sep=0.8155"
+    },
+    {
+      "name": "pos_idx23",
+      "ok": true,
+      "detail": "X=-0.0375000 z=+0.0000000 u=411.1852 (want -0.0375000 0 411.1852)"
+    },
+    {
+      "name": "armA_f24(idx23)",
+      "ok": true,
+      "detail": "ok mean=0.485 min=0 max=193 sep=0.7164"
+    },
+    {
+      "name": "pos_idx36",
+      "ok": true,
+      "detail": "X=+0.4500000 z=+0.0000000 u=473.7778 (want +0.4500000 0 473.7778)"
+    },
+    {
+      "name": "armA_f37(idx36)",
+      "ok": true,
+      "detail": "ok mean=0.481 min=0 max=193 sep=-"
+    },
+    {
+      "name": "pos_idx48",
+      "ok": true,
+      "detail": "X=+0.9000000 z=+0.0000000 u=531.5556 (want +0.9000000 0 531.5556)"
+    },
+    {
+      "name": "armA_f49(idx48)",
+      "ok": true,
+      "detail": "ok mean=0.483 min=0 max=193 sep=0.7457"
+    },
+    {
+      "name": "file_count_smoke",
+      "ok": true,
+      "detail": "5 files"
+    }
+  ],
+  "frames": {
+    "0": {
+      "mean": 0.48988245899321264,
+      "min": 0,
+      "max": 193,
+      "frac_0": 0.012520032051282052,
+      "frac_255": 0.0,
+      "roundtrip": true,
+      "target_px": 27669,
+      "label_separability": 0.8594946708377733,
+      "mean_target": 0.5916561253870155,
+      "mean_other": 0.4823063391101643
+    },
+    "12": {
+      "mean": 0.49014149109162897,
+      "min": 0,
+      "max": 193,
+      "frac_0": 0.008303285256410256,
+      "frac_255": 0.0,
+      "roundtrip": true,
+      "target_px": 22139,
+      "label_separability": 0.8155095180626066,
+      "mean_target": 0.5876408325650149,
+      "mean_other": 0.48441928071394774
+    },
+    "23": {
+      "mean": 0.48513180893350927,
+      "min": 0,
+      "max": 193,
+      "frac_0": 0.007907652243589743,
+      "frac_255": 0.0,
+      "roundtrip": true,
+      "target_px": 11897,
+      "label_separability": 0.7163555873613342,
+      "mean_target": 0.5471852353616912,
+      "mean_other": 0.4832264667093071
+    },
+    "36": {
+      "mean": 0.481248428858723,
+      "min": 0,
+      "max": 193,
+      "frac_0": 0.00794521233974359,
+      "frac_255": 0.0,
+      "roundtrip": true,
+      "target_px": 0
+    },
+    "48": {
+      "mean": 0.48299553795877326,
+      "min": 0,
+      "max": 193,
+      "frac_0": 0.007366786858974359,
+      "frac_255": 0.0,
+      "roundtrip": true,
+      "target_px": 6707,
+      "label_separability": 0.745657539221716,
+      "mean_target": 0.5196303540053266,
+      "mean_other": 0.4823697698856292
+    }
+  },
+  "params": {
+    "variant": "original",
+    "energy": 2000.0,
+    "world": 0.1,
+    "samples": 32,
+    "base_color": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "roughness": 0.6,
+    "view_transform": "Standard",
+    "entity_label": "none",
+    "encode": "srgb",
+    "use_raytracing": false
+  }
+}
