@@ -8,7 +8,7 @@
 | ベースモデル | Wan2.1-VACE-1.3B |
 | 学習フレームワーク | DiffSynth-Studio **2.0.18**（バージョン固定） |
 | Blender | **5.2.0** |
-| 本ファイルの版 | **rev.10（2026-08-09）** |
+| 本ファイルの版 | **rev.14（2026-10-31）**。rev.11〜13 の差分は本体に反映済み（§38〜§40）、rev.14 は §41 |
 | Stage 1 凍結日 | ______（記入する） |
 | Stage 2 凍結日 | **2026-08-06**（Phase 0.0 本番完了。§32） |
 
@@ -73,6 +73,10 @@ Stage 2 : 正規化方式・点密度・point radius・色割当・実用閾値
 | **2026-08-06 (rev.8)** | **§34（新設） / §4 / §18-4 / §18-5 / §18-27 / §26** | **Arm B の正規化方式を確定。ボックスは広げない。§26 の「Arm B は遮蔽中も情報を持ち続ける」を訂正** | Dataset-fixed を採るがボックスは Scene C の NORM_BOX に固定する。ボックスを k 倍したときの世界誤差は 3軸合計で k=1 が最小（12.214 px / k=1.5 13.237 / k=2 16.594 / k=3 24.971）。VAE の 8bit 誤差 ε は k=1.5 で 0.40 に下がりきり以降平坦で、帯をまたぐ段差（base 差 0.40、k 非依存）に支配される。**チャンネル別では R が −59%、G が −34% に対し B は +25% と符号が逆で、全体平均でも分位点でも検出できない。** 潜在形状 [1,16,13,60,104] と VRAM 4,481 MiB は §32 の Arm C temporal と一致。§4 の予約帯の契約は VAE 前のものであり出力では守られない（k=1 で予約帯 769 px / 帯反転 251 px）。§16.4 の内側寄せ対策は連続座標をエンコードする Arm B に構造的に使えないため受け入れ、評価時の扱いは §18-27 とする。§26 は Arm B のゼロ区間が 36–40（target video の完全遮蔽と同一、両変種一致）であることを実測し、非対称は index 35 / 41 の 2 フレームのみと訂正。§34 |
 | **2026-08-07 (rev.9)** | **§35（新設） / §5 / §8 / §33.6 / §33.8 / §33.11 / §18-2 / §18-25 / §18-26 / §18-28** | **DiffSynth 2.0.18 の実装をソースで確認し、§8 のフラグ表を実装と一致させた** | PyPI sdist を読んだ結果、(1) `--num_steps` は存在せず学習量は `--num_epochs` で決まる、(2) `--batch_size` は存在せず DataLoader が B=1 固定、(3) `--lora_alpha` は存在せず alpha = rank が実装既定、(4) `--save_steps` は micro-batch 単位で省略すると epoch ごとに 500 個保存される、(5) 参照画像ありの latent 時間長は推論パスで全経路 14（rev.8 の「denoising 側 13」は誤り）、(6) `ConstantLR` が既定引数で呼ばれ最初 5 step の lr が 1/3 になる可能性がある（§18-28 新規）。§18-2 の batch size と lora_alpha は決定対象ではなくなった。`examples/train.py` は sdist に無く未確認。§35 |
 | **2026-08-09 (rev.10)** | **§36・§37（新設） / §4 / §5 / §8 / §12 / §33.2 / §33.10 / §33.11 / §18-6 / §18-25 / §18-26 / §18-27 / §18-28** | **学習環境と入力経路を実測で確定し、絶対閾値を定義した。未決 5 件を解決** | (1) 入力経路の全区間で bit 一致を確認。PNG → FFV1 gbrp（bitexact）→ imageio → torchvision resize → UnifiedDataset → DiT。H.264 は crf0 yuv444p でも全画素の 39.5% が ±1 ずれるため使用不可（Arm B の量子化予算 0.044118 units の 2 倍）。control 4 本の content sha256 を照合値として固定。(2) dataset 形式は jsonl。列名は `video` / `prompt` / `vace_video` / `vace_reference_image`。prompt は 3 arm でバイト単位同一かつ運動を記述しない固定文。(3) 20-step スモーク：7.83 s/step、ピーク VRAM 30,109 MiB（W0 と完全一致）、500 steps = 約 67 分、5 run = 約 5.6 時間。`--save_steps` 省略で 500 個 20.4 GB のチェックポイントが出るため `--save_steps 100` を明示。(4) §18-26 = latent 時間長 14（学習パスも同じ）。§18-28 = 最初 5 step の lr が 3.333e−05。§18-25 = `--num_epochs` 駆動を実物で確認。(5) §18-6 = 代表 1 指標ゲート（案 6-C）、T_control = median 中心誤差 ≤ 47 px（Target 等価半径 94.5 px の 50%）、T_coherence = 個数≠1 フレーム率 ≤ 2/44、面は C′ の GT 可視 44 フレーム。Evaluator floor が 47 px を超えたら関門を撤回する保険条項つき。(6) §18-27 = 案 27-B。座標誤差は median/p95/p99（max 不使用・全画素）、帯違反は予約帯 39.3 ppm / 帯反転 12.8 ppm で独立報告。(7) `training_args.json` は `use_gradient_checkpointing` を false と記録するが実際は強制有効化されるため再現性の記録として不完全。`weight_decay` 0.01 が §8 に未記載だった。(8) VRAM 30.1 GB は 96GB の 31% であり B=1 固定のため増えない。48GB クラスへの変更を検討。§36 / §37 |
+| **2026-08-10 (rev.11)** | **§9 / §18 / §33.4 / §33.7 / §38（新設）** | **偵察 run の結果・推論設定・tracker・seed の具体値を確定** | W6。暗記に落ちず control 追従（T_control median 8.55 px）。詳細は §38 |
+| **2026-08-12 (rev.12)** | **§33.4 / §39（新設）** | **Scene C′ = variant `prime` を正式定義。凍結リテラル・content sha 方式B・検査の空白の是正** | W7。`location.z` は dZ のみ（`Z0 + dZ` は誤り）。詳細は §39 |
+| **2026-08-12 (rev.13)** | **§36.7 / §40（新設）** | **学習 metadata と manifest の役割分担・集約・検査の空白の是正** | W8。詳細は §40 |
+| **2026-10-31 (rev.14)** | **§12 / §13.3 / §18 / §37 / §41（新設）** | **T_control の GT を C′ の ID パスに変更。T_coherence を本数判定に変更。未決 #27（参照画像 sha）解決** | W9。Arm A / B の結果を見る前に確定。v1 の GT は最大 31.9 px ずれていた。詳細は §41 |
 | **2026-08-05 (rev.6)** | **§14 / §27** | **マスクの定義を `pass_index`（Object ID パス）から Emission ID レンダーへ変更** | **EEVEE に Object Index パスが存在しない。**`use_pass_object_index=True` は代入に成功するがソケットが出ない |
 | **2026-08-05 (rev.6)** | **§28（新設）** | **Arm A / Arm B / Arm C の実装規約と凍結値** | W2c で実装・機械検査済み |
 | **2026-08-05 (rev.6)** | **§13.4** | **円の重なり閾値を 12 px から 13.4143 px に訂正** | 整数中心で 12px は 1 画素共有する。丸めで最大 1.4142px 縮むため |
@@ -411,11 +415,11 @@ R1S0 = Cycles で Target video を焼く
 | learning_rate | 1e-4 | 公式サンプル。**ただし最初の 5 optimizer step は 3.333e−05（1e-4 の 1/3）。** `runner.py:65` が `ConstantLR(optimizer)` を引数なしで呼び、PyTorch 既定が `factor=1/3, total_iters=5` であることを Pod で実測した（2026-08-09）。**「定数」ではない。** §36.10 |
 | `weight_decay` | **0.01** | **rev.9 まで §8 に記載が無かった。** AdamW の既定値が効いている。`training_args.json` で実測（§36.12） |
 | `--use_gradient_checkpointing` | **明示的に付ける** | **付けないとフレームワークが強制有効化するが `training_args.json` には `false` と記録され、再現性の記録が実態と食い違う**（§36.12） |
-| `--enable_tensorboard_log` | **付ける** | loss を `{output_path}/tensorboard_log` に記録。**横軸は micro-batch 単位**（§36.11） |
+| `--enable_tensorboard_log` | **付けない（rev.14 で変更）** | g1_armC（偵察 run）が付けずに回したため、3 arm で揃える。学習結果には影響しない。loss はログから読む。§41.8 |
 | `extra_inputs` | `vace_video, vace_reference_image` | VACEの入力形式。**`vace_video_mask` は使わない。** §33.11 |
 | `vace_reference_image` の中身 | **そのシーンの target video の frame 0** | **公式サンプルと同一。3 arm で bit 一致する。2026-08-06 確定。§33.11** |
 | batch size | **1（指定不可）** | **フラグは存在しない。`runner.py:66` の DataLoader が既定 1、`collate_fn=lambda x: x[0]` で 1 件を剥がす。2026-08-07 実装確認。§35.3** |
-| `gradient_accumulation_steps` | **N=1 の間は 1** | 実効バッチを上げる唯一の手段。N 確定後に決定。§33.6 / §35.3 |
+| `gradient_accumulation_steps` | **1（確定。rev.11）** | g1_armC の `training_args.json` で実測。N=1（暫定）の間は変えない。§33.6 / §35.3 / §38 |
 | `num_epochs` | **500**（N=1 / A=1 / `dataset_repeat`=1 のとき） | **学習量を決める唯一のフラグ。`--num_steps` は存在しない。optimizer step 数 = num_epochs × dataset_repeat × N / A。§35.2** |
 | `save_steps` | **100** | **micro-batch 単位。省略すると epoch ごとに 500 個保存される。§35.4 / §35.8** |
 | VRAM（49f / 1 step 実測） | 29.4 GB | 2026-08-02 |
@@ -448,6 +452,9 @@ Step 0 は LoRA を当てない推論で得るため checkpoint 不要。
 |---|---|---|
 | training seed | LoRA初期化・data order・dropout | S1, S2, S3 |
 | generation seed | 推論時の初期noise | G1, G2, G3, G4 |
+
+**具体値（rev.11）**：generation G1=0 / G2=1 / G3=2 / G4=3（`pipe(seed=...)`）。training S1=0 / S2=1 / S3=2。
+**DiffSynth 2.0.18 の `train.py` に `--seed` は無い。** 学習側 seed は非固定で、S1 は「1 本目」のラベルである。再現性は generation seed のみで担保する。
 
 > **記法の注意。** §7 の split 記号 `S0 / S1`（Style）と、
 > ここの training seed `S1 / S2 / S3` は別物。文脈で判断すること。
@@ -622,7 +629,8 @@ LPIPS / PSNR / SSIM / DINO feature drift / 非対象物体の位置変化
 | | 式 | 面 |
 |---|---|---|
 | **T_control** | **median Target center trajectory error ≤ 47 px** | Scene C′、GT で Target 可視な 44 フレーム（0–35 / 41–48） |
-| **T_coherence** | **Target 検出個数 ≠ 1 のフレーム率 ≤ 2 / 44** | 同上。Tracker failure は分母から除外し別カウント |
+| **T_coherence** | **Target 検出個数 ≠ 1 のフレームが ≤ 2 本**（rev.14。旧「率 ≤ 2/44」） | 同上。Tracker failure は分母にも分子にも入れず、本数とフレーム番号を別に報告 |
+| **GT 中心** | **Scene C′ の ID パス（`geo/prime`）の ids==3 重心**（rev.14） | `data/points/gt_target_center_prime.json`。Scene C の重心を dZ でずらす旧方式は最大 31.9 px ずれる（§41.1） |
 
 | 項目 | 値 | 根拠 |
 |---|---|---|
@@ -631,7 +639,7 @@ LPIPS / PSNR / SSIM / DINO feature drift / 非対象物体の位置変化
 | 統計量 | **median を主、p95 を副** | 検出器の失敗フレームが max を支配するため mean も max も使えない |
 | 完全遮蔽 36–40 | **別枠。誤差ではなく「消えているべき」の有無を検査** | 中心誤差が定義できない |
 
-**保険条項。** Evaluator floor（§15 / §18-9）は未測定である。
+**保険条項。** Evaluator floor（§15 / §18-9）は rev.11 で測定済み（Scene C 面で p95 3.89 px）、rev.14 で C′ 採点面で測り直した（**p95 3.75 px**。§41.4）。発動しない。
 **検出器自体の中心誤差 p95 が 47 px 以上なら、この関門を撤回し floor をそのまま
 報告する。閾値を測定後に緩めることは事後合わせであり禁止する。**（§37.8）
 
@@ -719,7 +727,7 @@ V_max = VAE往復後も点の色が識別可能な、スクリーン空間での
 | 半径 | V_max | 49フレームで動ける距離 | 画面幅832pxに対して |
 |---|---|---|---|
 | 3 px | 3 px/frame | 144 px | 17% |
-| 6 | ~~T_control / T_coherence の具体値~~ | ~~Stage 2 / Main Test 前~~ | ✅ **解決 2026-08-09。代表 1 指標ゲート（案 6-C）。T_control = median 中心誤差 ≤ 47 px、T_coherence = 個数≠1 フレーム率 ≤ 2/44。面は C′ の GT 可視 44 フレーム。Evaluator floor が 47 px を超えた場合は関門を撤回する保険条項つき。§12 / §37** |
+| **6 px** | **≥ 17 px/frame** | **≥ 816 px** | **ほぼ横断可** |
 
 **「≥ 17」は下限。** 17より速い条件は測っていない。
 半径6の色誤差は V=17 で 11.3 と上限24の半分以下なので、さらに余裕がある可能性は高い。
@@ -1486,14 +1494,14 @@ camera pose 検証（列ノルム / 直交性 / det / 光軸収束）
 | # | 項目 | 期限 | 状態 |
 |---|---|---|---|
 | 1 | ~~Depth規約~~ | ~~Day 11-17の前~~ | ✅ **解決 2026-08-03。規約A（Z-depth）。§22** |
-| **2 ⚠️** | ~~`lora_alpha`~~ / ~~batch size~~ / gradient accumulation | 偵察 run 後 | **一部解決。`lora_alpha` はフラグでなく rank 同値、batch size もフラグでなく 1 固定（2026-08-07 実装確認。§35.3 / §35.5）。残るのは A のみで N 確定後に決める。§33.6** |
+| 2 | ~~`lora_alpha`~~ / ~~batch size~~ / ~~gradient accumulation~~ | — | ✅ **解決（rev.11）。gradient_accumulation_steps = 1（g1_armC 実測）。以下は rev.9 時点の記述：`lora_alpha` はフラグでなく rank 同値、batch size もフラグでなく 1 固定（2026-08-07 実装確認。§35.3 / §35.5）。残るのは A のみで N 確定後に決める。§33.6** |
 | 3 | ~~49フレームでメモリが足りるか~~ | ~~Day 1-3~~ | ✅ **解決。VAE往復 4,481 MiB / LoRA 1 step 29.4 GB** |
 | 4 | ~~Dense XYZ 正規化方式（Dataset-fixed vs Scene-bounded）~~ | ~~Stage 2~~ | ✅ **解決 2026-08-06。Dataset-fixed。ボックスは Scene C の NORM_BOX に固定し広げない。以降のシーンは `excess == 0` を満たすよう設計。3軸合計の世界誤差が k=1 で最小（12.214 px）。§34** |
 | 5 | ~~Entity codebook separation（narrow/medium/wide）~~ | ~~Stage 2~~ | ✅ **解決 2026-08-06。§4 のまま変更しない。狭めると 8bit スパン 102 が減り座標精度が直接悪化し、Arm B / C の再生成も必要になる。§34.1** |
 | 6 | ~~T_control / T_coherence~~ | ~~Stage 2 / Main Test前~~ | ✅ **解決 2026-08-09。代表 1 指標ゲート（案 6-C）。T_control = median 中心誤差 ≤ 47 px、T_coherence = 個数≠1 フレーム率 ≤ 2/44。面は Scene C′ の GT 可視 44 フレーム（0–35 / 41–48）、統計量は median 主 / p95 副。Evaluator floor の p95 が 47 px 以上なら関門を撤回する保険条項つき。per-frame 指標の n<5 除外（§32.5）は Arm C の色誤差側の規則であり §12 とは別家族。§12 / §37** |
 | 7 | ~~M_invariant の許容値~~ | ~~Stage 2~~ | ✅ **解決 2026-08-06。許容値 2 + Target 近傍 2px 除外 + mask は R0S0 で全 split 共有。感度が 0.089% しかないため下端で確定。§11 / §32.1** |
 | 8 | Blender→OpenCV 座標変換の実装確認 | Day 25-31 | **縮小。VGGT評価GTのみに影響（Arm B/Cは経路消滅）** |
-| 9 | 検出・追跡器の選定 | Day 25-31の前 | 未決 |
+| 9 | ~~検出・追跡器の選定~~ | ~~Day 25-31の前~~ | ✅ **解決 2026-08-10（rev.11）。色セグメンテーション + Marker 位置除外 + 最大連結成分の重心。Evaluator floor p95 3.89 px（Scene C 面）/ 3.75 px（C′ 面、rev.14）。§38 / §41** |
 | 10 | ~~Arm C の時間圧縮耐性~~ | ~~Day 4-10~~ | ✅ **解決 2026-08-02。§16.14** |
 | 11 | ~~点数の確定~~（VAE roundtrip での判定） | ~~Phase 0.0 本番（RunPod）~~ | ✅ **解決 2026-08-06。240 点（Target 72 / Non-target 168）で確定。temporal 最悪 4.271（基準 24、余裕 5.6 倍）。§32.2** |
 | 12 | 視差あり条件での V_max（一様並進は楽観側） | **Phase 0.8 前** | **未決** |
@@ -1505,14 +1513,16 @@ camera pose 検証（列ノルム / 直交性 / det / 光軸収束）
 | 18 | ~~半径9を採らなかった理由の明文化~~ | ~~worklog に追記~~ | ✅ **解決 2026-08-06。半径6を維持。占有率が固定資源であり r9 は不要な色誤差の余裕を点数で買う取引になる。§16.16** |
 | 19 | ~~面が真横に近い点を可視として扱うか（正面性フィルタ）~~ | ~~本番シーン構築時~~ | ✅ **解決 2026-08-04。フィルタ不採用。`ray_cast` 単独。代替として最小スクリーン間隔 d を新設。§13.4** |
 | **20 ⚠️** | 彩色規則は解決済（2026-08-05。使用回数最小の色で両帯12色を均等使用。§28.3）。**残る未決は本番シーンでの色の一意性の実地検証**（W2b の極小シーンでは同時可視点が最大14個で検証不能だった） | **本番シーン構築後** | **未検証** |
-| **21 ⚠️** | Arm A の Control 側は解決済（2026-08-05。Entity ラベルを入れない。単一クレイ材質。機械検査あり。§28.1）。**残る未決は評価 GT 側で Target を同定する方法**（Arm A は Control 内に Target ラベルを持たないが、評価には Target の同定が必要） | Day 18 前 | **未決** |
+| **21 ⚠️** | Arm A の Control 側は解決済（2026-08-05。Entity ラベルを入れない。単一クレイ材質。機械検査あり。§28.1）。**評価 GT 側は C′ では geo の ID パス（ids==3）で同定できる**（rev.12）。**残る未決は本番シーンでの方法** | 本番シーン構築時 | **未決（Phase 0.8 は止めない）** |
 | 22 | ~~学習セットの構成（train / IID / 遮蔽対照の割り当て）~~ | ~~—~~ | ✅ **解決 2026-08-06。train は Scene C R0S0 Original のみ。IID は Scene C′。遮蔽対照は test 側。§33** |
-| **23 ⚠️** | **train 軌道本数 N** | 偵察 run 後 | **未決。§33.7 の段3 で決定** |
+| **23 ⚠️** | **train 軌道本数 N** | 3 arm の結果後 | **暫定 N=1（rev.11）。偵察 run が暗記に落ちなかったため増やさない。3 arm の結果で確定** |
 | **24 ⚠️** | **Occluder 除去方法（c-x / c-y / c-z）** | 偵察 run 後 | **未決。点集合共有と軌道一致は両立しない。§33.9** |
 | 25 | ~~DiffSynth の step の数え方~~ | ~~20-step スモーク~~ | ✅ **解決 2026-08-09。`examples/train.py` を実物で確認。学習量は `--num_epochs` 駆動（`--num_steps` は存在しない）。`--save_steps` と tensorboard の横軸は micro-batch 単位。metadata の列名は `video` / `prompt` / `vace_video` / `vace_reference_image` で確定。§35.2 / §36.7 / §36.11** |
 | 26 | ~~学習パスでの参照画像ありの latent 時間長~~ | ~~20-step スモーク~~ | ✅ **解決 2026-08-09。参照画像ありは全経路 14。学習パスも同じ関数を通る。§8 の VRAM は 30,109 MiB（参照画像あり）で W0 と完全一致。§36.9 / §36.8** |
 | 27 | ~~VAE 出力の帯反転・予約帯画素を評価時にどう扱うか~~ | ~~§18-6 と同時~~ | ✅ **解決 2026-08-09（案 27-B）。§18-6 とは独立だった（指標の家族が違う）。座標誤差は median/p95/p99 で報告し max を使わない（帯反転は max のみを支配し分位点には影響しない）。母集団は全画素で帯選別しない（`armb_decode.classify` の死んだ assert に依存しないため）。帯違反は予約帯 39.3 ppm / 帯反転 12.8 ppm として独立指標で別報告。§37.9** |
 | 28 | ~~`ConstantLR` の既定引数~~ | ~~20-step スモーク~~ | ✅ **解決 2026-08-09。Pod で実測。`factor=0.3333` / `total_iters=5`。step 0–4 が 3.333e−05、5 以降が 1.000e−04。§8 を訂正した。arm 差は汚さない。§36.10** |
+| **29 ⚠️** | **T_coherence の不良フレーム（偵察 run の f33 / f41、tracker failure f34 / f35）が生成の破綻か tracker の限界か** | 本実験時 | **未決。判定規則は rev.14 で本数判定に確定済み（§41.2）。原因の切り分けが残る。Phase 0.8 は止めない**（サマリ上の「新 25」） |
+| 30 | ~~参照画像 PNG の content sha 方式~~ | ~~—~~ | ✅ **解決 2026-10-31（rev.14）。方式A・shape (1,480,832,3)。方式B は `afc440eec3c32860`。§41.6**（サマリ上の「新 27」） |
 
 **Blender本番シーン着手前に片付けるべき項目は無くなった（2026-08-04）。**
 #19 が解決したため、W2b（Scene C 本番シーンの構築）に着手できる。
@@ -2889,7 +2899,7 @@ W2b / W2c で「エラーも警告も出さずに間違った出力を出す」�
 | **Scene C R0S0 Original**（armA/B/C control + tv） | **Train** | ✅ W2c |
 | Scene C R0S0 Edited | RQ2 反実仮想テスト（入力 = edited control、GT = edited tv） | ✅ W2c |
 | Scene C R1S0 / R0S1（両変種） | 分布シフト。今月は生成のみ、評価は9月 | ✅ W2c |
-| **Scene C′ R0S0 Original** | **IID テスト** | ❌ 未生成 |
+| **Scene C′ R0S0 Original**（variant `prime`） | **IID テスト** | ✅ W7（§39） |
 | Scene C-noocc | 遮蔽対照 | ❌ 未生成（偵察 run 後に判断） |
 | Scene B | **B-1 = train の 2 シーン目**（+ 視差条件 §18-12 は 9 月） | ❌ **8 月に作る**（2026-08-06 の W4 決定。§20 送りではない） |
 
@@ -3069,6 +3079,8 @@ train 軌道本数 N を根拠なく凍結しない。**§18-11 を 240 点に�
 通過すれば追加 GPU 予算は発生しない。**
 
 #### 予測（2026-08-06 時点。外れたら訂正を記録する）
+
+> **訂正（rev.11）：この予測は外れた。** 暗記に落ちず control 追従を獲得した（T_control median 8.55 px、rev.14 の採点では 6.62 px）。軌道変種は追加せず 3 arm × S1 へ進む。§38 / §41.3
 
 | 予測 | 内容 |
 |---|---|
@@ -4083,7 +4095,7 @@ C′ の速度制約（≤ 12 px/frame。§33.4 制約 1）で換算すると
 代表指標は **Target の検出個数**とする。12 項目のうち「対象数 / 複製 / 消失」が
 同一の測定（個数 ≠ 1）であり、検出器の出力から直接得られる。
 
-**個数 ≠ 1 のフレームが ≤ 2 / 44（4.5%）。**
+**個数 ≠ 1 のフレームが ≤ 2 本。**（rev.14 で「率 ≤ 2/44（4.5%）」から変更。tracker failure を分母から外すと率の基準が厳しくなるため。§41.2）
 
 「2」は恣意的な数ではない。**幾何的に判定が難しいフレーム数と同じ本数である。**
 §26 の訂正で frame 35 と 41 は Arm B に `pass_index` 3 があるのに Arm C の
@@ -4102,7 +4114,7 @@ C′ の速度制約（≤ 12 px/frame。§33.4 制約 1）で換算すると
 
 ### 37.8 保険条項（Evaluator floor が閾値を超えた場合）
 
-**T_control を先に決めたが、Evaluator floor（§15 / §18-9）は未測定である。**
+**T_control を先に決めたが、決定時点（rev.10）では Evaluator floor（§15 / §18-9）は未測定だった。** その後 rev.11 で p95 3.89 px（Scene C 面）、rev.14 で p95 3.75 px（C′ 面）と測定され、保険条項は発動しない。
 検出器自体の中心誤差 p95 が 47 px を超えていれば、この関門は検出器の性能を
 測っているだけになる。
 
@@ -4184,3 +4196,744 @@ numpy のみで済む（`/workspace/w3b/vae_armb` の npy 4 本）。GPU 計算�
 予約帯 769 画素は境界に限らず散る（値域の端 = 床の Z 由来なので床全体に出る）。
 **当たれば予約帯と帯反転は空間分布の違う別現象であり、分けてカウントする根拠が
 強くなる。**
+
+---
+
+# rev.11〜rev.14 追加分 — 差分ファイルの本文を収録
+
+以下 §38〜§41 は `protocol_rev1{1,2,3,4}_changes.md` の本文である。**本文の旧記述と食い違う場合はこちらを優先する**（主要な食い違いは本文側も書き換え済み）。各節の「変更N」は差分ファイルの番号のまま残す。
+
+
+## 38. rev.11 で確定した事項（W6：偵察 run・推論設定・tracker。2026-08-10）
+
+偵察 run G1 完了を受けた更新。**確定事項の追加・訂正のみ。設計の骨格（3-arm VACE LoRA、B vs C primary）は不変。**
+
+
+---
+
+### 38.1 §33.4 に制約4を明示追加（変更1）
+
+**現状**：Scene C′ の制約は3本（速度・面積・始点）。
+
+**追加**：制約4を明記。
+
+> **制約4（遮蔽窓の固定）**：Scene C′ の完全遮蔽区間は Scene C と同じ **index 36–40** に揃える。
+> 根拠：§12 の T_control 評価面「GT で Target 可視な 44 フレーム（0–35 / 41–48）」と T_coherence の予算「2/44（frame 35/41 が幾何的に判定困難）」は、いずれも Scene C の遮蔽構造にハードコードされている。C′ の遮蔽タイミングがずれると評価面と予算が破綻する。
+> 実装上は、C′ 軌道が遮蔽窓 36–40 で dZ=0（Scene C と同一位置）になっていれば自動的に満たされる。
+
+（W6 で採用した「案 A」。案 B＝評価面を C′ 依存に測り直す、は不採用。）
+
+---
+
+### 38.2 §9(Seed設計) に具体値を追記（変更2）
+
+**現状**：generation seed G1–G4 / training seed S1–S3 はラベルのみ、数値なし。
+
+**追記**：
+
+> **具体値（固定集合）**：
+> - generation seed：G1=0, G2=1, G3=2, G4=3（`pipe(seed=...)` に渡す）
+> - training seed：S1=0, S2=1, S3=2
+>
+> **注意**：DiffSynth 2.0.18 の `train.py` に `--seed` は存在しない（実物確認済み）。学習側 seed は非固定であり、S1=0 は「1本目」のラベルとして扱う。再現性は generation seed のみで担保される。
+
+---
+
+### 38.3 §21 未決事項 #2 を解決（変更3）
+
+**現状**：#2「gradient_accumulation_steps のみ」＝偵察 run 後に決める、未決。
+
+**解決**：
+
+> **#2 解決**：`gradient_accumulation_steps = 1`（g1_armC の training_args.json 実測）。DiffSynth 既定のまま。
+
+未決テーブルから #2 を削除。#23（N）は次項参照。
+
+---
+
+### 38.4 推論設定の新節（§35 系に追加）（変更4）
+
+> ### 推論設定（偵察 run / Phase 0.8 共通、DiffSynth 2.0.18 実装既定 + 3変更）
+>
+> `WanVideoPipeline.__call__` の実装既定を採用し、3点のみ変更する。
+>
+> | 引数 | 値 | 出所 |
+> |---|---|---|
+> | cfg_scale | 5.0 | 実装既定 |
+> | num_inference_steps | 50 | 実装既定 |
+> | sigma_shift | 5.0 | 実装既定 |
+> | negative_prompt | ""（空） | 実装既定、3 arm 統一 |
+> | denoising_strength / vace_scale | 1.0 / 1.0 | 実装既定 |
+> | **num_frames** | **49** | 既定81から変更 |
+> | **tiled** | **False** | §2.1 の bit一致経路（VAE tiled=False）と統一 |
+> | **seed** | **G1=0** | §9 |
+>
+> **LoRA load**：`pipe.load_lora(pipe.vace, "<output>/step-500.safetensors", alpha=1)`。
+> - `pipe.dit` ではなく **`pipe.vace`**（学習の `--remove_prefix_in_ckpt pipe.vace.` と対応）。
+> - `alpha=1`（学習が alpha=rank で保存 → load 側 1 が正しいスケール）。
+> - **`150 tensors are fused by LoRA` が出るか必ず確認**。出なければ LoRA が乗っておらずベースモデルで推論している（静かな失敗）。
+> - control は 49 フレームのリスト、ref は PNG を `Image.open(...).convert("RGB").resize((832,480))`。
+>
+> **モデルは実パス直指定**（`ModelConfig(path=...)`）＋ `DIFFSYNTH_SKIP_DOWNLOAD=True`。model_id 形式は redirect 先を探して空振りする。tokenizer も `tokenizer_config=ModelConfig(path=".../google/umt5-xxl")` で直指定。
+
+---
+
+### 38.5 §33.7 偵察 run の予測を訂正（結果で上書き）（変更5）
+
+**現状（rev.10 の予測、2026-08-06）**：
+- C′ 上で 3 arm すべてが T_control を下回る
+- 出力の中身：C′ control を入れても Scene C の軌道が出る（暗記）
+- 帰結：3 arm 差 ≤ Pipeline floor → 主張不可 → N を増やす
+
+**W6 実測（Arm C 代表、S1、500 steps、G1）で訂正**：
+
+> **偵察 run 結果（2026-08-10）**：予測は外れた。**暗記に落ちず、control 追従を獲得した。**
+> - T_control median = **8.55 px**（≤47 PASS、Evaluator floor 3.89 の約2倍）
+> - 暗記判別：C′ center 誤差 **8.55** ≪ Scene C center 誤差 **57.47** → **control 読めている**
+> - T_coherence = 2/44（閾値ぎりぎり FAIL。tracker_fail は境界フレーム f34/f35＝§12 の 2/44 予算に対応）
+>
+> **帰結（段4）**：暗記に落ちていないため軌道変種の追加は不要。**そのまま 3 arm × S1 へ進む。未決 #23（N）は暫定 N=1（増やさない）。** 3 arm で control 追従性能の差を測り、Claim Gate（3 arm 差 vs Pipeline floor）で主張可否を判定する。
+>
+> **注記**：T_control 単体は「追従の粗いゲート」で、暗記でも通りうる（陽性対照で Scene C tv を入れると median 38 で PASS した）。暗記/制御の判別は **Scene C center 誤差と C′ center 誤差の比較**で行う（判定スクリプト `score_t_control.py` に実装）。
+
+---
+
+### 38.6 §18-9 の検出/追跡器を確定（変更6）
+
+**現状**：tracker 未選定（Day 25-31 前）。
+
+**確定**：
+
+> **tracker 確定（色セグメンテーション）**：
+> - マスク条件：R>G, G>=B, (R−B)>40, R>80（Target orange 分離）
+> - Marker(黄) 誤検出対策：重心が (658.76, 123.47) の ±30px の連結成分を除外
+> - 検出：残りの最大連結成分の重心
+> - 遮蔽窓（GT の Target 画素0）は tracker failure として分母から除外
+>
+> **Evaluator floor（§37.8）**：tv_R0S0_original に上記 tracker を当て、ids==3 重心と比較。median 3.05 / **p95 3.89 px**。**p95 ≪ 47 → 関門有効、保険条項は発動しない。**
+
+---
+
+### 38.7 Arm C 生成が Blender 不要である旨を明記（§13 系 or §33）（変更7）
+
+> **Arm C の control は Blender レンダではなく Python 円盤描画**（`score_armc.py` の `replay_frame` 規約：radius 6px=113px、depth 遠い順に塗る）。点の u,v,depth,visible,rgb は `armc_points.json`（`select_arm_c.py` の bpy 出力）にある。
+>
+> **Scene C′ の Arm C 化**：Target帯72点を各フレーム `v_new = v_old − (1155.5556/point_depth)·dZ(f)` で v シフト（点ごとの depth）。u/depth/rgb は不変。**visible は f0–35 を Occluder 矩形（u 401.56–567.67 / v 232.78–456.67 / depth 8.00）で再計算、f36–48 は継承**（Scene C で f0–40 は矩形判定=レイキャスト完全一致、f41–48 は Occluder 厚み0.05 の縁で7点ズレのため継承側が正）。
+>
+> → **偵察 run は Arm C 代表なら Blender ゼロで回せる。Arm A（clay）/ Arm B（position）の C′ control は Blender レンダが必要。**
+
+---
+
+### 38.8 §2.5 の訂正（変更8）
+
+> - `--use_gradient_checkpointing` を**明示**すれば training_args.json に `true` と正しく記録される（rev.10 の「false と記録される」は非明示時の挙動）。
+> - checkpoint の保存は `step-{n}.safetensors` のみ（save_steps 到達時）。**epoch 毎保存は発生しない**（rev.10 で懸念した「epoch-{id} 大量生成」は起きなかった。実測 0 個）。
+
+---
+
+### 38.9 §2.2 / §36.6 の content sha の解釈を注記（変更9）
+
+> **content sha256 の計算方式に注意**：ローカル W3\mkv・Pod /workspace/w4/mkv・armc_points.json からの再現、の三者で同一の content sha が出る（例：tv=`6190557123fdc2b3`、armC=`7c08f981503edb34`）。frame0 は既存 armC_0000.png と bit 一致。
+> **§2.2/§36.6 の記録値（tv=`bba8…`、armC=`46ab…`、ref=`df7c…`）とは異なるが、これは content sha の計算方式の違い**（現行の imageio デコード→RGB(T,H,W,3) tobytes vs 記録時の別方式。bgr0/gbrp は可逆なので格納形式ではなく計算経路の差）**であり、画素は正規**。ファイルの正規性は「三者一致 + frame0 bit一致」で担保する。
+> 今後の照合は「imageio デコード RGB の tobytes sha」に統一するのが安全。
+
+---
+
+### 38.10 未決事項テーブルの更新後の姿
+
+| # | 内容 | 待ち条件 |
+|---|---|---|
+| ~~2~~ | ~~gradient_accumulation_steps~~ | **解決＝1** |
+| 20 | 本番シーンでの色の一意性の実地検証 | 本番シーン構築後 |
+| 21 | 評価 GT 側で Arm A の Target を同定する方法 | arm A 着手時 |
+| 23 | train 軌道本数 N | **暫定 N=1**。3 arm の結果で確定 |
+| 24 | Occluder 除去方法（c-x / c-y / c-z） | 本実験時 |
+| 新 | T_coherence 2/44 が生成破綻か tracker 限界か | f34/f35 切り分け |
+
+
+## 39. rev.12 で確定した事項（W7：Scene C′ の 3 arm 生成。2026-08-12）
+
+Scene C′ の 3 arm control 生成完了を受けた更新。**確定事項の追加・訂正のみ。設計の骨格（3-arm VACE LoRA、B vs C primary）は不変。**
+
+
+
+---
+
+### 39.1 variant "prime" を正式定義（§33.4 系に追加）（変更1）
+
+> ### Scene C′ = variant `"prime"`
+>
+> `scene_c_spec.VARIANTS = ("original", "edited", "prime")`。
+>
+> **軌道の定義**
+>
+> | 軸 | 定義 |
+> |---|---|
+> | X | `original` を完全継承（`-0.90 + 0.0375·index`）。`KEYFRAMES["prime"] = KEYFRAMES["original"]` |
+> | Y | 不変（0）。断面が動かないので制約2（面積不変）が自動で満たされる |
+> | Z | `location.z = dz_at(index)`。`dz_at(i) = DZ_A·(1−cos(2π·i/DZ_PERIOD))/2`（i ≤ 35）、`0.0`（i > 35） |
+>
+> `DZ_A = 0.85` / `DZ_PERIOD = 35.0` / `DZ_CLAMP_INDEX = 35`。
+>
+> **重大な実装上の注意**：`location.z` に入れるのは **差分 dZ のみ**。Target 幾何中心の Z（= −0.80）は**メッシュ頂点に焼かれており**（作法#14）、Scene C では `obj.location.z` は 0.0 のままである。
+> `scene_c_prime_traj.json` の meta `Z0_note`（"location_z = Z0 + dZ"）は **誤り**。同 meta の `Z0_placeholder = -0.770651` は点群重心の v 範囲 [252.3, 434.8] から depth 8.60 で逆算した推定値であり、幾何中心 −0.80（depth 9.00）とは別物。**meta は使わず `keyframes[].dZ` のみ使う。**
+>
+> **離散ピーク**：連続ピークは f=17.5 で `A = 0.85` だが、整数フレームでは到達しない。実効ピークは **index 17 と 18 の `0.8482891`**。
+
+---
+
+### 39.2 §33.4 制約1（速度）の余裕を明記（変更2）
+
+> **制約1 の実測余裕は 4.99%。** `DZ_A` / `DZ_PERIOD` は凍結扱いとする。
+>
+> | 項目 | 値 |
+> |---|---|
+> | 最大 2D スクリーン速度（depth 8.60、水平＋垂直の合成） | **11.4014 px/frame**（index 8→9 および 26→27） |
+> | `VELOCITY["design_limit"]` | 12.0 |
+> | 余裕 | 0.5986 px/frame = **4.99%** |
+>
+> `scene_c_prime_traj.json` の `screen_v_to_next` は名称と異なり **2D 合成速度**である（水平 5.0388 と垂直成分の合成）。
+> 振幅を上げる／周期を短くする変更は即座に上限を超えるため行わない。
+
+---
+
+### 39.3 Scene C′ の照合値を凍結（§37 系に追加）（変更3）
+
+> ### Scene C′ の凍結リテラル
+>
+> 経路分離（作法#12）：**作る側 = `scene_c_spec.dz_at()` の閉形式 / 照合側 = `scene_c_prime_traj.json` 由来のリテラル**。
+>
+> | 追加先 | 定数 | 内容 |
+> |---|---|---|
+> | `scene_c_spec.py` | `DZ_A` / `DZ_PERIOD` / `DZ_CLAMP_INDEX` / `dz_at()` / `TARGET_CENTRE_Z` / `DZ_MAX_SCREEN_VEL` | 式 |
+> | `scene_c_expect.py` | `TRAJ_PRIME`（49行：index, frame, X, location_z, u, v）/ `PRIME_SCALARS` / `PRIME_VERTEX_Z_AT_PEAK` / `TOL_Z=1e-5` / `TOL_V=0.01` | リテラル |
+> | `geo_expect.py` | `PRIME_TARGET_V_TOP`（49行：index, v_top, band_px）/ `PRIME_OCCLUDER_TOP_V=232.7778` / `PRIME_BAND_SUBPIXEL_PX=1.5` / `PRIME_V_TOP_SCALARS` | リテラル |
+> | `armb_expect.py` | `PRIME_TARGET_B_MAX`（49行：index, 期待 max B）/ `PRIME_TOL_ZLEVEL=2` / `PRIME_B_SCALARS` | リテラル |
+>
+> **突合実測**：式側とリテラル側の最大差は dZ で `4.71e-08`（JSON の 7 桁丸め由来）、v 換算 `6.05e-06 px`。`TOL_PX = 0.01` の内側。
+>
+> **主要スカラ**
+>
+> | 項目 | 値 |
+> |---|---|
+> | dZ ピーク | 0.8482891（index 17 / 18） |
+> | Target 中心 v | 342.7161（dZ=0）→ 233.7999（peak）。移動 108.9161 px |
+> | Target 上端 v（depth 8.60） | 253.4367（dZ=0）→ 139.4547（peak）。移動 113.9820 px |
+> | ピーク時の Target 頂点 Z（world） | −0.6517109 .. **0.7482891** |
+> | `NORM_BOX["z"]` 上限 2.60 に対する余裕 | **1.85 unit** |
+> | Target 画素の B チャンネル最大（Arm B 8bit） | 177（dZ=0）→ 197（peak）。振れ幅 20 段階 |
+>
+> 注：`POINTS` の `Target_centre` は v=342.7160 と記録されているが、これは切り捨て表記であり 342.7161 と `TOL_PX` 内で一致する。矛盾ではない。
+
+---
+
+### 39.4 content sha の計算方式を確定（rev.11 変更9 を解決）（変更4）
+
+rev.11 変更9 は「§2.2/§36.6 の記録値と W6 の三者一致値の差は計算方式の違い」と**推測**していた。W7 で**実測により確定**した。
+
+> ### content sha256 の計算方式（**方式B に統一**）
+>
+> ```
+> content_sha = sha256( imageio.get_reader でデコードした (T,H,W,3) uint8 の tobytes ).hexdigest()
+> ```
+> **shape を前置しない。** これを「方式B」と呼ぶ。
+>
+> | 方式 | 定義 | 対応する記録値 |
+> |---|---|---|
+> | **A** | `sha256(str(shape) + tobytes)` | §2.2 / §36.6 の記録値（tv=`bba8f4b9e280b9e3`, armC=`46abbcded632a61b`） |
+> | **B** | `sha256(tobytes)` | W6 の三者一致値（tv=`6190557123fdc2b3`, armC=`7c08f981503edb34`, armC_prime=`fde80efbe48dcb51`） |
+>
+> **W7 実測**：既知の記録値を持つ 3 本（`tv_R0S0_original.mkv` / `armC_original.mkv` / `armC_prime.mkv`）に対し、**方式B が 3 本すべてで記録値を再現**した。方式 A は §2.2/§36.6 の記録値を再現した。BGR 順（方式D）・CHW 順（方式E）・ファイル sha（方式F）はいずれも不一致。
+>
+> **結論**：両記録値はどちらも正しく、**ファイルの異常は存在しない**。Pod との照合に使うのは方式B。
+>
+> `png_to_ffv1.py` は `content_sha256()`（方式A）と `content_sha256_b()`（方式B）の両方を出力する（W7 改修）。診断用に `sha_probe.py`（6 方式を総当たりして記録値と自動照合）を追加。
+
+---
+
+### 39.5 Scene C′ 成果物の sha 表（§36 系に追加）（変更5）
+
+> ### Scene C′ control / target video（すべて 49 frames / 832×480 / FFV1 level 3 / gbrp / g=1 / +bitexact）
+>
+> | 本 | ファイル | content sha (B) | content sha (A) | bytes |
+> |---|---|---|---|---|
+> | tv | `W3\mkv\tv_R0S0_prime.mkv` | `71d0253f9fdc3161` | `8fa4ae4bb827a020` | 3,466,263 |
+> | Arm A | `W3\mkv\armA_prime.mkv` | `3666302824d68ee5` | `1f273ee25c8b73c8` | 2,224,461 |
+> | Arm B | `W3\mkv\armB_prime.mkv` | `5a08e10cc228d230` | `77f1cf8b2e21b5f1` | 1,914,588 |
+> | Arm C | `W4\mkv\armC_prime.mkv` | `fde80efbe48dcb51` | `a7ac42f40f26b82d` | 1,066,438 |
+>
+> ### Scene C（参照。方式B）
+>
+> | 本 | content sha (B) |
+> |---|---|
+> | tv_R0S0_original | `6190557123fdc2b3` |
+> | armA_original | `33cabc1b11b72f45` |
+> | armB_original | `d31186af848c80dc` |
+> | armC_original | `7c08f981503edb34` |
+>
+> 4 本すべて `png_to_ffv1.py roundtrip` で **PNG ↔ mkv の bit 一致**を確認済み（不一致画素 0 / 最大絶対差 0）。検証経路は DiffSynth の `LoadVideo` と同一（`imageio.get_reader` → `count_frames` → `get_data`）。
+
+---
+
+### 39.6 制約4 の実証と、その副作用としての評価コード修正（§33.4 / §18-9 系）（変更6）
+
+> **制約4 は画素レベルで実証された。**
+>
+> | 検査 | 結果 |
+> |---|---|
+> | `.blend` の `location.z`（index 36–40） | 厳密に 0.0 |
+> | geo の ID パス（frame 37–41） | Target 画素 0（`uniq=[1,2,4,5,6]`） |
+> | Arm B の画素値（index 36–40） | max 114。Target 帯 (140, 242) の値が一つも存在しない |
+> | Target 可視フレーム数 | **44**（49 − 5）。§12 の評価面「GT で Target 可視な 44 フレーム（0–35 / 41–48）」と一致 |
+> | tv / Arm B の index 0 および 35–48 | Scene C と **bit 一致 15/15**。index 1–34 は全て相違 |
+>
+> index 0 の bit 一致により、§33.11 の「制約3 により `vace_reference_image` は 1 枚に collapse する」が実証された。
+>
+> ### 副作用：`export_geometry.visible_u` の1次元判定が C′ で破綻する
+>
+> **原因**：C′ では Target が浮いて遮蔽板の上端（world Z = 0.05 / 画面 v = 232.7778）を越える。Target は X-Y 断面を Z に押し出したプリズムであり **どの Z スライスでも u 範囲は同一**なので、板の上に出た帯がシルエット全幅を覆う。u だけの判定では「板で切られる」と誤った期待値を出す。
+>
+> **影響範囲**：改修前のコードで正しいデータを判定すると **24/49 フレームが FAIL**（index 6–29）。
+>
+> **修正（W7、案A採用）**：
+> ```
+> band_px = 232.7778 − v_top(index)
+>   band > 0                       -> 可視シルエットは u 全幅
+>   band <= 0                      -> 従来の 1D 判定
+>   0 < band < 1.5（サブピクセル）  -> 全幅と 1D 判定の**どちらでも許容**（境界フレーム）
+> ```
+> **境界フレームは index 5 と 30**（band = 0.842 px）。**W7 実測ではラスタライザが「全幅」側に転んだ**（index 30 で u 右端 516.5、板で切った場合の 401.5 ではない）。代替解の許容は今回発動しなかったが、他 split / 解像度での保険として残す。
+>
+> 案B（prime では検査をスキップ）は不採用。Arm B の元データの唯一の幾何検証を失うため。
+
+---
+
+### 39.7 検査の空白の是正（§37 系に追加）（変更7）
+
+**W7 で、Target の Z が全フレームでゼロでも全検査が PASS する状態が 4 箇所で判明した。** いずれも「静かな失敗」であり、実験結果を無言で無効化しうる。
+
+> ### 空白の内容と是正
+>
+> | スクリプト | 空白 | 是正（W7） |
+> |---|---|---|
+> | `render_target_video.py` | mean / frac_0 / frac_255 / roundtrip のみ。位置検査ゼロ | `check_position()`：`matrix_world` を読み X / location.z / u / v を `TRAJ_PRIME` と突合 |
+> | `render_arm_a.py` | 同上（clay は全同色なので位置が誤っていても「それらしい絵」が出る） | 同上 |
+> | `export_geometry.py` | `PROBE_PX` の `target_f1` は `frame_invariant=False` で **index 0 限定**（dZ=0 のフレーム）。シルエット照合は u のみ | `target_v_top`：ID マスクの Target 画素の**最上行**を v に変換して `PRIME_TARGET_V_TOP` と突合。Target 上端は遮蔽状態に関係なく必ず可視 |
+> | `encode_arm_b.py` | `PROBE_RGB` の `target_f1` も index 0 限定。**B チャンネル（Z 軸）が dZ>0 で一度も照合されない** | `target_b_max`：ID マスクの Target 画素の **B 最大値**を `PRIME_TARGET_B_MAX` と突合。加えて B の [min, max] が Target 帯 (140, 242) の内側であることを確認 |
+>
+> ### 壊したデータでの発火確認（作法：assert は壊したデータで発火させる）
+>
+> | 壊し方 | tv の位置検査 | geo の u 判定 | geo の v_top | armB の B 最大 |
+> |---|---|---|---|---|
+> | Z 未反映（改修前の挙動） | 34/49 | 23 | 32 | 26/44 |
+> | `location.z = Z0 + dZ`（JSON の誤指示） | 49/49 | 23 | 44 | 44/44 |
+> | dZ が半分 | — | 3 | 32 | 24/44 |
+> | 遮蔽窓の clamp 除去 | — | 13 | — | — |
+> | 正しいデータ | **0** | **0** | **0** | **0/44** |
+>
+> 「dZ が半分」は u 判定だけでは 3 件しか捕まらず、v_top で 32 件捕まる。u と v の両方を見る必要がある根拠。
+>
+> ### 検査の限界（記録）
+>
+> Arm B の B 最大値検査は **+5% のスケール誤差を検出できない**（8bit 量子化に埋もれる）。ただし最大誤差 0.042 unit は §34.2 の量子化予算 0.044118 unit（1 LSB の半分）より小さいため、実験結果に影響しない。
+
+---
+
+### 39.8 Arm A の凍結パラメータと C′ での分離性実測（§18-21 系）（変更8）
+
+> ### Arm A（clay）の凍結パラメータ
+>
+> | 項目 | 値 | 根拠 |
+> |---|---|---|
+> | energy | 2000 | §7（全 split 共通） |
+> | world（環境光） | 0.10 | sweep で world 0.1 / 0.5 が同一結果 |
+> | samples | 32 | R0 = EEVEE |
+> | view_transform | Standard | — |
+> | `use_raytracing` | **False** | True では同一フレーム2回で差分画素 15。決定性が出ない |
+> | 材質 | `ArmA_Clay` 単一 / base_color (0.5, 0.5, 0.5) / roughness 0.6 / metallic 0 | §18-21 |
+>
+> ### C′ での `label_separability` 実測（49 フレーム）
+>
+> | 項目 | 値 |
+> |---|---|
+> | 最大 | **0.8661**（frame 36 = index 35、dZ=0） |
+> | 最小 | 0.6241（frame 33 = index 32） |
+> | 閾値 `ARMA_LABEL_SEP_MAX` | 0.99 |
+> | 余裕 | **0.124** |
+>
+> **最大値は Scene C と同一（0.8661）。C′ の縦揺れは sep の最大値を一つも押し上げなかった。** §18-21（Arm A は暗黙の Entity ラベルを持たない）は C′ でも維持される。
+>
+> **機序**：Target が浮いて光源（Z=1.50）に近づき Target 側の平均輝度は上がる（index 0 で 0.5917 → index 12 で 0.6199）が、接地影が消えることで**非 Target 側の平均も下がる**（0.4823 → 0.4718）。分離性は分布の重なりで決まるため単調増加しない。
+>
+> **`frac_0`（真っ黒画素）の余裕は小さい**：最大 **2.684%**（frame 16 = index 15、dZ=0.8079118）、閾値 3%。余裕 0.32%。**dZ のピーク（frame 18 = index 17）とは一致しない** — X も同時に動くため、Target の下面の暗部が遮蔽板に隠れる分だけ減る。今後 C′ 系のシーンを追加する際は `frac_0` を単変数で予測しないこと。
+
+---
+
+### 39.9 §15 Pipeline floor は推論枠（学習 run 予算を消費しない）（変更9）
+
+> **Pipeline floor 4 本（Determinism / Encoding / Micro-perturbation / Seed variability）は、いずれも同一の LoRA を使い回して生成側のみを変える測定であり、§21 の学習 run 予算（5 本）を消費しない。**
+>
+> 学習 run 予算の現状：
+>
+> | 項目 | 本数 |
+> |---|---|
+> | 総枠（§21） | 5 |
+> | 消費済み（W6 偵察 run = g1_armC = Arm C の S1） | 1 |
+> | Phase 0.8 で必要（Arm A / Arm B の S1） | 2 |
+> | 残余 | **2** |
+>
+> g1_armC が Arm C の S1 として流用可能であれば、Phase 0.8 の新規学習は 2 本で足りる。
+
+---
+
+### 39.10 環境の既知問題（§2.6 系 or 付録に追加）（変更10）
+
+> ### Blender 5.2.0 LTS（hash `fbe6228777e7`）
+>
+> | 症状 | 原因 | 対処 |
+> |---|---|---|
+> | `save_as_mainfile` 直後に `EXCEPTION_ACCESS_VIOLATION` でプロセスが死ぬ | `comfyui_blender` アドオンの `load_pre` / `load_post` ハンドラが `AttributeError` / `KeyError` を出し、teardown で落ちる | **`--factory-startup` を必須とする。** 出力（.blend / JSON / PNG）は無傷。`--factory-startup` 付きでは `Blender quit` で正常終了 |
+> | `--variant prime` が弾かれる | `scene_c_spec.VARIANTS` に prime が無い | spec を先に更新する |
+>
+> クラッシュ時も `.blend` は正規に書けている。別プロセスで `--factory-startup <blend> --python-expr` で読み直し、`frame_set(18)` の `matrix_world.translation.z == 0.8482891` を確認して検証した。
+>
+> ### PowerShell 5.1（日本語 Windows）
+>
+> **`Get-Content | Add-Content` でファイルを追記してはならない。** 既定エンコーディングが ANSI（Shift-JIS）なので UTF-8 の日本語コメントが破壊され、Python が `SyntaxError` / `UnicodeDecodeError` で落ちる。`-Encoding UTF8` を付けても BOM が途中に埋まる。
+>
+> **正しい追記**：
+> ```
+> cmd /c copy /b base.py + append.py new.py
+> Move-Item new.py base.py -Force
+> ```
+> `copy /b` はバイト列をそのまま連結するため文字化けが原理的に起きない。追記対象・追記元がともに改行終端で BOM 無しであることを事前に確認する。
+>
+> ### ファイル配置（W7 で確定）
+>
+> `C:\Bachelor Thesis\SummerWork\W2\.py\` が **スクリプト本体の唯一の正**（spec / expect / png_io / armc_palette / geo_expect などの依存が全てここにある）。成果物は `W2\RENDER\{tv,geo,armA,armB}\<variant>\`、mkv は `W3\mkv\`（Arm C のみ `W4\mkv\`）。`W4\.py\` は改修版のダウンロード先であり本体ではない。
+
+---
+
+### 39.11 Scene C′ 成果物の自己検査サマリ（§37 系に追加）（変更11）
+
+> | 段 | スクリプト | 出力 | SELF-CHECK |
+> |---|---|---|---|
+> | `.blend` | `build_scene_c.py --variant prime` | `scene_c_prime.blend`（98,219 B） | **PASS 32 / FAIL 0** |
+> | tv | `render_target_video.py` | `RENDER\tv\R0S0\prime\` 49 枚 | **PASS 104 / FAIL 0** |
+> | geo | `export_geometry.py` | `RENDER\geo\prime\` 147 枚（position / depth / id × 49） | **PASS 150 / FAIL 0** |
+> | Arm A | `render_arm_a.py` | `RENDER\armA\prime\` 49 枚 | **PASS 105 / FAIL 0** |
+> | Arm B | `encode_arm_b.py` | `RENDER\armB\prime\` 49 枚 | **PASS 52 / FAIL 0** |
+>
+> 補助実測：
+> - geo の `target_v_top` 誤差は最大 **1.019 px**（許容 1.5、検査対象 44 フレーム）。縁画素の被覆規則由来の系統誤差であり、既存の u 誤差（0.90 / 0.47 / 0.65 / 0.83）と同オーダー。
+> - Arm B の `q_excess` は全フレーム厳密に **0.00e+00**（許容 1.0e-03）。NORM_BOX 外に一切出ていない。
+> - Arm B の Target 帯下限側の余裕は小さい：`target_b_min` = 143（index 0、帯下限 140 まで 3 段階）。
+> - `original` 系の再レンダは既存成果物と **bit 一致**（tv 5/5、Arm B 5/5）。`target_z()` が `original` で 0.0 を返すため、既存の frozen sha は保たれている。
+
+---
+
+### 39.12 未決事項テーブルの更新後の姿
+
+| # | 内容 | 待ち条件 |
+|---|---|---|
+| ~~2~~ | ~~gradient_accumulation_steps~~ | 解決＝1（rev.11） |
+| 20 | 本番シーンでの色の一意性の実地検証 | 本番シーン構築後 |
+| 21 | 評価 GT 側で Arm A の Target を同定する方法 | **arm A 着手済み。C′ では geo の ID パス（ids==3）で同定できることを実測。本番シーンでの方法は未決のまま** |
+| 23 | train 軌道本数 N | 暫定 N=1。3 arm の結果で確定 |
+| 24 | Occluder 除去方法（c-x / c-y / c-z） | 本実験時 |
+| 25 | T_coherence 2/44 が生成破綻か tracker 限界か | f34/f35 切り分け |
+| 新 26 | 学習マニフェスト / メタデータの形式 | `manifest.py` / `make_metadata.py` の確認後 |
+| ~~新（rev.11）~~ | ~~content sha の計算方式~~ | **解決＝方式B（変更4）** |
+
+---
+
+
+## 40. rev.13 で確定した事項（W8：学習 metadata / manifest。2026-08-12）
+
+学習マニフェスト / メタデータの確定。**確定事項の追加・訂正のみ。設計の骨格は不変。**
+
+
+---
+
+### 40.1 未決 #26 を解決（§36.7 に追記）（変更1）
+
+> ### 学習 metadata と manifest の役割分担（確定）
+>
+> | 対象 | 形式 | 生成 | 内容 |
+> |---|---|---|---|
+> | 学習 metadata | jsonl 3 本（`metadata_arm{A,B,C}.jsonl`） | `make_metadata.py` v2 | **original のみ**。240 bytes / 1 行 / 4 列 |
+> | 資産 manifest | TSV（md5 / size / relpath） | `manifest.py` / `stage_pod_inputs.py` | Pod 転送の bit 一致検証 |
+>
+> **prime（Scene C′）用の metadata jsonl は作らない。**
+> 理由：§33.4 a により train は Scene C R0S0 Original のみ。C′ は評価側であり、
+> DiffSynth の推論は jsonl を読まず frame の list を直接受け取る（rev.11 変更4）。
+> W7 worklog 7章の「prime の 4 本を DiffSynth が読む形式に組む」は、
+> **jsonl 化ではなく base_path への集約と sha 照合**を指すものとして解決した。
+>
+> **列名は確定済み**（`video` / `prompt` / `vace_video` / `vace_reference_image`。
+> rev.10 §36.7、未決 #25 で 2026-08-09 に解決）。
+> `make_metadata.py` v1 の docstring にあった「`prompt` は未確認」は古い記述であり v2 で削除した。
+>
+> **生成物の凍結リテラル**（3 arm すべて 240 bytes）：
+>
+> | arm | sha256（先頭 16） |
+> |---|---|
+> | armA | `b98633171d33d47f` |
+> | armB | `8ed8deedd11f4ef7` |
+> | armC | `33e531b5c7888662` |
+>
+> armC は W6 の偵察 run で実際に使った `metadata_armC.jsonl` と **bit 一致を確認**した。
+
+---
+
+### 40.2 base_path は 1 本なので集約する（§36.14 に追記）（変更2）
+
+> `--dataset_base_path` は 1 本しか渡せない（`os.path.join(base, rel)`）。
+> 手元の mkv は tv / armA / armB が `W3\mkv`、armC が `W4\mkv` に分かれているため、
+> **9 ファイルを 1 ディレクトリに集約してから転送する**（`stage_pod_inputs.py`）。
+>
+> 相対パスに `..` を入れる案は不採用。`ToAbsolutePath` の解決を跨いで壊れやすく、
+> metadata の 3 arm 同一性検査の意味も濁る。
+>
+> **集約対象（9 件）**
+>
+> | 用途 | ファイル |
+> |---|---|
+> | 学習 | `tv_R0S0_original.mkv` / `armA_original.mkv` / `armB_original.mkv` / `armC_original.mkv` / `ref_R0S0_original.png` |
+> | 評価（推論の control 入力） | `tv_R0S0_prime.mkv` / `armA_prime.mkv` / `armB_prime.mkv` / `armC_prime.mkv` |
+>
+> prime を同じディレクトリに置くのは推論時に読むためであり、metadata には現れない
+> （`FORBIDDEN_SUBSTRINGS` に `"prime"` を追加して保証）。
+
+---
+
+### 40.3 検査の空白の是正（§37 系に追記。W7 変更7 の続き）（変更3）
+
+**W8 で `make_metadata.py` v1 に 2 箇所の静かな失敗が判明した。**
+
+> | 空白 | 症状 | 是正（v2） |
+> |---|---|---|
+> | `FORBIDDEN_SUBSTRINGS` に `"prime"` が無い | 定数（`TARGET_VIDEO` / `ARM_CONTROL`）を prime に書き換えると **全検査が PASS する**。C′ で学習してしまい RQ が無意味になる | 禁止語に `"prime"` を追加 |
+> | 生成バイト列の回帰が無い | `PROMPT` を 3 arm 同時に変えると `check_cross_arm_identity` は通る（3 arm で一致しているため）。W6 の run と prompt が違う状態で学習が走る | `FROZEN_JSONL`（sha256 + bytes）と突合する `check_frozen_jsonl()` |
+> | 実在確認のみで中身を見ていない | ファイルは在るが別の中身、を検出できない | `--check-sha`：参照先 mkv の content sha（方式B）を凍結値と突合 |
+>
+> ### 壊したデータでの発火確認（8 ケース、全て期待どおり）
+>
+> | 壊し方 | v1 | v2 |
+> |---|---|---|
+> | prompt に空白 1 文字（1 arm） | 検出 | 検出 |
+> | vace_video の重複 | 検出 | 検出 |
+> | Edited の混入（1 arm） | 検出 | 検出 |
+> | prime の混入（1 arm） | 検出 | 検出 |
+> | **prime の混入（全 arm）** | **素通り** | **検出** |
+> | **prompt を 3 arm 同時に変更** | **素通り** | **検出** |
+> | dict の挿入順を変える（発火しないのが正） | 素通り | 素通り |
+> | 正常データ | PASS | PASS |
+>
+> `stage_pod_inputs.py` 側も合成 FFV1 で 9 ケース発火確認済み
+> （方式A/B の弁別、1 LSB 差、bytes 不一致、frame 数不一致）。
+
+---
+
+### 40.4 未決 #27 を追加（参照画像の content sha 方式）（変更4）
+
+> `ref_R0S0_original.png` の content sha は rev.10 §36.5 に**先頭 24 桁
+> `df7c595457c81e35b47164ae` のみ**記録されており、方式A / 方式B のどちらかが不明。
+> 動画と違い単一 PNG なので `(1,H,W,3)` として計算したのか `(H,W,3)` かも不明。
+>
+> 暫定：**PNG は file md5（manifest）でのみ照合する。** content sha 照合は行わない。
+> 解決条件：`sha_probe.py` を PNG 対応に拡張して総当たりする（mkv で同じ手が効いた）。
+
+---
+
+### 40.5 未決事項テーブルの更新後の姿
+
+| # | 内容 | 待ち条件 |
+|---|---|---|
+| 20 | 本番シーンでの色の一意性の実地検証 | 本番シーン構築後 |
+| 21 | 評価 GT 側で Arm A の Target を同定する方法 | 本番シーンでの方法は未決 |
+| 23 | train 軌道本数 N | 暫定 N=1。3 arm の結果で確定 |
+| 24 | Occluder 除去方法（c-x / c-y / c-z） | 本実験時 |
+| 25 | T_coherence 2/44 が生成破綻か tracker 限界か | f34/f35 切り分け |
+| ~~26~~ | ~~学習マニフェスト / メタデータの形式~~ | **解決（変更1・2・3）** |
+| 新 27 | 参照画像 PNG の content sha 方式 | `sha_probe.py` の PNG 対応後 |
+
+---
+
+
+## 41. rev.14 で確定した事項（W9：採点ルールの確定。2026-10-31）
+
+Phase 0.8（Arm A / Arm B の学習）に入る前に、**採点ルールの穴を 2 つ埋めた。**
+どちらも Arm A / Arm B の結果を見る前に確定しており、事後合わせではない。
+設計の骨格（3-arm VACE LoRA、B vs C primary、47 px / 2 フレームの閾値）は不変。
+
+
+---
+
+### 41.1 T_control の GT 中心を Scene C′ の ID パスから取る（§37.4 / §12）（変更1）
+
+**旧（rev.13 まで、`score_t_control.py` v1）**
+
+```
+u_GT = Scene C の ids==3 重心
+v_GT = Scene C の ids==3 重心 − (K / 9.00)·dZ(f)
+```
+
+**問題。** Scene C′ では Target が持ち上がって遮蔽板の上端（v = 232.78）を越えるため、
+**見えているシルエットそのものが Scene C と違う**（rev.12 変更6 と同じ機序。index 6–29 は u 全幅が可視）。
+Scene C で半分隠れている形の重心を上にずらしても、C′ で見えている形の重心にはならない。
+
+| 実測（W9、numpy、`make_gt_center.py`） | 値 |
+|---|---|
+| v1 GT と C′ 本物の GT の差 | median 2.38 / p95 31.42 / **最大 31.88 px**（index 22–27） |
+| 完璧な生成（`tv_R0S0_prime.mkv`）を v1 GT で採点 | median 4.09 / **p95 32.98 px** |
+| 同じものを C′ 本物の GT で採点 | median 1.81 / **p95 3.75 px** |
+| 例：index 23 の Target 画素数 | Scene C 11,897 → C′ 17,261（u 右端 401.5 → 482.5） |
+
+v1 の GT では、採点側だけで p95 が約 33 px 食われていた。47 px の関門に対して大きく、
+arm 間差を潰し、§15 の Evaluator floor も過小に見積もる（Scene C 上で測った 3.89 px は C′ の採点面の床ではなかった）。
+
+**新**
+
+```
+GT = Scene C′（geo/prime/id_%04d.exr）の ids==3 のマスク重心
+     座標系は tracker と同じ画素 index（+0.5 しない）
+```
+
+- 生成：`scripts/pipeline/make_gt_center.py` → **`data/points/gt_target_center_prime.json`**（5,848 bytes、sha256 先頭 16 = `2656edf279cfcb3e`）
+- 採点側はこの JSON だけを読む（経路分離。作法 #6）
+- 内部検査：可視 44 フレーム / 完全遮蔽 index 36–40 / index ≥ 35 は C′ と Scene C の重心が一致 / index 0 の ID パスは bit 一致 / Marker 重心で EXR の向きを確認
+- 暗記判別の参照（Scene C 軌道）も同じ JSON の `u_sc` / `v_sc`（Scene C の ids==3 重心）から取る。v1 と同じ値
+
+---
+
+### 41.2 T_coherence は「本数」で判定する（§37.6 / §12）（変更2）
+
+**旧の書き方**：「個数 ≠ 1 のフレーム率 ≤ 2 / 44。Tracker failure は分母から除外し別カウント」。
+
+**問題。** 分母から tracker failure を外すと分母が 44 未満になり、率で判定すると
+**tracker failure が出るほど基準が厳しくなる。** 偵察 run は個数 ≠ 1 が 2 本（f33 / f41）で
+予算どおりだったのに、分母 42 になったため 2/42 = 0.0476 > 2/44 = 0.0455 で FAIL と判定されていた。
+
+2/44 の根拠（§37.6）は「幾何的に判定困難な frame 35 / 41 の **2 本分だけ** 予算を認める」であり、
+本数の予算である。
+
+**新**
+
+| 項目 | 規則 |
+|---|---|
+| 判定 | **個数 ≠ 1 のフレームが ≤ 2 本なら PASS** |
+| 対象 | GT 可視 44 フレームのうち tracker が Target を検出できたフレーム |
+| tracker failure（検出 0） | **分母にも分子にも入れない。** 別カウントとして本数とフレーム番号を必ず報告する |
+
+決定者：Taro（2026-10-31、Arm A / B の結果を見る前）。
+tracker failure の本数に上限は置かない（置く根拠となる測定が無い）。arm 間で本数を並べて報告する。
+
+---
+
+### 41.3 偵察 run（g1_armC）を新ルールで採点し直した（§33.7 / §38）（変更3）
+
+`scripts/pod/score_t_control_v2.py`（GPU 不要）。tracker は v1 と同一。
+
+| 指標 | v1（rev.11 の記録） | **v2** |
+|---|---|---|
+| T_control median | 8.55 px | **6.62 px**（PASS） |
+| T_control p95 | 42.00 px | **20.36 px** |
+| T_control max | 44.29 px | 25.74 px |
+| 暗記判別 | C′ 8.55 ≪ Scene C 57.47 | **C′ 6.62 ≪ Scene C 57.47**（control 追従） |
+| T_coherence | 2/42 → FAIL | **2 本（f33 / f41）→ PASS** |
+| tracker failure | f34 / f35 | f34 / f35（別カウント） |
+
+レポート：`data/reports/w9/score_g1_armC_v2.json`。v1 の 8.55 / 42.00 / f34・f35 は numpy の再実装で再現を確認済み。
+
+**結論は変わらない**（control を読めている）。p95 が半分以下になったのは、v1 の p95 の大部分が GT のズレだったため。
+
+---
+
+### 41.4 Evaluator floor を C′ の採点面で測り直した（§37.8）（変更4）
+
+| 面 | median | p95 | max | 備考 |
+|---|---|---|---|---|
+| Scene C の tv、Scene C の GT（rev.11） | 3.05 | 3.89 | 91.25 | 旧記録 |
+| **C′ の tv、C′ の GT（W9）** | **1.81** | **3.75** | 91.25 | **これを本実験の床とする** |
+
+p95 3.75 ≪ 47 → **関門は有効、保険条項は発動しない**（結論は rev.11 と同じ）。max 91.25 は index 35（Target が板の縁でほぼ消える）。
+
+---
+
+### 41.5 陽性対照の結果が変わった（記録）（変更5）
+
+`tv_R0S0_original.mkv`（暗記の模擬）を v2 で採点した。
+
+| | v1 | v2 |
+|---|---|---|
+| T_control median | 38.35 px（PASS） | **47.15 px（FAIL、閾値ぎりぎり）** |
+| 暗記判別 | 暗記寄り | 暗記寄り（vs C′ 47.15 / vs Scene C 3.05） |
+
+**「T_control 単体は暗記でも通りうる」（rev.11 変更5 注記）の判断は維持する。** 47.15 は閾値の 0.15 px 外側にあるだけで、
+暗記を T_control で弾けるとは言えない。暗記判別は引き続き Scene C 距離との比較で行う。
+`score_t_control_v2.py` は暗記判別を main から常に出力する（v1 は `memorization_probe` が main から呼ばれていなかった）。
+
+---
+
+### 41.6 未決 #27（参照画像 PNG の content sha 方式）を解決（rev.13 変更4）（変更6）
+
+総当たりの結果、記録値 `df7c595457c81e35b47164ae` は **方式A を shape `(1, 480, 832, 3)` で計算した値**だった。
+
+| 方式 | shape | sha256 先頭 |
+|---|---|---|
+| **A（`str(shape)` + tobytes）** | **(1, 480, 832, 3)** | **`df7c595457c81e35b47164ae`** ← 記録値と一致 |
+| A | (480, 832, 3) | `4c99994a2ddd544a754c4efc` |
+| B（tobytes） | どちらでも | `afc440eec3c328600d869ef5` |
+| file sha256 | — | `64ccc9dbd502acf5bba861c5` |
+
+併せて `ref_R0S0_original.png` が `tv_R0S0/original/tv_0000.png` および `tv_R0S0_original.mkv` の frame 0 と bit 一致することを確認した。
+以後の照合は方式B `afc440eec3c32860` を使える（manifest の md5 照合も継続）。
+
+---
+
+### 41.7 Arm C prime の点データは W4 版が正（README 注記の解決）（変更7）
+
+`data/points/armc_prime_points_W3.json` と `_W4.json` は v 座標が同一で、**visible が 267 箇所違う**
+（W3 = visible 継承のみ、W4 = index 0–35 を Occluder 矩形で再計算）。
+自前で円盤描画を再現して `armC_prime.mkv` と比較した結果：
+
+| 点データ | `armC_prime.mkv` との不一致フレーム |
+|---|---|
+| W3 版 | index 8–30（23 フレーム） |
+| **W4 版** | **なし（49/49 bit 一致）** |
+
+**W3 版は使わない。** 同じ再現で `armc_points.json` → `armC_original.mkv` も 49/49 bit 一致した。
+
+---
+
+### 41.8 Phase 0.8 用スクリプト（凍結スクリプト一覧に追加）（変更8）
+
+| スクリプト | 役割 | 状態 |
+|---|---|---|
+| `scripts/pipeline/make_gt_center.py` | C′ の GT 中心 JSON を作る | ローカルで実行済み |
+| `scripts/pod/score_t_control_v2.py` | T_control / T_coherence / 暗記判別 | selftest PASS（陽性対照 2 本） |
+| `scripts/pod/infer_arm.py` | arm 切替式の推論。tokenizer 直指定・LoRA fuse 検査・FFV1 保存 | **GPU 未実行** |
+| `scripts/pod/train_arm.sh` | arm 切替式の学習。フラグは g1_armC の `training_args.json` と同一 | **GPU 未実行** |
+
+`train_arm.sh` は `--enable_tensorboard_log` を**付けない**（g1_armC と揃えるため。§36.11 の「付ける」は撤回）。
+loss はログから読む。
+
+---
+
+### 41.9 本文の記述ミスの修正（変更9）
+
+- §13.3 の速度表で、半径 6 の行に §18 の行が混入していた（rev.10 の編集事故）。元の行に戻した
+- `scene_c_prime_traj.json` の meta `Z0_note` は誤り（rev.12 変更1）。ファイルは凍結入力なので書き換えず、本文の注意書きで扱う
+
+---
+
+### 41.10 未決事項の番号の整理
+
+PRE_EXPERIMENT_SUMMARY と rev.11〜13 は「新 25」「新 27」という番号を使っていたが、§18 にはすでに
+解決済みの #25〜#28 があり衝突していた。§18 では次の番号に振り直す。
+
+| サマリ上の番号 | §18 の番号 | 内容 | 状態 |
+|---|---|---|---|
+| 新 25 | **29** | T_coherence 2/44 が生成破綻か tracker 限界か | 未決（判定規則は変更2 で確定。原因の切り分けが残る） |
+| 新 27 | **30** | 参照画像 PNG の content sha 方式 | **解決**（変更6） |

@@ -9,7 +9,7 @@ The preparation stage was completed in summer 2026 (W0–W8). **The main experim
 ## Read this first
 
 1. [`docs/PRE_EXPERIMENT_SUMMARY_v1.md`](docs/PRE_EXPERIMENT_SUMMARY_v1.md) — overall picture right before the main experiment (index of confirmed decisions)
-2. [`docs/protocol/`](docs/protocol/) — `protocol_rev10.md` (main document) + rev11 / 12 / 13 diffs
+2. [`docs/protocol/`](docs/protocol/) — `protocol.md` (main document, **rev.14**; rev.11–14 diffs are merged as §38–§41) + the individual `protocol_rev1{1,2,3,4}_changes.md` diffs
 3. [`docs/worklog/`](docs/worklog/) — weekly rationale for decisions, and records of predictions and where they were wrong
 
 ## The three Arms
@@ -29,7 +29,8 @@ The preparation stage was completed in summer 2026 (W0–W8). **The main experim
 | 3-Arm control + target video for Scene C (train) / Scene C′ (IID test) | ✅ Complete; PNG↔mkv bit-identity confirmed |
 | Training metadata (jsonl × 3) | ✅ |
 | Scouting run (Arm C, 500 steps) | ✅ T_control median 8.55 px; the model reads the control rather than memorizing |
-| **Phase 0.8: train Arm A / B (2 runs) + inference** | ⬜ **Next step** |
+| Scoring rules fixed before Phase 0.8 (rev.14: GT from Scene C′ ID pass, T_coherence by frame count) | ✅ `scripts/pod/score_t_control_v2.py` |
+| **Phase 0.8: train Arm A / B (2 runs) + inference** | ⬜ **Next step** (`scripts/pod/train_arm.sh`, `scripts/pod/infer_arm.py`) |
 | Pipeline floor (4 runs) → Claim Gate | ⬜ |
 | Phase X (Wan vs LTX cross-family validation) | ⬜ Design only ([`docs/PHASE_X_wan_vs_ltx_design_note.md`](docs/PHASE_X_wan_vs_ltx_design_note.md)) |
 
@@ -76,7 +77,8 @@ Some scripts in `scripts/pipeline/` (e.g. `dump_geo_npy.py`) import modules from
 
 ### Notes
 
-- There are two versions: `data/points/armc_prime_points_W3.json` and `_W4.json` (see W7-06). `armC_prime.mkv` was confirmed by sha to be identical to W6, so the mkv side is fine.
+- There are two versions: `data/points/armc_prime_points_W3.json` and `_W4.json` (see W7-06). **Use `_W4.json`.** Re-rendering both shows only W4 reproduces `armC_prime.mkv` bit-for-bit (W3 differs in frames 8–30; protocol §41.7).
+- `score_t_control.py` (v1) builds the Scene C′ GT by shifting the Scene C mask centroid and is off by up to 31.9 px. Use `score_t_control_v2.py` with `data/points/gt_target_center_prime.json` (protocol §41.1).
 - Do not guess training-side values. Follow the frozen values in `docs/PRE_EXPERIMENT_SUMMARY_v1.md` §3–4.
 
 ## Excluded during reorganization (still in the original folder)
