@@ -43,15 +43,18 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--arm", required=True, choices=["A", "B", "C"])
     ap.add_argument("--seeds", required=True, help="例: 4-19（= G5〜G20）")
+    ap.add_argument("--step", type=int, default=500, help="checkpoint の step（100/200/300/400/500）")
+    ap.add_argument("--no-lora", action="store_true", help="Step 0（LoRA なし = zero-shot）")
     a = ap.parse_args()
     seeds = parse_seeds(a.seeds)
+    step_tag = "step0" if a.no_lora else "step%d" % a.step
     ctrl_path = "%s/arm%s_prime.mkv" % (MKV, a.arm)
-    lora = "%s/g1_arm%s/step-500.safetensors" % (RUNS, a.arm)
-    for p in [DIT, T5, VAE, TOK, ctrl_path, REF, lora]:
+    lora = None if a.no_lora else "%s/g1_arm%s/step-%d.safetensors" % (RUNS, a.arm, a.step)
+    for p in [DIT, T5, VAE, TOK, ctrl_path, REF] + ([lora] if lora else []):
         if not os.path.exists(p):
             raise SystemExit("[FATAL] 見つからない: " + p)
     for s in seeds:
-        p = os.path.join(OUT, "gen_arm%s_step500_G%d.mkv" % (a.arm, s + 1))
+        p = os.path.join(OUT, "gen_arm%s_%s_G%d.mkv" % (a.arm, step_tag, s + 1))
         if os.path.exists(p):
             raise SystemExit("[FATAL] 既に存在する（上書き防止）: " + p)
 
@@ -67,14 +70,17 @@ def main():
         model_configs=[ModelConfig(path=DIT), ModelConfig(path=T5), ModelConfig(path=VAE)],
         tokenizer_config=ModelConfig(path=TOK),
     )
-    buf_o, buf_e = io.StringIO(), io.StringIO()
-    with contextlib.redirect_stdout(buf_o), contextlib.redirect_stderr(buf_e):
-        pipe.load_lora(pipe.vace, lora, alpha=1)
-    log = buf_o.getvalue() + buf_e.getvalue()
-    sys.stdout.write(log)
-    if FUSE_MSG not in log:
-        raise SystemExit("[FATAL] '%s' が出ていない（LoRA が乗っていない）" % FUSE_MSG)
-    print("[check] LoRA fused OK  arm", a.arm, flush=True)
+    if lora:
+        buf_o, buf_e = io.StringIO(), io.StringIO()
+        with contextlib.redirect_stdout(buf_o), contextlib.redirect_stderr(buf_e):
+            pipe.load_lora(pipe.vace, lora, alpha=1)
+        log = buf_o.getvalue() + buf_e.getvalue()
+        sys.stdout.write(log)
+        if FUSE_MSG not in log:
+            raise SystemExit("[FATAL] '%s' が出ていない（LoRA が乗っていない）" % FUSE_MSG)
+        print("[check] LoRA fused OK  arm %s %s" % (a.arm, step_tag), flush=True)
+    else:
+        print("[check] no LoRA (zero-shot)  arm", a.arm, flush=True)
 
     vd = VideoData(ctrl_path, height=480, width=832)
     ctrl = [vd[i] for i in range(49)]
@@ -102,15 +108,16 @@ def main():
             raise SystemExit("[FATAL] mkv が生成フレームと bit 一致しない: " + path)
         return hashlib.sha256(back.tobytes()).hexdigest()[:16]
 
-    # 1) バッチ生成の同一性検査：G1 を作り直して Phase 0.8 と比べる（ファイルは残さない）
-    sha = hashlib.sha256(generate(0).tobytes()).hexdigest()[:16]
-    if sha != G1_SHA[a.arm]:
-        raise SystemExit("[FATAL] G1 の再生成が Phase 0.8 と一致しない: %s != %s" % (sha, G1_SHA[a.arm]))
-    print("[check] G1 regenerated in batch mode: sha %s == Phase 0.8" % sha, flush=True)
+    # 1) バッチ生成の同一性検査：step-500 のときだけ G1 を作り直して Phase 0.8 と比べる（ファイルは残さない）
+    if lora and a.step == 500:
+        sha = hashlib.sha256(generate(0).tobytes()).hexdigest()[:16]
+        if sha != G1_SHA[a.arm]:
+            raise SystemExit("[FATAL] G1 の再生成が Phase 0.8 と一致しない: %s != %s" % (sha, G1_SHA[a.arm]))
+        print("[check] G1 regenerated in batch mode: sha %s == Phase 0.8" % sha, flush=True)
 
     # 2) 追加の seed
     for s in seeds:
-        path = os.path.join(OUT, "gen_arm%s_step500_G%d.mkv" % (a.arm, s + 1))
+        path = os.path.join(OUT, "gen_arm%s_%s_G%d.mkv" % (a.arm, step_tag, s + 1))
         sha = write_mkv(generate(s), path)
         print("wrote %s content sha(B): %s" % (path, sha), flush=True)
 

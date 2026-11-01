@@ -1,0 +1,11 @@
+{
+ "made_by": "inline (W12)",
+ "source": "data/render/geo/prime/id_%04d.exr == 3 (frame=index+1)",
+ "shape": [
+  49,
+  480,
+  832
+ ],
+ "encoding": "np.packbits C order",
+ "sha256": "f433eb62df4ef96efcbecb678244406290b8b3e02c0300ffe82859569dbe758b"
+}
