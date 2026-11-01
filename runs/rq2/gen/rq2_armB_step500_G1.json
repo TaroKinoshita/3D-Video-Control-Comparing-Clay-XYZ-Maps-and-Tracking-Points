@@ -1,0 +1,21 @@
+{
+ "spill_mae": 0.2903904388443762,
+ "spill_psnr": 46.97983946931855,
+ "spill_p95": 1.0,
+ "outside_mae": 0.3982979818992439,
+ "mask_px": 8732473,
+ "edit_median": 3.041563005873934,
+ "edit_n": 43,
+ "edit_coh_bad": [],
+ "edit_fail": [
+  35
+ ],
+ "orig_median": 3.2254226974979137,
+ "orig_n": 43,
+ "orig_coh_bad": [],
+ "orig_fail": [
+  35
+ ],
+ "orig": "/workspace/runs/gen/gen_armB_step500_G1_rq2orig.mkv",
+ "edit": "/workspace/runs/gen/gen_armB_step500_G1_rq2edit.mkv"
+}

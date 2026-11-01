@@ -1,0 +1,33 @@
+{
+ "spill_mae": 0.296865351506574,
+ "spill_psnr": 48.59841690611729,
+ "spill_p95": 1.0,
+ "outside_mae": 0.472353265224359,
+ "mask_px": 8732473,
+ "edit_median": 2.5426026607296124,
+ "edit_n": 43,
+ "edit_coh_bad": [],
+ "edit_fail": [
+  41
+ ],
+ "orig_median": 5.450649603255466,
+ "orig_n": 43,
+ "orig_coh_bad": [
+  16,
+  18,
+  19,
+  20,
+  22,
+  25,
+  26,
+  27,
+  41,
+  47,
+  48
+ ],
+ "orig_fail": [
+  35
+ ],
+ "orig": "/workspace/runs/gen/gen_armC_step500_G3_rq2orig.mkv",
+ "edit": "/workspace/runs/gen/gen_armC_step500_G3_rq2edit.mkv"
+}
