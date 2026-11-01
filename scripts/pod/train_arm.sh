@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 # train_arm.sh — Phase 0.8 の学習 1 本（W9）
-#   使い方:  bash train_arm.sh A      （または B）
+#   使い方:  bash train_arm.sh A          （1 本目 = S1。出力 /workspace/runs/g1_armA）
+#            bash train_arm.sh C g2       （④ Training 変動の S2。出力 /workspace/runs/g2_armC）
 # フラグは runs/g1_armC/training_args.json（W6 偵察 run）と同一。
 # 違うのは metadata と output_path だけ（protocol §36.14 / §8）。
 # 長い処理なので末尾で Pod を止める（&& ではなく ;）。止めたくなければ STOP=0。
 set -u
-ARM="${1:?usage: bash train_arm.sh A|B}"
+ARM="${1:?usage: bash train_arm.sh A|B|C [g1|g2|g3]}"
+RUN="${2:-g1}"
 case "$ARM" in A|B|C) ;; *) echo "ARM must be A/B/C"; exit 1;; esac
-OUT=/workspace/runs/g1_arm${ARM}
+case "$RUN" in g1|g2|g3) ;; *) echo "RUN must be g1/g2/g3 (= S1/S2/S3)"; exit 1;; esac
+OUT=/workspace/runs/${RUN}_arm${ARM}
 META=/workspace/w4/meta/metadata_arm${ARM}.jsonl
 
 [ -f "$META" ] || { echo "missing $META"; exit 1; }

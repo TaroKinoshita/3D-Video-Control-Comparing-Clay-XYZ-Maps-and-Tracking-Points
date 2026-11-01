@@ -41,7 +41,7 @@ MKV = "/workspace/w4/mkv"
 REF = MKV + "/ref_R0S0_original.png"
 RUNS = "/workspace/runs"
 # 学習 run の出力先。Arm C は W6 の偵察 run（g1_armC）を S1 として流用する
-LORA_DIR = {"A": RUNS + "/g1_armA", "B": RUNS + "/g1_armB", "C": RUNS + "/g1_armC"}
+# 出力先は /workspace/runs/{run}_arm{X}。run = g1/g2/g3 が training seed S1/S2/S3 のラベル（§9）
 
 # metadata_arm*.jsonl と 1 バイトも違わないこと（make_metadata_v2.PROMPT）
 PROMPT = ("static camera, simple matte geometric solids on a flat floor, "
@@ -54,15 +54,21 @@ def main():
     ap.add_argument("--arm", required=True, choices=["A", "B", "C"])
     ap.add_argument("--seed", type=int, default=0, help="G1=0 G2=1 G3=2 G4=3（§9）")
     ap.add_argument("--step", type=int, default=500)
-    ap.add_argument("--lora", help="既定: /workspace/runs/g1_arm{X}/step-{step}.safetensors")
+    ap.add_argument("--run", default="g1", choices=["g1", "g2", "g3"], help="学習 run（S1/S2/S3）")
+    ap.add_argument("--suffix", default="", help="出力名の末尾（例: _rep / _shift1）。同名の上書きを防ぐ")
+    ap.add_argument("--lora", help="既定: /workspace/runs/{run}_arm{X}/step-{step}.safetensors")
     ap.add_argument("--ctrl", help="既定: /workspace/w4/mkv/arm{X}_prime.mkv")
     ap.add_argument("--no-lora", action="store_true", help="Step 0（LoRA なし）")
     ap.add_argument("--out-dir", default=RUNS + "/gen")
     a = ap.parse_args()
 
     ctrl_path = a.ctrl or "%s/arm%s_prime.mkv" % (MKV, a.arm)
-    lora = None if a.no_lora else (a.lora or "%s/step-%d.safetensors" % (LORA_DIR[a.arm], a.step))
-    tag = "arm%s_%s_G%d" % (a.arm, "step0" if a.no_lora else "step%d" % a.step, a.seed + 1)
+    lora = None if a.no_lora else (a.lora or "%s/%s_arm%s/step-%d.safetensors" % (RUNS, a.run, a.arm, a.step))
+    run_tag = "" if a.run == "g1" else a.run + "_"
+    tag = "arm%s_%s%s_G%d%s" % (a.arm, run_tag, "step0" if a.no_lora else "step%d" % a.step,
+                               a.seed + 1, a.suffix)
+    if os.path.exists(os.path.join(a.out_dir, "gen_%s.mkv" % tag)):
+        raise SystemExit("[FATAL] 既に存在する（上書き防止）: gen_%s.mkv。--suffix で名前を変える" % tag)
     for p in [DIT, T5, VAE, TOK, ctrl_path, REF] + ([lora] if lora else []):
         if not os.path.exists(p):
             raise SystemExit("[FATAL] 見つからない: " + p)
