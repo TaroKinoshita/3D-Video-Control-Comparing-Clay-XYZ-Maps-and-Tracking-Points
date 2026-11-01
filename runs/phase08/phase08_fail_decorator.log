@@ -1,0 +1,113 @@
+nohup: ignoring input
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+Traceback (most recent call last):
+  File "/workspace/DiffSynth-Studio/examples/wanvideo/model_training/train.py", line 154, in <module>
+    "input_audio": ToAbsolutePath(args.dataset_base_path) >> LoadAudio(sr=16000),
+                                                             ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/DiffSynth-Studio/diffsynth/core/data/operators.py", line 282, in __init__
+    self.audio_loader = librosa.load
+                        ^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.12/site-packages/lazy_loader/__init__.py", line 79, in __getattr__
+    attr = getattr(submod, name)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.12/site-packages/lazy_loader/__init__.py", line 78, in __getattr__
+    submod = importlib.import_module(submod_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/venv/lib/python3.12/site-packages/librosa/core/audio.py", line 19, in <module>
+    from .fft import get_fftlib
+  File "/workspace/venv/lib/python3.12/site-packages/librosa/core/fft.py", line 8, in <module>
+    from ..util.decorators import deprecated
+  File "/workspace/venv/lib/python3.12/site-packages/librosa/util/decorators.py", line 9, in <module>
+    from decorator import decorator
+ModuleNotFoundError: No module named 'decorator'
+Traceback (most recent call last):
+  File "/workspace/venv/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/venv/lib/python3.12/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/workspace/venv/lib/python3.12/site-packages/accelerate/commands/launch.py", line 1407, in launch_command
+    simple_launcher(args)
+  File "/workspace/venv/lib/python3.12/site-packages/accelerate/commands/launch.py", line 993, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/workspace/venv/bin/python', 'examples/wanvideo/model_training/train.py', '--dataset_base_path', '/workspace/w4/mkv', '--dataset_metadata_path', '/workspace/w4/meta/metadata_armA.jsonl', '--data_file_keys', 'video,vace_video,vace_reference_image', '--extra_inputs', 'vace_video,vace_reference_image', '--height', '480', '--width', '832', '--num_frames', '49', '--dataset_repeat', '1', '--model_id_with_origin_paths', 'Wan-AI/Wan2.1-VACE-1.3B:diffusion_pytorch_model*.safetensors,Wan-AI/Wan2.1-VACE-1.3B:models_t5_umt5-xxl-enc-bf16.pth,Wan-AI/Wan2.1-VACE-1.3B:Wan2.1_VAE.pth', '--learning_rate', '1e-4', '--num_epochs', '500', '--save_steps', '100', '--remove_prefix_in_ckpt', 'pipe.vace.', '--output_path', '/workspace/runs/g1_armA', '--lora_base_model', 'vace', '--lora_target_modules', 'q,k,v,o,ffn.0,ffn.2', '--lora_rank', '32', '--use_gradient_checkpointing']' returned non-zero exit status 1.
+=== PEAK VRAM ===
+3 MiB
+=== OUTPUT ===
+total 2963
+drwxrwxrwx 2 root root 1000382 Oct 31 23:25 .
+drwxrwxrwx 8 root root 2028456 Oct 31 23:25 ..
+-rw-rw-rw- 1 root root    3860 Oct 31 23:25 train.log
+-rw-rw-rw- 1 root root      60 Oct 31 23:25 vram.log
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+Traceback (most recent call last):
+  File "/workspace/DiffSynth-Studio/examples/wanvideo/model_training/train.py", line 154, in <module>
+    "input_audio": ToAbsolutePath(args.dataset_base_path) >> LoadAudio(sr=16000),
+                                                             ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/DiffSynth-Studio/diffsynth/core/data/operators.py", line 282, in __init__
+    self.audio_loader = librosa.load
+                        ^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.12/site-packages/lazy_loader/__init__.py", line 79, in __getattr__
+    attr = getattr(submod, name)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.12/site-packages/lazy_loader/__init__.py", line 78, in __getattr__
+    submod = importlib.import_module(submod_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/workspace/venv/lib/python3.12/site-packages/librosa/core/audio.py", line 19, in <module>
+    from .fft import get_fftlib
+  File "/workspace/venv/lib/python3.12/site-packages/librosa/core/fft.py", line 8, in <module>
+    from ..util.decorators import deprecated
+  File "/workspace/venv/lib/python3.12/site-packages/librosa/util/decorators.py", line 9, in <module>
+    from decorator import decorator
+ModuleNotFoundError: No module named 'decorator'
+Traceback (most recent call last):
+  File "/workspace/venv/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/venv/lib/python3.12/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/workspace/venv/lib/python3.12/site-packages/accelerate/commands/launch.py", line 1407, in launch_command
+    simple_launcher(args)
+  File "/workspace/venv/lib/python3.12/site-packages/accelerate/commands/launch.py", line 993, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/workspace/venv/bin/python', 'examples/wanvideo/model_training/train.py', '--dataset_base_path', '/workspace/w4/mkv', '--dataset_metadata_path', '/workspace/w4/meta/metadata_armB.jsonl', '--data_file_keys', 'video,vace_video,vace_reference_image', '--extra_inputs', 'vace_video,vace_reference_image', '--height', '480', '--width', '832', '--num_frames', '49', '--dataset_repeat', '1', '--model_id_with_origin_paths', 'Wan-AI/Wan2.1-VACE-1.3B:diffusion_pytorch_model*.safetensors,Wan-AI/Wan2.1-VACE-1.3B:models_t5_umt5-xxl-enc-bf16.pth,Wan-AI/Wan2.1-VACE-1.3B:Wan2.1_VAE.pth', '--learning_rate', '1e-4', '--num_epochs', '500', '--save_steps', '100', '--remove_prefix_in_ckpt', 'pipe.vace.', '--output_path', '/workspace/runs/g1_armB', '--lora_base_model', 'vace', '--lora_target_modules', 'q,k,v,o,ffn.0,ffn.2', '--lora_rank', '32', '--use_gradient_checkpointing']' returned non-zero exit status 1.
+=== PEAK VRAM ===
+3 MiB
+=== OUTPUT ===
+total 2963
+drwxrwxrwx 2 root root 1000381 Oct 31 23:25 .
+drwxrwxrwx 9 root root 2028456 Oct 31 23:25 ..
+-rw-rw-rw- 1 root root    3860 Oct 31 23:25 train.log
+-rw-rw-rw- 1 root root      42 Oct 31 23:25 vram.log
+[FATAL] 見つからない: /workspace/runs/g1_armA/step-500.safetensors
+[FATAL] 見つからない: /workspace/runs/g1_armB/step-500.safetensors
+Runpod config file not found, please run `runpodctl config` to create it
+pod "kxogub73bpmqxn" stopped
