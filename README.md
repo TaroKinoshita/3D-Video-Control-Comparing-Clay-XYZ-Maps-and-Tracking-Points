@@ -53,6 +53,7 @@ MainProject/
 │  └─ reports/           SELF-CHECK / measurement reports from each script (json, txt)
 ├─ manifest/             md5 / size tables (for bit-identity checks on transfer and regeneration)
 ├─ runs/                 Training run records (training_args / log / generated results). *.safetensors not tracked by git
+├─ archive/              Original tar.gz archives retrieved from the Pod (with md5). Extracted copies live in runs/
 └─ references/           Reference paper PDFs (not tracked by git)
 ```
 

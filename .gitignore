@@ -54,3 +54,6 @@ Desktop.ini
 .DS_Store
 .vscode/
 .idea/
+
+# ---- 実験結果の原本アーカイブ（Pod から回収した tar.gz）は追跡する -------
+!archive/*.tar.gz
