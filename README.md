@@ -2,7 +2,7 @@
 
 **When teaching Wan2.1-VACE-1.3B a "3D control video" via LoRA, what changes depending on how the control video is represented?** This experiment compares three representations (Arms) under the same budget and the same conditions.
 
-The preparation stage was completed in summer 2026 (W0–W8). **The main experiment (Phase 0.8) has not started yet.**
+The preparation stage was completed in summer 2026 (W0–W8). **The experiments and the thesis draft were completed in November 2026 (W9–W13).** Start with [`docs/thesis/thesis.md`](docs/thesis/thesis.md).
 
 ---
 
@@ -30,7 +30,10 @@ The preparation stage was completed in summer 2026 (W0–W8). **The main experim
 | Training metadata (jsonl × 3) | ✅ |
 | Scouting run (Arm C, 500 steps) | ✅ T_control median 8.55 px; the model reads the control rather than memorizing |
 | Scoring rules fixed before Phase 0.8 (rev.14: GT from Scene C′ ID pass, T_coherence by frame count) | ✅ `scripts/pod/score_t_control_v2.py` |
-| **Phase 0.8: train Arm A / B (2 runs) + inference** | ⬜ **Next step** (`scripts/pod/train_arm.sh`, `scripts/pod/infer_arm.py`) |
+| Phase 0.8: train Arm A / B (2 runs) + inference | ✅ W9 |
+| Floors + Claim Gate (RQ1), RQ2 spillover | ✅ W10–W11 (pre-registered; primary RQ1 and RQ2: no claim) |
+| 20-seed follow-up, learning curve, zero-shot, Mask IoU | ✅ W12 (A and B more accurate than C; all arms usable after ~100 steps) |
+| **Thesis v1.0** | ✅ [`docs/thesis/thesis.md`](docs/thesis/thesis.md) |
 | Pipeline floor (4 runs) → Claim Gate | ⬜ |
 | Phase X (Wan vs LTX cross-family validation) | ⬜ Design only ([`docs/PHASE_X_wan_vs_ltx_design_note.md`](docs/PHASE_X_wan_vs_ltx_design_note.md)) |
 

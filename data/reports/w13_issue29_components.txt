@@ -1,0 +1,6 @@
+videos checked: 28  frames with >1 component: 76
+classes (2nd comp <200 px = fragment, >=1000 px = duplicate): {'fragment': 40, 'duplicate': 33, 'unclear': 3}
+frame index of fragment cases: [(41, 11), (34, 7), (47, 2), (48, 2), (35, 2), (30, 1), (33, 1), (4, 1), (42, 1), (43, 1), (44, 1), (45, 1), (46, 1), (16, 1), (18, 1), (19, 1), (20, 1), (22, 1), (25, 1), (26, 1), (27, 1)]
+videos with duplicate frames: Counter({'armC_step500_G4': 33})
+unclear: [('armC_step500_G4', 33, [27352, 420], 'unclear'), ('armC_step500_G4', 41, [27353, 208, 19], 'unclear'), ('armC_step500_G4', 42, [27357, 944], 'unclear')]
+largest fragment 2nd comp: 56
