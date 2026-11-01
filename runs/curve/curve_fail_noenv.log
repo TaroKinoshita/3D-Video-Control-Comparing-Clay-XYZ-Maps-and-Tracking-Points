@@ -1,0 +1,157 @@
+nohup: ignoring input
+=== curve start Sun Nov  1 18:09:58 UTC 2026 ===
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+Traceback (most recent call last):
+  File "/workspace/w4/py/infer_seeds.py", line 126, in <module>
+    main()
+  File "/workspace/w4/py/infer_seeds.py", line 63, in main
+    import imageio
+ModuleNotFoundError: No module named 'imageio'
+MISSING armA_step0_G1
+MISSING armA_step0_G2
+MISSING armA_step0_G3
+MISSING armA_step0_G4
+MISSING armA_step100_G1
+MISSING armA_step100_G2
+MISSING armA_step100_G3
+MISSING armA_step100_G4
+MISSING armA_step200_G1
+MISSING armA_step200_G2
+MISSING armA_step200_G3
+MISSING armA_step200_G4
+MISSING armA_step300_G1
+MISSING armA_step300_G2
+MISSING armA_step300_G3
+MISSING armA_step300_G4
+MISSING armA_step400_G1
+MISSING armA_step400_G2
+MISSING armA_step400_G3
+MISSING armA_step400_G4
+MISSING armB_step0_G1
+MISSING armB_step0_G2
+MISSING armB_step0_G3
+MISSING armB_step0_G4
+MISSING armB_step100_G1
+MISSING armB_step100_G2
+MISSING armB_step100_G3
+MISSING armB_step100_G4
+MISSING armB_step200_G1
+MISSING armB_step200_G2
+MISSING armB_step200_G3
+MISSING armB_step200_G4
+MISSING armB_step300_G1
+MISSING armB_step300_G2
+MISSING armB_step300_G3
+MISSING armB_step300_G4
+MISSING armB_step400_G1
+MISSING armB_step400_G2
+MISSING armB_step400_G3
+MISSING armB_step400_G4
+MISSING armC_step0_G1
+MISSING armC_step0_G2
+MISSING armC_step0_G3
+MISSING armC_step0_G4
+MISSING armC_step100_G1
+MISSING armC_step100_G2
+MISSING armC_step100_G3
+MISSING armC_step100_G4
+MISSING armC_step200_G1
+MISSING armC_step200_G2
+MISSING armC_step200_G3
+MISSING armC_step200_G4
+MISSING armC_step300_G1
+MISSING armC_step300_G2
+MISSING armC_step300_G3
+MISSING armC_step300_G4
+MISSING armC_step400_G1
+MISSING armC_step400_G2
+MISSING armC_step400_G3
+MISSING armC_step400_G4
+ls: cannot access '/workspace/runs/gen/curve/*.json': No such file or directory
+0
+=== curve end Sun Nov  1 18:10:12 UTC 2026 ===
+Runpod config file not found, please run `runpodctl config` to create it
+pod "q8n1wnxaqyw4nn" stopped
