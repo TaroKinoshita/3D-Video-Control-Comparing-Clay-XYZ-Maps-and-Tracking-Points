@@ -1,93 +1,165 @@
-# 3D Video Control Comparing
+# 3D Video Control: Clay vs World-XYZ vs Tracking Points
 
-**When teaching Wan2.1-VACE-1.3B a "3D control video" via LoRA, what changes depending on how the control video is represented?** This experiment compares three representations (Arms) under the same budget and the same conditions.
+**If you teach a video model to follow a 3D control video with a LoRA, does it matter *how* the 3D information is drawn?**
 
-The preparation stage was completed in summer 2026 (W0–W8). **The experiments and the thesis draft were completed in November 2026 (W9–W13).** Start with [`docs/thesis/thesis.md`](docs/thesis/thesis.md).
+This repository compares three control representations for **Wan2.1-VACE-1.3B** under identical conditions. It contains every script, input, score file and the full thesis.
+
+> 📄 **Thesis:** [`docs/thesis/thesis.md`](docs/thesis/thesis.md)
+> 🤝 **Handoff (start here if you continue the work):** [`HANDOFF.md`](HANDOFF.md)
 
 ---
 
-## Read this first
+## The three representations
 
-1. [`docs/PRE_EXPERIMENT_SUMMARY_v1.md`](docs/PRE_EXPERIMENT_SUMMARY_v1.md) — overall picture right before the main experiment (index of confirmed decisions)
-2. [`docs/protocol/`](docs/protocol/) — `protocol.md` (main document, **rev.14**; rev.11–14 diffs are merged as §38–§41) + the individual `protocol_rev1{1,2,3,4}_changes.md` diffs
-3. [`docs/worklog/`](docs/worklog/) — weekly rationale for decisions, and records of predictions and where they were wrong
+![Three arms](docs/thesis/figures/fig0_arms.png)
 
-## The three Arms
+| Arm | Representation | What the control shows | Marks which object to move? | Density |
+|---|---|---|---|---|
+| **A** | Clay previs | the scene rendered in one grey material | ❌ | dense |
+| **B** | World-XYZ | each pixel's 3D world coordinate packed into RGB | ✅ (separate colour band) | dense |
+| **C** | 3D tracking points | 240 fixed-colour dots on object surfaces | ✅ (separate colour band) | sparse |
 
-| Arm | Representation | Content |
-|---|---|---|
-| **A** | Clay Previs | Video of all objects rendered in a single clay color (appearance present, 3D implicit) |
-| **B** | Object-Aware Dense World-XYZ | Video with each pixel's world coordinates packed into RGB (Target made explicit) |
-| **C** | Object-Aware 3D Tracking | Sparse video tracking points on object surfaces as fixed-color dots |
+**Only the control video differs.** Everything else is identical across arms: prompt, reference image, resolution, LoRA settings, training video and seeds.
 
-**Only the control video differs.** Everything else (49 frames / 832×480 / 16 fps / prompt / LoRA settings / seed) is shared across all Arms.
+---
 
-## Current status
+## How the experiment works
 
-| | Status |
+```mermaid
+flowchart LR
+    S["Blender scene<br/>(Scene C)"] --> T["Training video<br/>1 trajectory"]
+    S --> H["Held-out trajectory<br/>(Scene C′, Target also moves up/down)"]
+    T --> L["LoRA on VACE branch<br/>500 steps, ~1 h"]
+    L --> G["Generate from the<br/>held-out control"]
+    H --> G
+    G --> E["Track the orange Target<br/>vs Blender ground truth"]
+    E --> D{"Difference larger than<br/>pre-registered floors?"}
+```
+
+The test trajectory is **never seen in training**. A model that merely memorised the training video fails the evaluation.
+
+![Held-out trajectory](docs/thesis/figures/fig0b_trajectory.png)
+
+**Metric.** We measure the distance (px) between the generated Target's centre and the true centre, and take the median over the 44 frames where the Target is visible. Usable means ≤ 47 px, half the Target's radius.
+
+Every decision rule and prediction was **committed before** the corresponding videos were generated ([`docs/protocol/protocol.md`](docs/protocol/protocol.md)).
+
+---
+
+## Main results
+
+### 1. All three work: no zero-shot use, usable after ~100 steps (~12 GPU-minutes)
+
+![Learning curve](docs/thesis/figures/fig3_learning_curve.png)
+
+### 2. Dense representations (A, B) are more accurate than sparse points (C)
+
+![Accuracy over 20 seeds](docs/thesis/figures/fig1_accuracy_20seeds.png)
+
+| | A: Clay | B: World-XYZ | C: Tracking |
+|---|---|---|---|
+| Median error (20 seeds) | **2.2 px** | **3.1 px** | **5.9 px** |
+| Catastrophic failures | 0 / 20 | 0 / 20 | 1 / 20 (Target duplicated) |
+
+![Paired differences](docs/thesis/figures/fig2_paired_differences.png)
+
+- **B vs C and A vs C: significant.** These come from a pre-registered paired bootstrap with a Bonferroni-corrected CI that excludes 0, and the differences exceed the evaluator floor.
+- **A vs B: not claimed.** The difference (~1 px) is below the tracker's own error of 1.81 px.
+
+### 3. Editing the trajectory barely disturbs the background (RQ2)
+
+![Spillover](docs/thesis/figures/fig4_rq2_spill.png)
+
+Leakage into regions that should not change is about **0.3 / 255** for every arm. No difference between arms can be claimed.
+
+### One failure worth seeing
+
+![Duplicate Target](docs/thesis/figures/fig5_armC_G4_duplicate.png)
+
+*Bottom row: one Arm C generation left a copy of the Target at its start position. This single video made the pre-registered primary comparison inconclusive. The pre-registered 20-seed follow-up then separated "accuracy" from "rare failure".*
+
+| Question | Answer |
 |---|---|
-| 3-Arm control + target video for Scene C (train) / Scene C′ (IID test) | ✅ Complete; PNG↔mkv bit-identity confirmed |
-| Training metadata (jsonl × 3) | ✅ |
-| Scouting run (Arm C, 500 steps) | ✅ T_control median 8.55 px; the model reads the control rather than memorizing |
-| Scoring rules fixed before Phase 0.8 (rev.14: GT from Scene C′ ID pass, T_coherence by frame count) | ✅ `scripts/pod/score_t_control_v2.py` |
-| Phase 0.8: train Arm A / B (2 runs) + inference | ✅ W9 |
-| Floors + Claim Gate (RQ1), RQ2 spillover | ✅ W10–W11 (pre-registered; primary RQ1 and RQ2: no claim) |
-| 20-seed follow-up, learning curve, zero-shot, Mask IoU | ✅ W12 (A and B more accurate than C; all arms usable after ~100 steps) |
-| **Thesis v1.0** | ✅ [`docs/thesis/thesis.md`](docs/thesis/thesis.md) |
-| Pipeline floor (4 runs) → Claim Gate | ⬜ |
-| Phase X (Wan vs LTX cross-family validation) | ⬜ Design only ([`docs/PHASE_X_wan_vs_ltx_design_note.md`](docs/PHASE_X_wan_vs_ltx_design_note.md)) |
+| Can each representation be followed after LoRA adaptation? | ✅ Yes, all three, from one training video |
+| Zero-shot (no LoRA)? | ❌ None |
+| Adaptation speed / GPU cost | Same for all: ~100 steps |
+| Accuracy | **A ≈ B > C** |
+| Edit spillover | ~0 for all, no difference |
+
+Limitations: one scene, and one training run each for A and B. See thesis §6.
+
+---
+
+## Project timeline
+
+| Phase | What | Status |
+|---|---|---|
+| W0–W8 (Aug 2026) | Environment, VAE survival test for Arm C, Blender scene, 3 arms × 3 splits rendered, bit-exact input pipeline, scouting run | ✅ |
+| W9 | Scoring rules fixed (rev.14), Arm A/B training, 3-arm inference | ✅ |
+| W10 | Floors + pre-registered Claim Gate → no claim (one Arm C failure) | ✅ |
+| W11 | RQ2 spillover → tiny for all, no claim | ✅ |
+| W12 | 20-seed follow-up (**A, B > C**), learning curve, zero-shot, Mask IoU | ✅ |
+| W13 | Open issue #29 resolved, thesis v1.0 | ✅ |
+| Next | Extensions ranked in thesis §6.2 / [`HANDOFF.md`](HANDOFF.md) | ⬜ |
+
+---
 
 ## Folder structure
 
 ```
-MainProject/
-├─ docs/                 Plans and records (protocol, worklog, summary, Phase X design)
+├─ HANDOFF.md            ★ Everything needed to continue the work
+├─ CLAUDE.md             Instructions for Claude Code in this repo
+├─ docs/
+│  ├─ thesis/            ★ Thesis (thesis.md) + figures/
+│  ├─ protocol/          ★ protocol.md (rev.18, all decisions) + rev11–18 diffs
+│  ├─ worklog/           Weekly logs W0–W13, including every wrong prediction
+│  └─ PRE_EXPERIMENT_SUMMARY_v1.md / PHASE_X_wan_vs_ltx_design_note.md
 ├─ scripts/
-│  ├─ blender/           Scene construction, rendering, generation for each Arm (Blender 5.2, --factory-startup required)
-│  ├─ pipeline/          PNG→FFV1 mkv conversion, metadata generation, sha checks, Pod transfer prep, Arm B/C verification
-│  ├─ pod/               RunPod side: inference and evaluation (score_t_control / evaluator_floor)
-│  └─ vae_survival/      Phase 0.0: checks whether Arm C dots survive VAE compression
-├─ scenes/               scene_c_original / scene_c_prime / scene_c_edited (.blend)
+│  ├─ blender/           Scene construction and rendering (Blender 5.2, --factory-startup)
+│  ├─ pipeline/          PNG→FFV1, metadata, GT / masks, analysis (analyze_seeds20.py, …)
+│  ├─ pod/               RunPod: train_arm.sh, infer_arm.py, infer_seeds.py, score_*.py, run_*.sh
+│  ├─ thesis/            make_figures.py
+│  └─ vae_survival/      Phase 0.0 VAE survival test (W1)
+├─ scenes/               .blend files (original / prime / edited)
 ├─ data/
-│  ├─ inputs/            ★ Final set passed to training/evaluation (8 mkv + reference image) = /workspace/w4/mkv on the Pod
-│  ├─ meta/              ★ Training metadata (metadata_arm{A,B,C}.jsonl) = /workspace/w4/meta on the Pod
-│  ├─ render/            Rendered PNGs (tv / geo / armA / armB / armC × original / edited / prime)
-│  ├─ points/            Arm C point data and palette, Scene C′ trajectory
-│  └─ reports/           SELF-CHECK / measurement reports from each script (json, txt)
-├─ manifest/             md5 / size tables (for bit-identity checks on transfer and regeneration)
-├─ runs/                 Training run records (training_args / log / generated results). *.safetensors not tracked by git
-├─ archive/              Original tar.gz archives retrieved from the Pod (with md5). Extracted copies live in runs/
-└─ references/           Reference paper PDFs (not tracked by git)
+│  ├─ inputs/            ★ Training/eval inputs (= /workspace/w4/mkv on the Pod)
+│  ├─ inputs_floor/      1-px shifted controls (micro-perturbation floor)
+│  ├─ inputs_rq2/        Edited controls (RQ2)
+│  ├─ meta/              Training metadata jsonl (= /workspace/w4/meta)
+│  ├─ points/            GT centres, masks, Arm C points, trajectories
+│  ├─ render/            Rendered PNG / EXR
+│  └─ reports/           Check reports and verdict tables
+├─ runs/                 Training logs, generated videos (small), all score JSONs
+├─ archive/              Raw tarballs from the Pod (+ md5), large ones split in 25 MB parts
+└─ manifest/             md5 tables for transfer checks
 ```
 
-### Mapping from old folders (for reading paths in docs)
-
-Old paths (`C:\Bachelor Thesis\SummerWork\...`) remain in docs and script docstrings. Map them as follows:
+<details>
+<summary>Mapping from the original local folders (old paths in docs)</summary>
 
 | Old | New |
 |---|---|
 | `SummerWork\W2\.py\` | `scripts/blender/` (only `.blend` files go to `scenes/`) |
 | `SummerWork\W3\.py\` | `scripts/pipeline/` |
-| `SummerWork\W4\.py\` + contents of `W4\.gz\*.tar.gz` | `scripts/pod/` |
+| `SummerWork\W4\.py\` + `W4\.gz\*.tar.gz` | `scripts/pod/` |
 | `SummerWork\W1\.py\` | `scripts/vae_survival/` |
-| `SummerWork\W8\pod_upload\mkv\` (= `W3\mkv` + `W4\mkv\armC_prime.mkv`) | `data/inputs/` |
+| `SummerWork\W8\pod_upload\mkv\` | `data/inputs/` |
 | `SummerWork\W3\meta\` | `data/meta/` |
 | `SummerWork\W2\RENDER\` | `data/render/` |
-| `SummerWork\W2\.json\`, `W3\.json\` | `data/points/` (points, trajectories) / `data/reports/` (reports) |
+| `SummerWork\W2\.json\`, `W3\.json\` | `data/points/` / `data/reports/` |
 | `SummerWork\W4\runs\`, `W4\.log\` | `runs/` |
-| `SummerWork\protocol\`, `W*\.md\`, `W*\.mb\` | `docs/` |
+| `SummerWork\protocol\`, `W*\.md\` | `docs/` |
 
-Some scripts in `scripts/pipeline/` (e.g. `dump_geo_npy.py`) import modules from `scripts/blender/` (`scene_c_spec`, `armb_encode`, `png_io`, …). Pass `--pypath scripts/blender` or add it to `PYTHONPATH`.
+Some `scripts/pipeline/` scripts import from `scripts/blender/`. Add it to `PYTHONPATH`.
 
-### Notes
+</details>
 
-- There are two versions: `data/points/armc_prime_points_W3.json` and `_W4.json` (see W7-06). **Use `_W4.json`.** Re-rendering both shows only W4 reproduces `armC_prime.mkv` bit-for-bit (W3 differs in frames 8–30; protocol §41.7).
-- `score_t_control.py` (v1) builds the Scene C′ GT by shifting the Scene C mask centroid and is off by up to 31.9 px. Use `score_t_control_v2.py` with `data/points/gt_target_center_prime.json` (protocol §41.1).
-- Do not guess training-side values. Follow the frozen values in `docs/PRE_EXPERIMENT_SUMMARY_v1.md` §3–4.
+<details>
+<summary>Known traps (short list; full list in HANDOFF.md)</summary>
 
-## Excluded during reorganization (still in the original folder)
+- Use `score_t_control_v2.py`. v1 builds the C′ ground truth from Scene C and is off by up to 31.9 px.
+- Use `data/points/armc_prime_points_W4.json`, not `_W3.json`.
+- On every new Pod, run `source /workspace/env.sh` **first**. Otherwise the system Python is used and every job fails.
+- Never encode controls with H.264, even at CRF 0. Use FFV1 (`png_to_ffv1.py`).
 
-- The July former direction (comparing Depth/Canny/MLSD/Camera with Wan2.1-Fun-Control, apple scene, VidFM3D/CO3D): `Blender/`, `Test/`, `milestone5/6_notes.md`, `VidFM3D_環境構築ノート.md`
-- protocol rev6–9 and rev8 patches (merged into rev10)
-- Regenerable derivatives: `.npy`, `.tar/.zip`, `W3/emit` (Arm C k-sweep), `W3/vae_armb`, `W2/.exr` (early probes), `W4/runs/gen_png`
-- `.bak`, `__pycache__`, `_selftest_tmp`, duplicate mkv / scripts
+</details>
