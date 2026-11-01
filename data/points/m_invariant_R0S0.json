@@ -1,0 +1,37 @@
+{
+ "made_by": "scripts/pipeline/make_rq2_inputs.py",
+ "shape": [
+  49,
+  480,
+  832
+ ],
+ "encoding": "np.packbits(mask.reshape(-1)), C order (frame, row, col)",
+ "definition": "protocol \u00a711: non-target in both, same id & depth (<1e-4), outside 2px city-block dilation of Target (either variant), max_c |tv_orig - tv_edit| <= 2",
+ "spill_frames": [
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35
+ ],
+ "mean_px_spill_frames": 379672.73913043475,
+ "sha256_bin": "d580a95cb948dcb64cdbbf07e07379b4b46d01f54f693a7c0ca398244ad11caf"
+}
